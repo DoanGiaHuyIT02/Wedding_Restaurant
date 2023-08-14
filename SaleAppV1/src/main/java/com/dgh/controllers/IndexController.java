@@ -9,6 +9,7 @@ import com.dgh.service.ChucVuService;
 import com.dgh.service.DichVuService;
 import com.dgh.service.LoaiTiecService;
 import com.dgh.service.NhanVienService;
+import com.dgh.service.ThongTinSanhService;
 import com.dgh.service.ThucDonService;
 import java.util.Map;
 import javax.persistence.Query;
@@ -44,6 +45,8 @@ public class IndexController {
     private ThucDonService thucDonService;
     @Autowired
     private ChucVuService chucVuService;
+    @Autowired
+    private ThongTinSanhService thongTinSanhService;
     
     @ModelAttribute
     public void commonAttri(Model model) {
@@ -53,6 +56,7 @@ public class IndexController {
         model.addAttribute("nhanVien", this.nhanVienService.getNhanVien());
         model.addAttribute("thucDon", this.thucDonService.getThucDon());
         model.addAttribute("chucVu", this.chucVuService.getChucVu());
+        model.addAttribute("thongTinSanh", this.thongTinSanhService.getThongTinSanh());
     }
     
     @RequestMapping("/")

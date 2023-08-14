@@ -29,11 +29,14 @@
                     <td>${p.loaiDichVu}</td>
                     <td>${p.giaDichVu}</td>
                     <td>
-                        <a href="#" class="btn btn-info">Cập nhật</a>
-                        <button class="btn btn-danger">Xóa</button>
+                        <c:url value="/api/dichVu/${p.id}" var="apiDel" />
+                        <a href="<c:url value="/themDichVu/${p.id}"/>" class="btn btn-info">Cập nhật</a>
+                        <button class="btn btn-danger" onclick="delDichVu('${apiDel}')">Xóa</button>
                     </td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
 </section>
+
+<script src="<c:url value="/js/main.js" />"></script>

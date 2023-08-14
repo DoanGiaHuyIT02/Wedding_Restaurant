@@ -16,6 +16,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -40,11 +43,14 @@ public class LoaiTiec implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 45)
+    @Basic(optional = false)
+    @NotNull
+    @NotEmpty(message = "loaiTiec.tenLoaiTiec.notNullMsg")
+    @NotBlank(message = "Không nhận khoảng trắng!!")
     @Column(name = "ten_loai_tiec")
     private String tenLoaiTiec;
     @Column(name = "isDelete")
-    private Integer isDelete;
+    private Boolean isDelete;
     @OneToMany(mappedBy = "loaiTiecId")
     private Set<ThongTinSanh> thongTinSanhSet;
     @OneToMany(mappedBy = "loaiTiecId")
@@ -55,6 +61,11 @@ public class LoaiTiec implements Serializable {
 
     public LoaiTiec(Integer id) {
         this.id = id;
+    }
+
+    public LoaiTiec(Integer id, String tenLoaiTiec) {
+        this.id = id;
+        this.tenLoaiTiec = tenLoaiTiec;
     }
 
     public Integer getId() {
@@ -73,11 +84,11 @@ public class LoaiTiec implements Serializable {
         this.tenLoaiTiec = tenLoaiTiec;
     }
 
-    public Integer getIsDelete() {
+    public Boolean getIsDelete() {
         return isDelete;
     }
 
-    public void setIsDelete(Integer isDelete) {
+    public void setIsDelete(Boolean isDelete) {
         this.isDelete = isDelete;
     }
 

@@ -27,7 +27,19 @@ public class DichVuServiceImpl implements DichVuService{
 
     @Override
     public boolean addOrUpdateDichVu(DichVu dv) {
+        dv.setIsDelete(Boolean.FALSE);
         return this.dichVuRepo.addOrUpdateDichVu(dv);
+    }
+
+    @Override
+    public DichVu getDichVuById(int id) {
+        return this.dichVuRepo.getDichVuById(id);
+    }
+
+    @Override
+    public boolean deleteDichVu(int id) {
+    
+        return this.dichVuRepo.deleteDichVu(id);
     }
     
 }

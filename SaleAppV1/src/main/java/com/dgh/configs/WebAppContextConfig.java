@@ -6,6 +6,7 @@ package com.dgh.configs;
 
 import com.dgh.formatters.ChiNhanhFormatter;
 import com.dgh.formatters.ChucVuFormatter;
+import com.dgh.formatters.LoaiTiecFormatter;
 import com.dgh.pojo.ChucVu;
 import java.text.SimpleDateFormat;
 import org.springframework.context.MessageSource;
@@ -81,6 +82,7 @@ public class WebAppContextConfig implements WebMvcConfigurer {
     public void addFormatters(FormatterRegistry registry) {
         registry.addFormatter(new ChiNhanhFormatter());
         registry.addFormatter(new ChucVuFormatter());
+        registry.addFormatter(new LoaiTiecFormatter());
     }
     
     @Override

@@ -27,6 +27,7 @@ public class LoaiTiecServiceImpl implements LoaiTiecService {
 
     @Override
     public boolean addOrUpdateLoaiTiec(LoaiTiec l) {
+        l.setIsDelete(Boolean.FALSE);
         return this.loaiTiecRepo.addOrUpdateLoaiTiec(l);
     }
 

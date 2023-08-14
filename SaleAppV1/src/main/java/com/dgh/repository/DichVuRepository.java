@@ -14,4 +14,7 @@ import java.util.List;
 public interface DichVuRepository {
     List<DichVu> getDichVu();
     boolean addOrUpdateDichVu(DichVu dv);
+    DichVu getDichVuById(int id);
+    boolean deleteDichVu(int id);
+    
 }

@@ -39,10 +39,31 @@ public class DichVuRepositoryImpl implements DichVuRepository {
         Session s = this.factory.getObject().getCurrentSession();
         try {
             if(dv.getId() == null) {
+                
                 s.save(dv);
             } else 
                 s.update(dv);
             
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public DichVu getDichVuById(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        return s.get(DichVu.class, id);
+    }
+
+    @Override
+    public boolean deleteDichVu(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        DichVu dv = this.getDichVuById(id);
+        dv.setIsDelete(Boolean.TRUE);
+        try {
+            s.update(dv);
             return true;
         } catch (HibernateException ex) {
             ex.printStackTrace();

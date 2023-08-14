@@ -61,6 +61,11 @@
         <put-attribute name="content"
                        value="/WEB-INF/pages/thongTinSanh.jsp" />
     </definition>
+    <definition name="themSanh" extends="baseLayout">
+        <put-attribute name="title" value="Quản lý sảnh" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/themSanh.jsp" />
+    </definition>
     
     <!--Các trang nhân viên-->
     <definition name="nhanVien" extends="baseLayout">

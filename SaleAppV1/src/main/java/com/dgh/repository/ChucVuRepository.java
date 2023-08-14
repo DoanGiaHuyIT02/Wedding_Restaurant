@@ -6,15 +6,10 @@ package com.dgh.repository;
 
 import com.dgh.pojo.ChucVu;
 import java.util.List;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
 /**
  *
  * @author DELL
  */
-@Repository
-@Transactional
 public interface ChucVuRepository {
     List<ChucVu> getChucVu();
     ChucVu getChucVuById(int id);

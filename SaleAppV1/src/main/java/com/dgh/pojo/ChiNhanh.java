@@ -17,6 +17,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -42,10 +43,14 @@ public class ChiNhanh implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 255)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
     @Column(name = "ten_chi_nhanh")
     private String tenChiNhanh;
-    @Size(max = 255)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
     @Column(name = "dia_chi")
     private String diaChi;
     @Column(name = "isDelete")
@@ -60,6 +65,12 @@ public class ChiNhanh implements Serializable {
 
     public ChiNhanh(Integer id) {
         this.id = id;
+    }
+
+    public ChiNhanh(Integer id, String tenChiNhanh, String diaChi) {
+        this.id = id;
+        this.tenChiNhanh = tenChiNhanh;
+        this.diaChi = diaChi;
     }
 
     public Integer getId() {

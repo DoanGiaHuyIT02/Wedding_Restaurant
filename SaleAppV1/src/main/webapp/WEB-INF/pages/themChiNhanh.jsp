@@ -9,6 +9,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:url value="/themChiNhanh" var="action" />
 <form:form modelAttribute="themChiNhanh" action="${action}" method="post" >
+    <form:hidden path="id" />
     <div class="form-floating mb-3 mt-3">
         <form:input type="text" class="form-control" path="tenChiNhanh" id="name" placeholder="Tên chi nhánh" name="name" />
         <label for="name">Tên chi nhánh</label>

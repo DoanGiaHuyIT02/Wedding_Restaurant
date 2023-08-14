@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -40,18 +41,24 @@ public class KhachHang implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 50)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "ten_khach_hang")
     private String tenKhachHang;
-    @Size(max = 12)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 12)
     @Column(name = "so_dien_thoai")
     private String soDienThoai;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    @Size(max = 50)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "email")
     private String email;
     @JoinColumn(name = "tai_khoan_id", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne(optional = false)
     private TaiKhoan taiKhoanId;
 
     public KhachHang() {
@@ -59,6 +66,13 @@ public class KhachHang implements Serializable {
 
     public KhachHang(Integer id) {
         this.id = id;
+    }
+
+    public KhachHang(Integer id, String tenKhachHang, String soDienThoai, String email) {
+        this.id = id;
+        this.tenKhachHang = tenKhachHang;
+        this.soDienThoai = soDienThoai;
+        this.email = email;
     }
 
     public Integer getId() {

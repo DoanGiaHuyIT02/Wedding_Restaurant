@@ -64,7 +64,7 @@ public class TaiKhoan implements Serializable {
     private String avatar;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "taiKhoanId")
     private Set<NhanVien> nhanVienSet;
-    @OneToMany(mappedBy = "taiKhoanId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "taiKhoanId")
     private Set<KhachHang> khachHangSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "taiKhoanId")
     private Set<PhanHoiKhachHang> phanHoiKhachHangSet;

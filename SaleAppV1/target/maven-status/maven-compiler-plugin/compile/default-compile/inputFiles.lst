@@ -1,5 +1,6 @@
 H:\CS2002SpringSaleApp\SaleAppV1\src\main\java\com\dgh\service\impl\NhanVienServiceImpl.java
 H:\CS2002SpringSaleApp\SaleAppV1\src\main\java\com\dgh\pojo\AnhSanh.java
+H:\CS2002SpringSaleApp\SaleAppV1\src\main\java\com\dgh\controllers\ApiSanhControllor.java
 H:\CS2002SpringSaleApp\SaleAppV1\src\main\java\com\dgh\pojo\PhanHoiKhachHang.java
 H:\CS2002SpringSaleApp\SaleAppV1\src\main\java\com\dgh\repository\ChucVuRepository.java
 H:\CS2002SpringSaleApp\SaleAppV1\src\main\java\com\dgh\formatters\ChiNhanhFormatter.java
@@ -7,6 +8,7 @@ H:\CS2002SpringSaleApp\SaleAppV1\src\main\java\com\dgh\pojo\KhachHang.java
 H:\CS2002SpringSaleApp\SaleAppV1\src\main\java\com\dgh\repository\impl\ChucVuRepositoryImpl.java
 H:\CS2002SpringSaleApp\SaleAppV1\src\main\java\com\dgh\service\LoaiTiecService.java
 H:\CS2002SpringSaleApp\SaleAppV1\src\main\java\com\dgh\controllers\IndexController.java
+H:\CS2002SpringSaleApp\SaleAppV1\src\main\java\com\dgh\formatters\LoaiTiecFormatter.java
 H:\CS2002SpringSaleApp\SaleAppV1\src\main\java\com\dgh\formatters\ChucVuFormatter.java
 H:\CS2002SpringSaleApp\SaleAppV1\src\main\java\com\dgh\pojo\ThucDon.java
 H:\CS2002SpringSaleApp\SaleAppV1\src\main\java\com\dgh\configs\TilesConfig.java
@@ -36,6 +38,7 @@ H:\CS2002SpringSaleApp\SaleAppV1\src\main\java\com\dgh\repository\LoaiTiecReposi
 H:\CS2002SpringSaleApp\SaleAppV1\src\main\java\com\dgh\service\ChucVuService.java
 H:\CS2002SpringSaleApp\SaleAppV1\src\main\java\com\dgh\repository\ThucDonRepository.java
 H:\CS2002SpringSaleApp\SaleAppV1\src\main\java\com\dgh\repository\DichVuRepository.java
+H:\CS2002SpringSaleApp\SaleAppV1\src\main\java\com\dgh\controllers\ApiDichVuControllor.java
 H:\CS2002SpringSaleApp\SaleAppV1\src\main\java\com\dgh\pojo\PhieuDatBan.java
 H:\CS2002SpringSaleApp\SaleAppV1\src\main\java\com\dgh\configs\SpringSecurityConfig.java
 H:\CS2002SpringSaleApp\SaleAppV1\src\main\java\com\dgh\repository\impl\TaiKhoanRepositoryImpl.java

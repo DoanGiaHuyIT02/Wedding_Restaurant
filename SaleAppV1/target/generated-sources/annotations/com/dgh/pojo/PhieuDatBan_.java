@@ -11,7 +11,7 @@ import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2023-08-11T20:25:53")
+@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2023-08-14T23:23:57")
 @StaticMetamodel(PhieuDatBan.class)
 public class PhieuDatBan_ { 
 

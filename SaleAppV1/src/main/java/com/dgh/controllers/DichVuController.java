@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /**
@@ -30,6 +32,12 @@ public class DichVuController {
     @GetMapping("/themDichVu")
     public String listAdd(Model model) {
         model.addAttribute("themDichVu", new DichVu());
+        return "themDichVu";
+    }
+    
+    @GetMapping("/themDichVu/{id}")
+    public String update(Model model, @PathVariable(value = "id") int id) {
+        model.addAttribute("themDichVu", this.dichVuService.getDichVuById(id));
         return "themDichVu";
     }
     

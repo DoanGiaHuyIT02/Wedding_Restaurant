@@ -16,6 +16,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -41,12 +42,15 @@ public class DichVu implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 45)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
     @Column(name = "loai_dich_vu")
     private String loaiDichVu;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "gia_dich_vu")
-    private Float giaDichVu;
+    private float giaDichVu;
     @Column(name = "isDelete")
     private Boolean isDelete;
     @OneToMany(mappedBy = "dichVuId")
@@ -57,6 +61,12 @@ public class DichVu implements Serializable {
 
     public DichVu(Integer id) {
         this.id = id;
+    }
+
+    public DichVu(Integer id, String loaiDichVu, float giaDichVu) {
+        this.id = id;
+        this.loaiDichVu = loaiDichVu;
+        this.giaDichVu = giaDichVu;
     }
 
     public Integer getId() {
@@ -75,11 +85,11 @@ public class DichVu implements Serializable {
         this.loaiDichVu = loaiDichVu;
     }
 
-    public Float getGiaDichVu() {
+    public float getGiaDichVu() {
         return giaDichVu;
     }
 
-    public void setGiaDichVu(Float giaDichVu) {
+    public void setGiaDichVu(float giaDichVu) {
         this.giaDichVu = giaDichVu;
     }
 

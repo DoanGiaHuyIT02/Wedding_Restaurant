@@ -17,6 +17,7 @@ com\dgh\service\NhanVienService.class
 com\dgh\repository\impl\TaiKhoanRepositoryImpl.class
 com\dgh\service\impl\ThucDonServiceImpl.class
 com\dgh\configs\SecurityWebApplicationInitializer.class
+com\dgh\controllers\ApiSanhControllor.class
 com\dgh\repository\impl\ChucVuRepositoryImpl.class
 com\dgh\controllers\LoaiTiecController.class
 com\dgh\repository\TaiKhoanRepository.class
@@ -24,6 +25,7 @@ com\dgh\service\ThucDonService.class
 com\dgh\repository\LoaiTiecRepository.class
 com\dgh\pojo\AnhSanh.class
 com\dgh\service\impl\NhanVienServiceImpl.class
+com\dgh\formatters\LoaiTiecFormatter.class
 com\dgh\pojo\DichVu.class
 com\dgh\pojo\LoaiTiec.class
 com\dgh\pojo\ThongTinChiTietDatTiec_.class
@@ -58,6 +60,7 @@ com\dgh\controllers\ApiLoaiTiecController.class
 com\dgh\pojo\PhieuDatBan.class
 com\dgh\controllers\ThucDonController.class
 com\dgh\pojo\DichVu_.class
+com\dgh\controllers\ApiDichVuControllor.class
 com\dgh\repository\impl\NhanVienRepositoryImpl.class
 com\dgh\pojo\HoaDonThanhToan.class
 com\dgh\pojo\TaiKhoan.class
