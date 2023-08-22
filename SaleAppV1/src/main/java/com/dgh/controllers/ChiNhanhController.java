@@ -6,6 +6,7 @@ package com.dgh.controllers;
 
 import com.dgh.pojo.ChiNhanh;
 import com.dgh.service.ChiNhanhService;
+import java.util.Map;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -27,10 +30,11 @@ public class ChiNhanhController {
     private ChiNhanhService chiNhanhService;
 
     @GetMapping("/chiNhanh")
-    public String list() {
+    public String list(Model model, @RequestParam Map<String, String> params) {
         return "chiNhanh";
     }
-
+    
+    
     @GetMapping("/themChiNhanh")
     public String listAdd(Model model) {
         model.addAttribute("themChiNhanh", new ChiNhanh());

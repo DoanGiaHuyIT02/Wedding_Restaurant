@@ -75,6 +75,9 @@ public class ThongTinChiTietDatTiec implements Serializable {
     @JoinColumn(name = "thuc_don_id", referencedColumnName = "id")
     @ManyToOne
     private ThucDon thucDonId;
+    @JoinColumn(name = "loai_tiec_id", referencedColumnName = "id")
+    @ManyToOne
+    private LoaiTiec loaiTiecId;
 
     public ThongTinChiTietDatTiec() {
     }
@@ -162,6 +165,14 @@ public class ThongTinChiTietDatTiec implements Serializable {
 
     public void setThucDonId(ThucDon thucDonId) {
         this.thucDonId = thucDonId;
+    }
+    
+     public LoaiTiec getLoaiTiecId() {
+        return loaiTiecId;
+    }
+
+    public void setLoaiTiecId(LoaiTiec loaiTiecId) {
+        this.loaiTiecId = loaiTiecId;
     }
 
     @Override

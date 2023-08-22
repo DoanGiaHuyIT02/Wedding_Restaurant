@@ -65,9 +65,6 @@ public class PhieuDatBan implements Serializable {
     @JoinColumn(name = "chi_nhanh_id", referencedColumnName = "id")
     @ManyToOne
     private ChiNhanh chiNhanhId;
-    @JoinColumn(name = "loai_tiec_id", referencedColumnName = "id")
-    @ManyToOne
-    private LoaiTiec loaiTiecId;
     @JoinColumn(name = "chi_tiet_dat_tiec_id", referencedColumnName = "id")
     @ManyToOne
     private ThongTinChiTietDatTiec chiTietDatTiecId;
@@ -145,13 +142,6 @@ public class PhieuDatBan implements Serializable {
         this.chiNhanhId = chiNhanhId;
     }
 
-    public LoaiTiec getLoaiTiecId() {
-        return loaiTiecId;
-    }
-
-    public void setLoaiTiecId(LoaiTiec loaiTiecId) {
-        this.loaiTiecId = loaiTiecId;
-    }
 
     public ThongTinChiTietDatTiec getChiTietDatTiecId() {
         return chiTietDatTiecId;

@@ -10,7 +10,7 @@
 <c:url value="/" var="action" />
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">E-commerce Website</a>
+        <a class="navbar-brand" href="#">GH - WEDDING RESTAURANT</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -37,6 +37,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<c:url value="/thucDon"/>">Thực đơn</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<c:url value="/anhSanh"/>">Ảnh sảnh</a>
                     </li>
                 </se:authorize>
             </ul>

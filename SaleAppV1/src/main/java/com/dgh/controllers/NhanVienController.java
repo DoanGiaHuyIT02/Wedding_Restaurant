@@ -9,12 +9,15 @@ import com.dgh.service.ChiNhanhService;
 import com.dgh.service.ChucVuService;
 import com.dgh.service.NhanVienService;
 import com.dgh.service.TaiKhoanService;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -24,12 +27,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class NhanVienController {
 
     @Autowired
+    private Environment env;
+    @Autowired
     private NhanVienService nhanVienService;
     @Autowired
     private TaiKhoanService taiKhoanService;
 
     @GetMapping("/nhanVien")
-    public String list() {
+    public String list(Model model, @RequestParam Map<String, String> params) {
+        model.addAttribute("nhanVien", this.nhanVienService.getNhanVien(params));
+        int pageSize = Integer.parseInt(this.env.getProperty("PAGE_SIZE"));
+        long count = this.nhanVienService.countNhanVien();
+        model.addAttribute("counterNV", Math.ceil(count*1.0/pageSize));
         return "nhanVien";
     }
 

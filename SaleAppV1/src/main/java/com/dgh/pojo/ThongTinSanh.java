@@ -4,6 +4,7 @@
  */
 package com.dgh.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -63,10 +64,13 @@ public class ThongTinSanh implements Serializable {
     private boolean isDelete;
     @JoinColumn(name = "loai_tiec_id", referencedColumnName = "id")
     @ManyToOne
+    @JsonIgnore
     private LoaiTiec loaiTiecId;
     @OneToMany(mappedBy = "sanhId")
+    @JsonIgnore
     private Set<AnhSanh> anhSanhSet;
     @OneToMany(mappedBy = "sanhId")
+    @JsonIgnore
     private Set<ThongTinChiTietDatTiec> thongTinChiTietDatTiecSet;
 
     public ThongTinSanh() {

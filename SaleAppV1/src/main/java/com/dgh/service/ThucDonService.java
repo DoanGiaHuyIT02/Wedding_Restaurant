@@ -14,4 +14,6 @@ import java.util.List;
 public interface ThucDonService {
     List<ThucDon> getThucDon();
     boolean addOrUpdateThucDon(ThucDon td);
+    ThucDon getThucDonById(int id);
+    boolean deleteThucDonById(int id);
 }

@@ -3,6 +3,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:url value="/themNhanVien" var="action" />
 <form:form modelAttribute="themNhanVien" action="${action}" method="post">
+    <form:hidden path="id" />
     <h2>Thông tin nhân viên</h2>
     <div class="form-floating mb-3 mt-3">
         <form:input type="text" class="form-control" path="tenNhanVien" id="name" placeholder="Tên nhân viên" name="name" />
@@ -51,7 +52,11 @@
         <div class="form-floating">
             <form:select class="form-select" id="chucVu" name="chucVu" path="chucVuId">
                 <c:forEach items="${chucVu}" var="cv">
-                    <option value="${cv.id}">${cv.chucVu}</option>
+                    <c:choose>
+                        <c:when test="${cv.id == themNhanVien.chucVuId.id}"><option value="${cv.id}" selected>${cv.chucVu}</option></c:when>
+                        <c:otherwise><option value="${cv.id}">${cv.chucVu}</option></c:otherwise>
+                    </c:choose>
+                    
                 </c:forEach>
             </form:select>
             <label for="chucVu" class="form-label">Chức vụ</label>
@@ -69,10 +74,10 @@
     </div>
     <div class="form-group" style="margin: 10px 0;">
         <form:radiobutton path="taiKhoanId.vaiTro" id="AD" value="AD" style="margin: 0 10px;" />
-        <label for="AD">Admin</label>
+        <label for="ROLE_ADMIN">Admin</label>
 
         <form:radiobutton path="taiKhoanId.vaiTro" id="NV" value="NV" style="margin: 0 10px;" />
-        <label for="NV">Nhân viên</label>
+        <label for="ROLE_STAFF">Nhân viên</label>
     </div>
 
     <div class="form-floating mb-3 mt-3">

@@ -6,14 +6,16 @@ package com.dgh.service;
 
 import com.dgh.pojo.ThongTinSanh;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
  * @author DELL
  */
 public interface ThongTinSanhService {
-    List<ThongTinSanh> getThongTinSanh(); 
+    List<ThongTinSanh> getThongTinSanh(Map<String, String> params); 
     boolean addOrUpdateSanh(ThongTinSanh s);
     ThongTinSanh getSanhById(int id);
     boolean deleteSanh(int id);
+    Long countThongTinSanh();
 }

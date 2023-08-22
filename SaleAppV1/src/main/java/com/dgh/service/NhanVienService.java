@@ -7,13 +7,16 @@ package com.dgh.service;
 import com.dgh.dto.NhanVienDTO;
 import com.dgh.pojo.NhanVien;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
  * @author DELL
  */
 public interface NhanVienService {
-    List<NhanVienDTO> getNhanVien();
+    List<NhanVienDTO> getNhanVien(Map<String, String> params);
     boolean addNhanVien(NhanVien nv);
-//    NhanVien addOrUpdateNhanVien(NhanVien nv);
+    NhanVien getNhanVienById(int id);
+    boolean deleteNhanVienById(int id);
+    Long countNhanVien();
 }

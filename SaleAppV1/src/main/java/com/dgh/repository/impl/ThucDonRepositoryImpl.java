@@ -50,5 +50,27 @@ public class ThucDonRepositoryImpl implements ThucDonRepository{
             return false;
         }
     }
+
+    @Override
+    public ThucDon getThucDonById(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        return s.get(ThucDon.class, id);
+    }
+
+    @Override
+    public boolean deleteThucDonById(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        ThucDon td = this.getThucDonById(id);
+        td.setIsDelete(Boolean.TRUE);
+        try {
+            s.update(td);
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+    
+    
     
 }

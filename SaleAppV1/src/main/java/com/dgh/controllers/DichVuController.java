@@ -6,6 +6,7 @@ package com.dgh.controllers;
 
 import com.dgh.pojo.DichVu;
 import com.dgh.service.DichVuService;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -25,7 +27,8 @@ public class DichVuController {
     private DichVuService dichVuService;
     
     @GetMapping("/dichVu")
-    public String list() {
+    public String list(Model model, @RequestParam Map<String, String> params) {
+        model.addAttribute("dichVu", this.dichVuService.getDichVu(params));
         return "dichVu";
     }
     

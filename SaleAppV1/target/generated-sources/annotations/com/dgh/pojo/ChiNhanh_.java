@@ -7,12 +7,12 @@ import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2023-08-14T23:23:57")
+@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2023-08-22T23:07:45")
 @StaticMetamodel(ChiNhanh.class)
 public class ChiNhanh_ { 
 
     public static volatile SingularAttribute<ChiNhanh, String> diaChi;
-    public static volatile SingularAttribute<ChiNhanh, Integer> isDelete;
+    public static volatile SingularAttribute<ChiNhanh, Boolean> isDelete;
     public static volatile SingularAttribute<ChiNhanh, Integer> id;
     public static volatile SingularAttribute<ChiNhanh, String> tenChiNhanh;
     public static volatile SetAttribute<ChiNhanh, NhanVien> nhanVienSet;

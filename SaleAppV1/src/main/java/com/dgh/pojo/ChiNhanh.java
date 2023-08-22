@@ -17,6 +17,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -45,16 +47,20 @@ public class ChiNhanh implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
+    @Size(max = 255, message = "{chiNhanh.tenChiNhanh.lenErr}")
+    @NotEmpty(message = "{chiNhanh.tenChiNhanh.notNullMsg}")
+    @NotBlank(message = "{chiNhanh.tenChiNhanh.notBlankMsg}")
     @Column(name = "ten_chi_nhanh")
     private String tenChiNhanh;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
+    @Size(max = 255)
+    @NotEmpty(message = "{chiNhanh.tenChiNhanh.notNullMsg}")
+    @NotBlank(message = "{chiNhanh.tenChiNhanh.notBlankMsg}")
     @Column(name = "dia_chi")
     private String diaChi;
     @Column(name = "isDelete")
-    private Integer isDelete;
+    private Boolean isDelete;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "chiNhanhId")
     private Set<NhanVien> nhanVienSet;
     @OneToMany(mappedBy = "chiNhanhId")
@@ -97,11 +103,11 @@ public class ChiNhanh implements Serializable {
         this.diaChi = diaChi;
     }
 
-    public Integer getIsDelete() {
+    public Boolean getIsDelete() {
         return isDelete;
     }
 
-    public void setIsDelete(Integer isDelete) {
+    public void setIsDelete(Boolean isDelete) {
         this.isDelete = isDelete;
     }
 

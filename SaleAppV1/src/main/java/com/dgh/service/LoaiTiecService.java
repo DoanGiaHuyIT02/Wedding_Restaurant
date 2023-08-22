@@ -6,13 +6,14 @@ package com.dgh.service;
 
 import com.dgh.pojo.LoaiTiec;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
  * @author admin
  */
 public interface LoaiTiecService {
-    List<LoaiTiec> getLoaiTiec();
+    List<LoaiTiec> getLoaiTiec(Map<String, String> params);
     boolean addOrUpdateLoaiTiec(LoaiTiec l);
     LoaiTiec getLoaiTiecById(int id);
     boolean deleteLoaiTiec(int id);

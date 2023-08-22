@@ -6,12 +6,19 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:url value="/loaiTiecs" var="action" />
+<c:url value="/loaiTiec" var="action" />
 <section class="container">
     <h1 class="text-center text-info mt-4">Quản lý loại tiệc</h1>
-    <div>
+   
+    <form class="d-flex justify-content-between" action="${action}">
         <a href="<c:url value="/themLoaiTiec"/>" class="btn btn-info">Thêm loại tiệc</a>
-    </div>
+        <div class="col-md-6">
+            <div class="input-group">
+                <input class="form-control me-2" type="text" name="kw" placeholder="Nhập từ khóa...">
+                <button class="btn btn-primary" type="submit">Tìm</button>
+            </div>
+        </div>
+    </form>
     <table class="table table-hover">
         <thead>
             <tr>
@@ -22,12 +29,12 @@
             </tr>
         </thead>
         <tbody>
-            <c:forEach items="${loaiTiecs}" var="p">
+            <c:forEach items="${loaiTiec}" var="p">
                 <tr>
                     <td>${p.id}</td>
                     <td>${p.tenLoaiTiec}</td>
                     <td>
-                         <c:url value="/api/loaiTiec/${p.id}" var="apiDel" />
+                        <c:url value="/api/loaiTiec/${p.id}" var="apiDel" />
                         <a href="<c:url value="/themLoaiTiec/${p.id}"/>" class="btn btn-info">Cập nhật</a>
                         <button class="btn btn-danger" onclick="delPro('${apiDel}', ${p.id})">Xóa</button>
                     </td>

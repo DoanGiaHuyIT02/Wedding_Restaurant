@@ -3,6 +3,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:url value="/themThucDon" var="action" />
 <form:form modelAttribute="themThucDon" action="${action}" method="post" >
+    <form:hidden path="id" />
     <div class="form-floating mb-3 mt-3">
         <form:input type="text" class="form-control" path="maThucDon" id="name" placeholder="Mã thực đơn" name="maThucDon" />
         <label for="name">Mã thực đơn</label>
@@ -46,7 +47,10 @@
 
     <div class="form-floating mb-3 mt-3">
         <button type="submit" class="btn btn-info">
-            Thêm thực đơn
+            <c:choose>
+                <c:when test="${themThucDon.id == null}">Thêm sảnh</c:when>
+                <c:otherwise>Cập nhật sảnh</c:otherwise>
+            </c:choose>
         </button>
     </div>
 </form:form>

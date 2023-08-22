@@ -6,13 +6,16 @@ package com.dgh.controllers;
 
 import com.dgh.pojo.ThongTinSanh;
 import com.dgh.service.ThongTinSanhService;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -22,10 +25,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ThongTinSanhController {
 
     @Autowired
-    private ThongTinSanhService ThongTinSanhService;
+    private ThongTinSanhService thongTinSanhService;
+    @Autowired
+    private Environment env;
 
     @GetMapping("/thongTinSanh")
-    public String list() {
+    public String list(Model model, @RequestParam Map<String, String> params) {
+             
+        int pageSize = Integer.parseInt(this.env.getProperty("PAGE_SIZE"));
+        long count = this.thongTinSanhService.countThongTinSanh();
+        model.addAttribute("counter", Math.ceil(count*1.0/pageSize));
         return "thongTinSanh";
     }
 
@@ -37,13 +46,13 @@ public class ThongTinSanhController {
     
     @GetMapping("/themSanh/{id}")
     public String update(Model model, @PathVariable(value = "id") int id) {
-        model.addAttribute("themSanh", this.ThongTinSanhService.getSanhById(id));
+        model.addAttribute("themSanh", this.thongTinSanhService.getSanhById(id));
         return "themSanh";
     }
 
     @PostMapping("/themSanh")
     public String add(@ModelAttribute(value = "themSanh") ThongTinSanh s) {
-        if (this.ThongTinSanhService.addOrUpdateSanh(s) == true) {
+        if (this.thongTinSanhService.addOrUpdateSanh(s) == true) {
             return "redirect:thongTinSanh";
         }
         return "themSanh";

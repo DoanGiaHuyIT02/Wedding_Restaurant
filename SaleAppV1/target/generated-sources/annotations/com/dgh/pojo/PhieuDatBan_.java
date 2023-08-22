@@ -2,7 +2,6 @@ package com.dgh.pojo;
 
 import com.dgh.pojo.ChiNhanh;
 import com.dgh.pojo.HoaDonThanhToan;
-import com.dgh.pojo.LoaiTiec;
 import com.dgh.pojo.ThongTinChiTietDatTiec;
 import com.dgh.pojo.ThongTinChiTietKhachHangDatTiec;
 import java.util.Date;
@@ -11,7 +10,7 @@ import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2023-08-14T23:23:57")
+@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2023-08-22T23:07:45")
 @StaticMetamodel(PhieuDatBan.class)
 public class PhieuDatBan_ { 
 
@@ -25,6 +24,5 @@ public class PhieuDatBan_ {
     public static volatile SetAttribute<PhieuDatBan, HoaDonThanhToan> hoaDonThanhToanSet;
     public static volatile SingularAttribute<PhieuDatBan, ThongTinChiTietDatTiec> chiTietDatTiecId;
     public static volatile SingularAttribute<PhieuDatBan, ChiNhanh> chiNhanhId;
-    public static volatile SingularAttribute<PhieuDatBan, LoaiTiec> loaiTiecId;
 
 }

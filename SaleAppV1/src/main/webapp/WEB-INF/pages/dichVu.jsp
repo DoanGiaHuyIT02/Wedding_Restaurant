@@ -9,9 +9,17 @@
 <c:url value="/dichVu" var="action" />
 <section class="container">
     <h1 class="text-center text-info mt-4">Quản lý dich vụ</h1>
-    <div>
+
+    <form class="d-flex justify-content-between" action="${action}">
         <a href="<c:url value="/themDichVu"/>" class="btn btn-info">Thêm dịch vụ</a>
-    </div>
+        <div class="col-md-6">
+            <div class="input-group">
+                <input class="form-control me-2" type="text" name="kw" placeholder="Nhập từ khóa...">
+                <button class="btn btn-primary" type="submit">Tìm</button>
+            </div>
+        </div>
+    </form>
+
     <table class="table table-hover">
         <thead>
             <tr>

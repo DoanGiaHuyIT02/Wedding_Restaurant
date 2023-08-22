@@ -8,9 +8,8 @@
 <c:url value="/" var="action" />
 <section class="container">
     <h1 class="text-center text-info mt-4">Thực đơn</h1>
-    <div>
-        <a href="<c:url value="/themThucDon"/>" class="btn btn-info">Thêm thưc đon</a>
-    </div>
+    <a href="<c:url value="/themThucDon"/>" class="btn btn-info">Thêm thưc đơn</a>
+
     <table class="table table-hover text-center">
         <thead>
             <tr>
@@ -44,11 +43,13 @@
                     <td>${p.nuocNgot}</td>
                     <td>${p.giaGoi}</td>
                     <td>
-                        <a href="#" class="btn btn-info">Cập nhật</a>
-                        <button class="btn btn-danger">Xóa</button>
+                        <c:url value="/api/thucDon/${p.id}" var="apiDel" />
+                        <a href="<c:url value="/themThucDon/${p.id}"/>" class="btn btn-info">Cập nhật</a>
+                        <button class="btn btn-danger" onclick="delThucDon('${apiDel}')">Xóa</button>
                     </td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
 </section>
+<script src="<c:url value="/js/main.js" />"></script>

@@ -8,6 +8,7 @@ import com.dgh.pojo.LoaiTiec;
 import com.dgh.repository.LoaiTiecRepository;
 import com.dgh.service.LoaiTiecService;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +22,8 @@ public class LoaiTiecServiceImpl implements LoaiTiecService {
     private LoaiTiecRepository loaiTiecRepo;
 
     @Override
-    public List<LoaiTiec> getLoaiTiec() {
-        return this.loaiTiecRepo.getLoaiTiec();
+    public List<LoaiTiec> getLoaiTiec(Map<String, String> params) {
+        return this.loaiTiecRepo.getLoaiTiec(params);
     }
 
     @Override

@@ -6,6 +6,7 @@ package com.dgh.repository;
 
 import com.dgh.pojo.ThongTinSanh;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -13,8 +14,9 @@ import java.util.List;
  * @author DELL
  */
 public interface ThongTinSanhRepository {
-    List<ThongTinSanh> getThongTinSanh();
+    List<ThongTinSanh> getThongTinSanh(Map<String, String> params);
     boolean addOrUpdateSanh(ThongTinSanh s);
     ThongTinSanh getSanhById(int id);
     boolean deleteSanh(int id);
+    Long countThongTinSanh();
 }

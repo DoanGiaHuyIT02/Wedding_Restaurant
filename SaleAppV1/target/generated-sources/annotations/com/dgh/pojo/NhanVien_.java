@@ -10,14 +10,14 @@ import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2023-08-14T23:23:57")
+@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2023-08-22T23:07:45")
 @StaticMetamodel(NhanVien.class)
 public class NhanVien_ { 
 
     public static volatile SingularAttribute<NhanVien, String> soDienThoai;
     public static volatile SingularAttribute<NhanVien, String> tenNhanVien;
     public static volatile SingularAttribute<NhanVien, Date> ngayVaoLam;
-    public static volatile SingularAttribute<NhanVien, Integer> isDelete;
+    public static volatile SingularAttribute<NhanVien, Boolean> isDelete;
     public static volatile SingularAttribute<NhanVien, Integer> gioiTinh;
     public static volatile SetAttribute<NhanVien, HoaDonThanhToan> hoaDonThanhToanSet;
     public static volatile SingularAttribute<NhanVien, ChiNhanh> chiNhanhId;

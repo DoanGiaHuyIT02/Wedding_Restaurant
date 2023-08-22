@@ -6,6 +6,7 @@ package com.dgh.repository;
 
 import com.dgh.pojo.ChiNhanh;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -13,8 +14,8 @@ import java.util.List;
  * @author DELL
  */
 public interface ChiNhanhRepository {
-    List<ChiNhanh> getChiNhanh();
+    List<ChiNhanh> getDanhSachChiNhanh(Map<String, String> params);
     boolean addOrUpdateChiNhanh(ChiNhanh cn);
     ChiNhanh getChiNhanhById(int id);
-//    ChiNhanh getChiNhanhNativeById(int id);
+    boolean deleteChiNhanhById(int id);
 }

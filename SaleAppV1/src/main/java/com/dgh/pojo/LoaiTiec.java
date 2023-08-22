@@ -4,6 +4,7 @@
  */
 package com.dgh.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -45,16 +46,26 @@ public class LoaiTiec implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @NotEmpty(message = "loaiTiec.tenLoaiTiec.notNullMsg")
-    @NotBlank(message = "Không nhận khoảng trắng!!")
+    @NotEmpty(message = "{loaiTiec.tenLoaiTiec.notNullMsg}")
+    @NotBlank(message = "{loaiTiec.tenLoaiTiec.notBlankMsg}")
     @Column(name = "ten_loai_tiec")
     private String tenLoaiTiec;
     @Column(name = "isDelete")
     private Boolean isDelete;
     @OneToMany(mappedBy = "loaiTiecId")
+    @JsonIgnore
     private Set<ThongTinSanh> thongTinSanhSet;
     @OneToMany(mappedBy = "loaiTiecId")
-    private Set<PhieuDatBan> phieuDatBanSet;
+    @JsonIgnore
+    private Set<ThongTinChiTietDatTiec> thongTinChiTietDatTiecSet;
+
+    public Set<ThongTinChiTietDatTiec> getThongTinChiTietDatTiecSet() {
+        return thongTinChiTietDatTiecSet;
+    }
+
+    public void setThongTinChiTietDatTiecSet(Set<ThongTinChiTietDatTiec> thongTinChiTietDatTiecSet) {
+        this.thongTinChiTietDatTiecSet = thongTinChiTietDatTiecSet;
+    }
 
     public LoaiTiec() {
     }
@@ -101,14 +112,7 @@ public class LoaiTiec implements Serializable {
         this.thongTinSanhSet = thongTinSanhSet;
     }
 
-    @XmlTransient
-    public Set<PhieuDatBan> getPhieuDatBanSet() {
-        return phieuDatBanSet;
-    }
-
-    public void setPhieuDatBanSet(Set<PhieuDatBan> phieuDatBanSet) {
-        this.phieuDatBanSet = phieuDatBanSet;
-    }
+  
 
     @Override
     public int hashCode() {

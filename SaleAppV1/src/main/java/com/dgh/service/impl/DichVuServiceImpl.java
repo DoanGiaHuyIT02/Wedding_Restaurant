@@ -8,6 +8,7 @@ import com.dgh.pojo.DichVu;
 import com.dgh.repository.DichVuRepository;
 import com.dgh.service.DichVuService;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +22,8 @@ public class DichVuServiceImpl implements DichVuService{
     private DichVuRepository dichVuRepo;
 
     @Override
-    public List<DichVu> getDichVu() {
-        return this.dichVuRepo.getDichVu();
+    public List<DichVu> getDichVu(Map<String, String> params) {
+        return this.dichVuRepo.getDichVu(params);
     }
 
     @Override
@@ -38,8 +39,7 @@ public class DichVuServiceImpl implements DichVuService{
 
     @Override
     public boolean deleteDichVu(int id) {
-    
-        return this.dichVuRepo.deleteDichVu(id);
+        return this.dichVuRepo.deleteChiNhanhById(id);
     }
     
 }

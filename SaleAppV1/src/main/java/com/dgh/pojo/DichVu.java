@@ -4,6 +4,7 @@
  */
 package com.dgh.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -54,6 +55,7 @@ public class DichVu implements Serializable {
     @Column(name = "isDelete")
     private Boolean isDelete;
     @OneToMany(mappedBy = "dichVuId")
+    @JsonIgnore
     private Set<ThongTinChiTietDatTiec> thongTinChiTietDatTiecSet;
 
     public DichVu() {

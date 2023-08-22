@@ -4,6 +4,7 @@
  */
 package com.dgh.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -55,7 +56,7 @@ public class NhanVien implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 255)
+    @Size(max = 255)
     @Column(name = "ten_nhan_vien")
     private String tenNhanVien;
     @Basic(optional = false)
@@ -91,17 +92,21 @@ public class NhanVien implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ngayVaoLam;
     @Column(name = "isDelete")
-    private Integer isDelete;
+    private Boolean isDelete;
     @JoinColumn(name = "chi_nhanh_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
+    @JsonIgnore
     private ChiNhanh chiNhanhId;
     @JoinColumn(name = "chuc_vu_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
+    @JsonIgnore
     private ChucVu chucVuId;
     @JoinColumn(name = "tai_khoan_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
+    @JsonIgnore
     private TaiKhoan taiKhoanId;
     @OneToMany(mappedBy = "nhanVienId")
+    @JsonIgnore
     private Set<HoaDonThanhToan> hoaDonThanhToanSet;
 
     public NhanVien() {
@@ -186,11 +191,11 @@ public class NhanVien implements Serializable {
         this.ngayVaoLam = ngayVaoLam;
     }
 
-    public Integer getIsDelete() {
+    public Boolean getIsDelete() {
         return isDelete;
     }
 
-    public void setIsDelete(Integer isDelete) {
+    public void setIsDelete(Boolean isDelete) {
         this.isDelete = isDelete;
     }
 

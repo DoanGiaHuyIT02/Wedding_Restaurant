@@ -97,4 +97,16 @@
         <put-attribute name="content"
                        value="/WEB-INF/pages/login.jsp" />
     </definition>
+    
+    <!--Trang ảnh sảnh-->
+    <definition name="anhSanh" extends="baseLayout">
+        <put-attribute name="title" value="Ảnh sảnh tiệc" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/anhSanh.jsp" />
+    </definition>
+     <definition name="themAnhSanh" extends="baseLayout">
+        <put-attribute name="title" value="Ảnh sảnh tiệc" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/themAnhSanh.jsp" />
+    </definition>
 </tiles-definitions>

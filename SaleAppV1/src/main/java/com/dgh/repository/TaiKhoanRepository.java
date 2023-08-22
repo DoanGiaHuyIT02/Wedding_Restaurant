@@ -13,5 +13,8 @@ import com.dgh.pojo.TaiKhoan;
 public interface TaiKhoanRepository {
     TaiKhoan getTaiKhoanByTenDangNhap(String tenDangNhap);
     boolean addTaiKhoan(TaiKhoan tk);
+    TaiKhoan addUser(TaiKhoan tk);
     TaiKhoan timKiemTaiKhoanById(int id);
+    boolean deleteTaiKhoanById(int id);
+    boolean authUser(String tenDangNhap, String matKhau);
 }

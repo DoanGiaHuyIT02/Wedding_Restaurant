@@ -9,9 +9,16 @@
 <c:url value="/chiNhanh" var="action" />
 <section class="container">
     <h1 class="text-center text-info mt-4">Quản lý chi nhánh</h1>
-    <div>
+    <form class="d-flex justify-content-between" action="${action}">
         <a href="<c:url value="/themChiNhanh"/>" class="btn btn-info">Thêm chi nhánh</a>
-    </div>
+        <div class="col-md-6">
+            <div class="input-group">
+                <input class="form-control me-2" type="text" name="kw" placeholder="Nhập từ khóa...">
+                <button class="btn btn-primary" type="submit">Tìm</button>
+            </div>
+        </div>
+    </form>
+
     <table class="table table-hover">
         <thead>
             <tr>
@@ -29,11 +36,14 @@
                     <td>${p.tenChiNhanh}</td>
                     <td>${p.diaChi}</td>
                     <td>
+                        <c:url value="/api/chiNhanh/${p.id}" var="apiDel" />
                         <a href="<c:url value="/themChiNhanh/${p.id}"/>" class="btn btn-info">Cập nhật</a>
-                        <button class="btn btn-danger">Xóa</button>
+                        <button class="btn btn-danger" onclick="delChiNhanh('${apiDel}')">Xóa</button>
                     </td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
 </section>
+
+<script src="<c:url value="/js/main.js" />"></script>

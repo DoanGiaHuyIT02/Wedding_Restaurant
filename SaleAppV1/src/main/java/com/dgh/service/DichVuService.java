@@ -6,13 +6,14 @@ package com.dgh.service;
 
 import com.dgh.pojo.DichVu;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
  * @author DELL
  */
 public interface DichVuService {
-    List<DichVu> getDichVu();
+    List<DichVu> getDichVu(Map<String, String> params);
     boolean addOrUpdateDichVu(DichVu dv);
     DichVu getDichVuById(int id);
     boolean deleteDichVu(int id);

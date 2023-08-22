@@ -7,6 +7,7 @@ package com.dgh.controllers;
 import com.dgh.pojo.LoaiTiec;
 import com.dgh.service.LoaiTiecService;
 import com.github.mustachejava.Binding;
+import java.util.Map;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -28,7 +30,8 @@ public class LoaiTiecController {
     private LoaiTiecService loaiTiecService;
 
     @GetMapping("/loaiTiec")
-    public String list() {
+    public String list(Model model, @RequestParam Map<String, String> params) {
+        model.addAttribute("loaiTiec", this.loaiTiecService.getLoaiTiec(params));
         return "loaiTiec";
     }
 

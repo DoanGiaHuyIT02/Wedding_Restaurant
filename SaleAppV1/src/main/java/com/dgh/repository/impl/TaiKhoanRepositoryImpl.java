@@ -11,6 +11,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,16 +25,14 @@ public class TaiKhoanRepositoryImpl implements TaiKhoanRepository {
 
     @Autowired
     private LocalSessionFactoryBean factory;
+    @Autowired
+    private BCryptPasswordEncoder endcoder;
 
     @Override
     public boolean addTaiKhoan(TaiKhoan tk) {
         Session s = this.factory.getObject().getCurrentSession();
         try {
-            if (tk.getId() == null) {
-                s.save(tk);
-            } else {
-                s.update(tk);
-            }
+            s.save(tk);
             return true;
         } catch (HibernateException ex) {
             ex.printStackTrace();
@@ -44,11 +43,7 @@ public class TaiKhoanRepositoryImpl implements TaiKhoanRepository {
     @Override
     public TaiKhoan timKiemTaiKhoanById(int id) {
         Session s = this.factory.getObject().getCurrentSession();
-        Query q = s.createNativeQuery("Select * From tai_khoan where tai_khoan.id = ?");
-
-        q.setParameter(1, id);
-
-        return (TaiKhoan) q.getSingleResult();
+        return s.get(TaiKhoan.class, id);
     }
 
     @Override
@@ -58,6 +53,33 @@ public class TaiKhoanRepositoryImpl implements TaiKhoanRepository {
         q.setParameter("un", tenDangNhap);
 
         return (TaiKhoan) q.getSingleResult();
+    }
+
+    @Override
+    public boolean deleteTaiKhoanById(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        TaiKhoan tk = this.timKiemTaiKhoanById(id);
+        try {
+            s.delete(tk);
+            return true;
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean authUser(String tenDangNhap, String matKhau) {
+        TaiKhoan u = this.getTaiKhoanByTenDangNhap(tenDangNhap);
+
+        return this.endcoder.matches(matKhau, u.getMatKhau());
+    }
+
+    @Override
+    public TaiKhoan addUser(TaiKhoan tk) {
+        Session s = this.factory.getObject().getCurrentSession();
+       s.save(tk);
+       return tk;
     }
 
 }

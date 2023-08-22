@@ -30,7 +30,11 @@
         <div class="form-floating">
             <form:select class="form-select" id="loaiTiec" name="loaiTiec" path="loaiTiecId">
                 <c:forEach items="${loaiTiecs}" var="l">
-                    <option value="${l.id}">${l.tenLoaiTiec}</option>
+                    <c:choose>
+                        <c:when test="${l.id == themSanh.loaiTiecId.id}"><option value="${l.id}" selected>${l.tenLoaiTiec}</option></c:when>
+                        <c:otherwise><option value="${l.id}">${l.tenLoaiTiec}</option></c:otherwise>
+                    </c:choose>
+                    
                 </c:forEach>
             </form:select>
             <label for="chucVu" class="form-label">Loại tiệc</label>

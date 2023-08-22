@@ -27,7 +27,18 @@ public class ThucDonServiceImpl implements ThucDonService{
 
     @Override
     public boolean addOrUpdateThucDon(ThucDon td) {
+        td.setIsDelete(false);
         return this.thucDonRepo.addOrUpdateThucDon(td);
+    }
+
+    @Override
+    public ThucDon getThucDonById(int id) {
+        return this.thucDonRepo.getThucDonById(id);
+    }
+
+    @Override
+    public boolean deleteThucDonById(int id) {
+        return this.thucDonRepo.deleteThucDonById(id);
     }
     
 }

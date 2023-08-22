@@ -8,6 +8,7 @@ import com.dgh.pojo.ThongTinSanh;
 import com.dgh.repository.ThongTinSanhRepository;
 import com.dgh.service.ThongTinSanhService;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,12 +22,13 @@ public class ThongTinSanhServiceImpl implements ThongTinSanhService{
     @Autowired
     private ThongTinSanhRepository thongTinSanhRepo;
     @Override
-    public List<ThongTinSanh> getThongTinSanh() {
-        return this.thongTinSanhRepo.getThongTinSanh();
+    public List<ThongTinSanh> getThongTinSanh(Map<String, String> params) {
+        return this.thongTinSanhRepo.getThongTinSanh(params);
     }
 
     @Override
     public boolean addOrUpdateSanh(ThongTinSanh s) {
+        s.setIsDelete(false);
         return this.thongTinSanhRepo.addOrUpdateSanh(s);
     }
 
@@ -38,6 +40,11 @@ public class ThongTinSanhServiceImpl implements ThongTinSanhService{
     @Override
     public boolean deleteSanh(int id) {
         return this.thongTinSanhRepo.deleteSanh(id);
+    }
+
+    @Override
+    public Long countThongTinSanh() {
+        return this.thongTinSanhRepo.countThongTinSanh();
     }
     
 }

@@ -5,7 +5,9 @@
 package com.dgh.service;
 
 import com.dgh.pojo.TaiKhoan;
+import java.util.Map;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -13,5 +15,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  */
 public interface TaiKhoanService extends UserDetailsService{
     boolean addTaiKhoan(TaiKhoan tk);
-
+    TaiKhoan addUser(Map<String, String> params, MultipartFile avatar);
+    boolean deleteTaiKhoanById(int id);
+    TaiKhoan getTaiKhoanByTenDangNhap(String tenDangNhap);
+    boolean authUser(String tenDangNhap, String matKhau);
 }
