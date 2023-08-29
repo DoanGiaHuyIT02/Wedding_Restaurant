@@ -5,6 +5,7 @@
 package com.dgh.pojo;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -29,7 +32,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "PhanHoiKhachHang.findAll", query = "SELECT p FROM PhanHoiKhachHang p"),
     @NamedQuery(name = "PhanHoiKhachHang.findById", query = "SELECT p FROM PhanHoiKhachHang p WHERE p.id = :id"),
-    @NamedQuery(name = "PhanHoiKhachHang.findByPhanHoi", query = "SELECT p FROM PhanHoiKhachHang p WHERE p.phanHoi = :phanHoi")})
+    @NamedQuery(name = "PhanHoiKhachHang.findByPhanHoi", query = "SELECT p FROM PhanHoiKhachHang p WHERE p.phanHoi = :phanHoi"),
+    @NamedQuery(name = "PhanHoiKhachHang.findByNgayPhanHoi", query = "SELECT p FROM PhanHoiKhachHang p WHERE p.ngayPhanHoi = :ngayPhanHoi")})
 public class PhanHoiKhachHang implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,6 +45,9 @@ public class PhanHoiKhachHang implements Serializable {
     @Size(max = 1000)
     @Column(name = "phan_hoi")
     private String phanHoi;
+    @Column(name = "ngay_phan_hoi")
+    @Temporal(TemporalType.DATE)
+    private Date ngayPhanHoi;
     @JoinColumn(name = "tai_khoan_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private TaiKhoan taiKhoanId;
@@ -66,6 +73,14 @@ public class PhanHoiKhachHang implements Serializable {
 
     public void setPhanHoi(String phanHoi) {
         this.phanHoi = phanHoi;
+    }
+    
+    public Date getNgayPhanHoi() {
+        return ngayPhanHoi;
+    }
+
+    public void setNgayPhanHoi(Date ngayPhanHoi) {
+        this.ngayPhanHoi = ngayPhanHoi;
     }
 
     public TaiKhoan getTaiKhoanId() {

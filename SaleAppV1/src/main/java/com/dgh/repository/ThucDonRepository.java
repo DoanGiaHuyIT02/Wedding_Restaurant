@@ -6,6 +6,7 @@ package com.dgh.repository;
 
 import com.dgh.pojo.ThucDon;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -13,7 +14,7 @@ import java.util.List;
  * @author DELL
  */
 public interface ThucDonRepository {
-    List<ThucDon> getThucDon();
+    List<ThucDon> getThucDon(Map<String, String> params);
     boolean addOrUpdateThucDon(ThucDon td);
     ThucDon getThucDonById(int id);
     boolean deleteThucDonById(int id);

@@ -11,7 +11,6 @@ import java.util.Date;
  * @author DELL
  */
 
-
 public class NhanVienDTO  {
     private int id;
     private String tenNhanVien;

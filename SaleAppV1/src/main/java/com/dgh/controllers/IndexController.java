@@ -51,7 +51,6 @@ public class IndexController {
     @ModelAttribute
     public void commonAttri(Model model, @RequestParam Map<String, String> params) {
         model.addAttribute("chiNhanh", this.chiNhanhService.getDanhSachChiNhanh(params));
-        model.addAttribute("thucDon", this.thucDonService.getThucDon());
         model.addAttribute("chucVu", this.chucVuService.getChucVu());
         model.addAttribute("thongTinSanh", this.thongTinSanhService.getThongTinSanh(params));
         model.addAttribute("anhSanh", this.anhSanhService.getAnhSanh());

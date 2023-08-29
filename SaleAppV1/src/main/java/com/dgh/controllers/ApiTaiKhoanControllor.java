@@ -5,6 +5,8 @@
 package com.dgh.controllers;
 
 import com.dgh.components.JwtService;
+import com.dgh.dto.KhachHangTaiKhoanDTO;
+import com.dgh.pojo.KhachHang;
 import com.dgh.pojo.TaiKhoan;
 import com.dgh.service.TaiKhoanService;
 import java.security.Principal;
@@ -58,10 +60,19 @@ public class ApiTaiKhoanControllor {
             consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}, 
             produces = {MediaType.APPLICATION_JSON_VALUE})
     @CrossOrigin
-    public ResponseEntity<TaiKhoan> addUser(@RequestParam Map<String, String> params, @RequestPart MultipartFile avatar) {
-        TaiKhoan user = this.taiKhoanService.addUser(params, avatar);
+    public ResponseEntity<KhachHangTaiKhoanDTO> addUser(@RequestParam Map<String, String> params, @RequestPart MultipartFile avatar) {
+        KhachHangTaiKhoanDTO user = this.taiKhoanService.addUser(params, avatar);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
+    
+//    @PostMapping(path = "/usersCus/", 
+//            consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}, 
+//            produces = {MediaType.APPLICATION_JSON_VALUE})
+//    @CrossOrigin
+//    public ResponseEntity<KhachHangTaiKhoanDTO> addCus(@RequestParam Map<String, String> params, @RequestPart MultipartFile avatar) {
+//        KhachHangTaiKhoanDTO cus = this.taiKhoanService.addCus(params, avatar);
+//        return new ResponseEntity<>(cus, HttpStatus.CREATED);
+//    }
     
     @GetMapping(path = "/current-user/", produces = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin

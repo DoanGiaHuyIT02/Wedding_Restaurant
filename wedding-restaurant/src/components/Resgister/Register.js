@@ -1,48 +1,108 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../Login/Login.css';
+import { useRef, useState } from 'react';
+import Apis, { endpoint } from '../../configs/Apis';
+import MySpinner from '../../layout/MySpinner';
+import { Alert } from 'react-bootstrap';
 
 const Register = () => {
+    const [user, setUser] = useState({
+        "tenDangNhap": "",
+        "matKhau": "",
+        "tenKhachHang": "",
+        "soDienThoai": "",
+        "email": "",
+        "nhapLaiMatKhau": ""
+    });
+
+    const [loading, setLoading] = useState(false);
+    const [err, setErr] = useState(null);
+    const avatar = useRef();
+    const nav = useNavigate();
+
+    const change = (evt, field) => {
+        setUser(current => {
+            return { ...current, [field]: evt.target.value };
+        });
+    }
+
+    const register = (evt) => {
+        evt.preventDefault();
+
+        const process = async () => {
+            let formData = new FormData();
+            for (let field in user)
+                formData.append(field, user[field]);
+
+            if (avatar.current.files.length > 0)
+                formData.append("avatar", avatar.current.files[0]);
+
+            setLoading(true);
+            let res = await Apis.post(endpoint['register'], formData);
+            if (res.status === 201) {
+                nav("/login");
+            } else {
+                setErr("Hệ thống đang bị lỗi!");
+                setLoading(false);
+            }
+        }
+
+        if (user.matKhau !== user.nhapLaiMatKhau) {
+            setErr("Mật khẩu KHÔNG khớp!");
+        } else {
+            process();
+        }
+    }
+
+
     return (
 
         <div className='bodyLogin'>
             <div className="form">
-                <form>
+                <form onSubmit={register}>
                     <h2>Đăng ký</h2>
+                    {err === null ? "" : <Alert variant="danger">{err}</Alert>}
                     <div className="form_userName control">
-                        <input id="name" type="text" placeholder="Họ và tên" />
+                        <input id="name" type="text" placeholder="Họ và tên" value={user.tenKhachHang}
+                            onChange={e => change(e, "tenKhachHang")} />
                         <small></small>
                         <span></span>
                     </div>
                     <div className="form_userName control">
-                        <input id="soDienThoai" type="text" placeholder="Số điện thoại" />
+                        <input id="soDienThoai" type="text" placeholder="Số điện thoại" value={user.soDienThoai}
+                            onChange={e => change(e, "soDienThoai")} />
                         <small></small>
                         <span></span>
                     </div>
                     <div className="form_userName control">
-                        <input id="email" type="email" placeholder="Email" />
+                        <input id="email" type="email" placeholder="Email" value={user.email}
+                            onChange={e => change(e, "email")} />
                         <small></small>
                         <span></span>
                     </div>
                     <div className="form_userName control">
-                        <input id="tenDangNhap" type="text" placeholder="Tên đăng nhập" />
+                        <input id="tenDangNhap" type="text" placeholder="Tên đăng nhập" value={user.tenDangNhap}
+                            onChange={e => change(e, "tenDangNhap")} />
                         <small></small>
                         <span></span>
                     </div>
                     <div className="form_Password control">
-                        <input type="password" name="matKhau" id="password" placeholder="Mật khẩu" />
+                        <input type="password" name="matKhau" id="password" placeholder="Mật khẩu" value={user.matKhau}
+                            onChange={e => change(e, "matKhau")} />
                         <small></small>
                         <span></span>
                     </div>
                     <div className="form_Password control">
-                        <input type="password" name="matKhau" id="confirmPassword" placeholder="Nhập lại mật khẩu" />
+                        <input type="password" name="matKhau" id="confirmPassword" placeholder="Nhập lại mật khẩu" value={user.nhapLaiMatKhau}
+                            onChange={e => change(e, "nhapLaiMatKhau")} />
                         <small></small>
                         <span></span>
                     </div>
 
-                    <input id="file" type="file" placeholder="Avatar" />
+                    <input id="file" type="file" placeholder="Avatar" ref={avatar} />
 
                     <div className="container_login">
-                        <button className="LogIn" type="submit">Đăng ký</button>
+                        {loading === true ? <MySpinner /> : <button className="LogIn" type="submit">Đăng ký</button>}
                         <p>Not a member? <Link to="/login">Đăng nhập</Link></p>
                     </div>
                 </form>

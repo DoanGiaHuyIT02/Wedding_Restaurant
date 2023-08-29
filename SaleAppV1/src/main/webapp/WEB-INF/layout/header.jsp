@@ -41,6 +41,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<c:url value="/anhSanh"/>">Ảnh sảnh</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<c:url value="/thongKeSanh"/>">Thống kê & Báo cáo</a>
+                    </li>
                 </se:authorize>
             </ul>
             <form class="d-flex" action="${action}">

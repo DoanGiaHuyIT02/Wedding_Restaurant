@@ -2,7 +2,7 @@
 function delPro(path, id) {
     if (confirm("Bạn chắc chắn xóa không?") === true) {
         fetch(path, {
-            method: "delete"
+            method: "put"
         }).then(res => {
             if (res.status === 204)
                 location.reload();
@@ -67,7 +67,21 @@ function delThucDon(path) {
 function delNhanVien(path) {
     if (confirm("Bạn chắc chắn xóa không?") === true) {
         fetch(path, {
+            method: "put"
+        }).then(res => {
+            if (res.status === 204)
+                location.reload();
+            else
+                alert("Something wrong!!!");
+        });
+    }
+}
+
+function delAnhSanh(path) {
+    if (confirm("Bạn chắc chắn xóa không?") === true) {
+        fetch(path, {
             method: "delete"
+
         }).then(res => {
             if (res.status === 204)
                 location.reload();

@@ -4,6 +4,7 @@
  */
 package com.dgh.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -85,6 +86,7 @@ public class ThucDon implements Serializable {
     @Column(name = "isDelete")
     private boolean isDelete;
     @OneToMany(mappedBy = "thucDonId")
+    @JsonIgnore
     private Set<ThongTinChiTietDatTiec> thongTinChiTietDatTiecSet;
 
     public ThucDon() {

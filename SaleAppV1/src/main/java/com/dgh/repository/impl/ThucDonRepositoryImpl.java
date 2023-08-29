@@ -6,8 +6,14 @@ package com.dgh.repository.impl;
 
 import com.dgh.pojo.ThucDon;
 import com.dgh.repository.ThucDonRepository;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import org.hibernate.HibernateError;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -28,11 +34,26 @@ public class ThucDonRepositoryImpl implements ThucDonRepository{
     private LocalSessionFactoryBean factory;
     
     @Override
-    public List<ThucDon> getThucDon() {
-        Session s = this.factory.getObject().getCurrentSession();
-        Query q = s.createQuery("FROM ThucDon Where isDelete = 0");
+    public List<ThucDon> getThucDon(Map<String, String> params) {
+       Session session = this.factory.getObject().getCurrentSession();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<ThucDon> q = b.createQuery(ThucDon.class);
+        Root<ThucDon> root = q.from(ThucDon.class);
+        q.select(root);
 
-        return q.getResultList();
+        List<Predicate> predicates = new ArrayList<>();
+
+        predicates.add(b.equal(root.get("isDelete"), 0)); // Thêm điều kiện isDelete = 0
+
+        if (!predicates.isEmpty()) {
+            q.where(predicates.toArray(new Predicate[0]));
+        }
+
+        q.orderBy(b.asc(root.get("id")));
+
+        Query query = session.createQuery(q);
+
+        return query.getResultList();
     }
 
     @Override

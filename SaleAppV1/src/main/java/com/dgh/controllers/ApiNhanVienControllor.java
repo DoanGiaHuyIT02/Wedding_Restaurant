@@ -29,7 +29,7 @@ public class ApiNhanVienControllor {
     @Autowired
     private TaiKhoanService taiKhoanService;
 
-    @DeleteMapping("/nhanVien/{id}")
+    @PutMapping("/nhanVien/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable(value = "id") int id) {
         NhanVien nv = this.nhanVienService.getNhanVienById(id);

@@ -22,5 +22,7 @@
             <tiles:insertAttribute name="content" />
         </div>
         <tiles:insertAttribute name="footer" />
+        
+        <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
     </body>
 </html>

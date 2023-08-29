@@ -6,6 +6,7 @@ package com.dgh.service.impl;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.dgh.dto.KhachHangTaiKhoanDTO;
 import com.dgh.pojo.KhachHang;
 import com.dgh.pojo.TaiKhoan;
 import com.dgh.repository.TaiKhoanRepository;
@@ -73,15 +74,12 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
     }
 
     @Override
-    public TaiKhoan addUser(Map<String, String> params, MultipartFile avatar) {
+    public KhachHangTaiKhoanDTO addUser(Map<String, String> params, MultipartFile avatar) {
         TaiKhoan u = new TaiKhoan();
-        KhachHang k = new KhachHang();
         u.setTenDangNhap(params.get("tenDangNhap"));
         u.setMatKhau(this.encoder.encode(params.get("matKhau")));
-        u.setVaiTro(params.get("ROLE_USER"));
-        k.setTenKhachHang(params.get("tenKhachHang"));
-        k.setSoDienThoai(params.get("soDienThoai"));
-        k.setEmail(params.get("email"));
+        u.setVaiTro("ROLE_USER");
+       
         if (!avatar.isEmpty()) {
             try {
                 Map res = this.cloudinary.uploader().upload(avatar.getBytes(),
@@ -91,9 +89,53 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
                 Logger.getLogger(TaiKhoanServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
-        this.taiKhoanRepo.addUser(u);
-        return u;
+        TaiKhoan tk = this.taiKhoanRepo.addUser(u);
+        KhachHang k = new KhachHang();
+        k.setTenKhachHang(params.get("tenKhachHang"));
+        k.setSoDienThoai(params.get("soDienThoai"));
+        k.setEmail(params.get("email"));
+        k.setTaiKhoanId(tk);
+        KhachHang khachHang = this.taiKhoanRepo.addCus(k);
+        
+        
+        
+        KhachHangTaiKhoanDTO kh = new KhachHangTaiKhoanDTO();
+        kh.setTenKhachHang(khachHang.getTenKhachHang());
+        kh.setSoDienThoai(khachHang.getSoDienThoai());
+        kh.setEmail(khachHang.getEmail());
+        kh.setTenDangNhap(tk.getTenDangNhap());
+        kh.setMatKhau(tk.getMatKhau());
+        kh.setVaiTro(tk.getVaiTro());
+        kh.setAvatar(tk.getAvatar());
+        return kh;
     }
+
+//    @Override
+//    public KhachHangTaiKhoanDTO addCus(Map<String, String> params, MultipartFile avatar) {
+//        KhachHang kh = new KhachHang();
+//        TaiKhoan tk = new TaiKhoan();
+//        KhachHangTaiKhoanDTO k = new KhachHangTaiKhoanDTO();
+//        k.setTenDangNhap(params.get("tenDangNhap"));
+//        k.setMatKhau(this.encoder.encode(params.get("matKhau")));
+//        k.setVaiTro(params.get("ROLE_USER"));
+//        k.setTenKhachHang(params.get("tenKhachHang"));
+//        k.setSoDienThoai(params.get("soDienThoai"));
+//        k.setEmail(params.get("email"));
+//        if (!avatar.isEmpty()) {
+//            try {
+//                Map res = this.cloudinary.uploader().upload(avatar.getBytes(),
+//                        ObjectUtils.asMap("resource_type", "auto"));
+//                k.setAvatar(res.get("secure_url").toString());
+//            } catch (IOException ex) {
+//                Logger.getLogger(TaiKhoanServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
+//        
+//        this.taiKhoanRepo.addCus(k);
+//        
+//        
+//        return k;
+//    }
+
 
 }

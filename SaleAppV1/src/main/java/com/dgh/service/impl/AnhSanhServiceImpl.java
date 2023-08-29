@@ -53,5 +53,15 @@ public class AnhSanhServiceImpl implements AnhSanhService{
     public AnhSanh getAnhSanhById(int id) {
         return this.AnhSanhRepo.getAnhSanhById(id);
     }
+
+    @Override
+    public boolean deleteAnhSanh(int id) {
+        return this.AnhSanhRepo.deleteAnhSanh(id);
+    }
+
+    @Override
+    public List<AnhSanh> getAnhSanhByLoaiSanh(String loaiSanh) {
+        return this.AnhSanhRepo.getAnhSanhByLoaiSanh(loaiSanh);
+    }
     
 }

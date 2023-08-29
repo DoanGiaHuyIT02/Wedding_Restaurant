@@ -4,6 +4,8 @@
  */
 package com.dgh.repository.impl;
 
+import com.dgh.dto.KhachHangTaiKhoanDTO;
+import com.dgh.pojo.KhachHang;
 import com.dgh.pojo.TaiKhoan;
 import com.dgh.repository.TaiKhoanRepository;
 import javax.persistence.Query;
@@ -77,9 +79,23 @@ public class TaiKhoanRepositoryImpl implements TaiKhoanRepository {
 
     @Override
     public TaiKhoan addUser(TaiKhoan tk) {
-        Session s = this.factory.getObject().getCurrentSession();
+       Session s = this.factory.getObject().getCurrentSession();
        s.save(tk);
        return tk;
+    }
+
+//    @Override
+//    public KhachHangTaiKhoanDTO addCus(KhachHangTaiKhoanDTO k) {
+//        Session s = this.factory.getObject().getCurrentSession();
+//        s.save(k);
+//        return k;
+//    }
+
+    @Override
+    public KhachHang addCus(KhachHang kh) {
+        Session s = this.factory.getObject().getCurrentSession();
+        s.save(kh);
+        return kh;
     }
 
 }

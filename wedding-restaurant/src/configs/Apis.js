@@ -7,8 +7,13 @@ export const endpoint = {
     "loaiTiec": `/api/loaiTiec/`,
     "dichVu": `/api/dichVu/`,
     "thongTinSanh": `/api/thongTinSanh/`,
+    "thucDon": `/api/thucDon/`,
     "login": `/api/login/`,
-    "currentUser": `/api/current-user/`
+    "currentUser": `/api/current-user/`,
+    "anhSanh": `/api/anhSanh/`,
+    "register": `/api/users/`,
+    "phanHoiKhachHang": `/api/phanHoiKhachHang/`
+
 }
 
 const cookies = new Cookies();

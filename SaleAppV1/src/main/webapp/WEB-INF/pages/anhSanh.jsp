@@ -32,8 +32,9 @@
                     <td>${a.sanhId.loaiSanh}</td>
                     <td>
                     <td>
+                        <c:url value="/api/anhSanh/${a.id}" var="apiAnhSanh" />
                         <a href="<c:url value="/themAnhSanh/${a.id}"/>" class="btn btn-info">Cập nhật</a>
-                        <button class="btn btn-danger" onclick="delPro('${apiDel}', ${p.id})">Xóa</button>
+                        <button class="btn btn-danger" onclick="delAnhSanh('${apiAnhSanh}', ${a.id})">Xóa</button>
                     </td>
                 </tr>
             </c:forEach>

@@ -90,8 +90,9 @@ public class LoaiTiecRepositoryImpl implements LoaiTiecRepository {
     public boolean deleteLoaiTiec(int id) {
         Session s = this.factory.getObject().getCurrentSession();
         LoaiTiec lt = this.getLoaiTiecById(id);
+        lt.setIsDelete(Boolean.TRUE);
         try {
-            s.delete(lt);
+            s.update(lt);
             return true;
         } catch (HibernateException ex) {
             ex.printStackTrace();

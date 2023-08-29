@@ -1,7 +1,7 @@
 #about {
     position: relative;
     padding: 45px 0 60px 0;
-    background: #f2f2f2;
+    background: #ffffff;
 }
 
 #about hr {
@@ -109,4 +109,13 @@
     font-size: 18px;
     font-weight: 300;
     line-height: 2s5px;
+}
+
+ul {
+    list-style: none;
+}
+
+ul.menu-ul li {
+    color: #ddd;
+    font-size: 20px;
 }

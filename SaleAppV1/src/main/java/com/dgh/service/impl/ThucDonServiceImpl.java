@@ -8,6 +8,7 @@ import com.dgh.pojo.ThucDon;
 import com.dgh.repository.ThucDonRepository;
 import com.dgh.service.ThucDonService;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +22,8 @@ public class ThucDonServiceImpl implements ThucDonService{
     private ThucDonRepository thucDonRepo;
 
     @Override
-    public List<ThucDon> getThucDon() {
-        return this.thucDonRepo.getThucDon();
+    public List<ThucDon> getThucDon(Map<String, String> params) {
+        return this.thucDonRepo.getThucDon(params);
     }
 
     @Override

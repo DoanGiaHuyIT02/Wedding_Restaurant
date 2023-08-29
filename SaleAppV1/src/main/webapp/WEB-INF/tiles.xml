@@ -109,4 +109,21 @@
         <put-attribute name="content"
                        value="/WEB-INF/pages/themAnhSanh.jsp" />
     </definition>
+    
+    <!--Thống kê báo cáo-->
+    <definition name="thongKeSanh" extends="baseLayout">
+        <put-attribute name="title" value="Thống kê sảnh" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/thongKeSanh.jsp" />
+    </definition>
+    <definition name="thongKeTiecCuoi" extends="baseLayout">
+        <put-attribute name="title" value="Thống kê sảnh" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/thongKeTiecCuoi.jsp" />
+    </definition>
+    <definition name="thongKeDoanhThu" extends="baseLayout">
+        <put-attribute name="title" value="Thống kê doanh thu" />
+        <put-attribute name="content"
+                       value="/WEB-INF/pages/thongKeDoanhThu.jsp" />
+    </definition>
 </tiles-definitions>

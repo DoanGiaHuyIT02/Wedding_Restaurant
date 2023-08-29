@@ -6,13 +6,14 @@ package com.dgh.service;
 
 import com.dgh.pojo.ThucDon;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
  * @author DELL
  */
 public interface ThucDonService {
-    List<ThucDon> getThucDon();
+    List<ThucDon> getThucDon(Map<String, String> params);
     boolean addOrUpdateThucDon(ThucDon td);
     ThucDon getThucDonById(int id);
     boolean deleteThucDonById(int id);

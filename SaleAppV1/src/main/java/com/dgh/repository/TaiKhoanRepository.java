@@ -4,6 +4,8 @@
  */
 package com.dgh.repository;
 
+import com.dgh.dto.KhachHangTaiKhoanDTO;
+import com.dgh.pojo.KhachHang;
 import com.dgh.pojo.TaiKhoan;
 
 /**
@@ -14,6 +16,8 @@ public interface TaiKhoanRepository {
     TaiKhoan getTaiKhoanByTenDangNhap(String tenDangNhap);
     boolean addTaiKhoan(TaiKhoan tk);
     TaiKhoan addUser(TaiKhoan tk);
+    KhachHang addCus(KhachHang kh);
+//    KhachHangTaiKhoanDTO addCus(KhachHangTaiKhoanDTO k);
     TaiKhoan timKiemTaiKhoanById(int id);
     boolean deleteTaiKhoanById(int id);
     boolean authUser(String tenDangNhap, String matKhau);

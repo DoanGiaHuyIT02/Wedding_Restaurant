@@ -5,7 +5,6 @@ const ExampleCarouselImage = ({ text, imageUrl }) => {
   return (
     <div>
       <img src={imageUrl} alt={text} />
-      <p>{text}</p>
     </div>
   );
 };

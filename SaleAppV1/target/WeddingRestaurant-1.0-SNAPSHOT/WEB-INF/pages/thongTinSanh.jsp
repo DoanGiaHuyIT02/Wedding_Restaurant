@@ -8,7 +8,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:url value="/thongTinSanh" var="action" />
 <section class="container">
-    <h1 class="text-center text-info mt-4">Quản lý sảnh</h1>\
+    <h1 class="text-center text-info mt-4">Quản lý sảnh</h1>
 
 
     <form class="d-flex justify-content-between" action="${action}">

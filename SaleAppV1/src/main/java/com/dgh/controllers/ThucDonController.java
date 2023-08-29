@@ -6,6 +6,7 @@ package com.dgh.controllers;
 
 import com.dgh.pojo.ThucDon;
 import com.dgh.service.ThucDonService;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -24,7 +26,8 @@ public class ThucDonController {
     private ThucDonService thucDonService;
     
     @GetMapping("/thucDon")
-    public String list() {
+    public String list(Model model, @RequestParam Map<String, String> params) {
+        model.addAttribute("thucDon", this.thucDonService.getThucDon(params));
         return "thucDon";
     }
     
