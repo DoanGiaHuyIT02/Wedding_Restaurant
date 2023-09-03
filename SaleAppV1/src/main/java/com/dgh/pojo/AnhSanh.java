@@ -17,6 +17,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import org.springframework.web.multipart.MultipartFile;
@@ -42,6 +43,7 @@ public class AnhSanh implements Serializable {
     private Integer id;
     @Size(max = 255)
     @Column(name = "anh_sanh")
+    @NotNull(message = "{anhSanh.anhSanh.notNullMsg}")
     private String anhSanh;
     @JoinColumn(name = "sanh_id", referencedColumnName = "id")
     @ManyToOne

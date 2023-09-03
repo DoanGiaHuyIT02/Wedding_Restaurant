@@ -35,7 +35,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "ThongTinChiTietDatTiec.findById", query = "SELECT t FROM ThongTinChiTietDatTiec t WHERE t.id = :id"),
     @NamedQuery(name = "ThongTinChiTietDatTiec.findBySoLuongBan", query = "SELECT t FROM ThongTinChiTietDatTiec t WHERE t.soLuongBan = :soLuongBan"),
     @NamedQuery(name = "ThongTinChiTietDatTiec.findByCa", query = "SELECT t FROM ThongTinChiTietDatTiec t WHERE t.ca = :ca"),
-    @NamedQuery(name = "ThongTinChiTietDatTiec.findBySoLuongNhanVien", query = "SELECT t FROM ThongTinChiTietDatTiec t WHERE t.soLuongNhanVien = :soLuongNhanVien"),
     @NamedQuery(name = "ThongTinChiTietDatTiec.findByIsDelete", query = "SELECT t FROM ThongTinChiTietDatTiec t WHERE t.isDelete = :isDelete")})
 public class ThongTinChiTietDatTiec implements Serializable {
 
@@ -55,11 +54,6 @@ public class ThongTinChiTietDatTiec implements Serializable {
     @Size(min = 1, max = 10)
     @Column(name = "ca")
     private String ca;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "so_luong_nhan_vien")
-    private String soLuongNhanVien;
     @Basic(optional = false)
     @NotNull
     @Column(name = "isDelete")
@@ -90,7 +84,6 @@ public class ThongTinChiTietDatTiec implements Serializable {
         this.id = id;
         this.soLuongBan = soLuongBan;
         this.ca = ca;
-        this.soLuongNhanVien = soLuongNhanVien;
         this.isDelete = isDelete;
     }
 
@@ -116,14 +109,6 @@ public class ThongTinChiTietDatTiec implements Serializable {
 
     public void setCa(String ca) {
         this.ca = ca;
-    }
-
-    public String getSoLuongNhanVien() {
-        return soLuongNhanVien;
-    }
-
-    public void setSoLuongNhanVien(String soLuongNhanVien) {
-        this.soLuongNhanVien = soLuongNhanVien;
     }
 
     public boolean getIsDelete() {

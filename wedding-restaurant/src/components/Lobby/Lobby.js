@@ -160,8 +160,8 @@ const Lobby = () => {
                         <div className="carousel_lobby">
                             <Carousel className="carousel_img_lobby">
                                 {anhSanhList.map((anhSanh, index) => (
-                                    <Carousel.Item>
-                                        <ExampleCarouselImage text="First slide" key={index} imageUrl={anhSanh[0]} />
+                                    <Carousel.Item key={index}>
+                                        <ExampleCarouselImage text="First slide" imageUrl={anhSanh[0]} />
                                     </Carousel.Item>
                                 ))}
                             </Carousel>

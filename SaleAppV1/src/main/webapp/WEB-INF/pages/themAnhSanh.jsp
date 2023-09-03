@@ -8,6 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:url value="/themAnhSanh" var="action" />
+
 <form:form modelAttribute="themAnhSanh" action="${action}" method="post" enctype="multipart/form-data">
     <form:hidden path="id" />
     <div class="form-floating mb-3 mt-3">

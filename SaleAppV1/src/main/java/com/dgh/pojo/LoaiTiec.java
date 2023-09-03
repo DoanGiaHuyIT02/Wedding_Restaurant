@@ -46,7 +46,6 @@ public class LoaiTiec implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @NotEmpty(message = "{loaiTiec.tenLoaiTiec.notNullMsg}")
     @NotBlank(message = "{loaiTiec.tenLoaiTiec.notBlankMsg}")
     @Column(name = "ten_loai_tiec")
     private String tenLoaiTiec;

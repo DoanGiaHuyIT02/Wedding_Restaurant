@@ -110,32 +110,7 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
         return kh;
     }
 
-//    @Override
-//    public KhachHangTaiKhoanDTO addCus(Map<String, String> params, MultipartFile avatar) {
-//        KhachHang kh = new KhachHang();
-//        TaiKhoan tk = new TaiKhoan();
-//        KhachHangTaiKhoanDTO k = new KhachHangTaiKhoanDTO();
-//        k.setTenDangNhap(params.get("tenDangNhap"));
-//        k.setMatKhau(this.encoder.encode(params.get("matKhau")));
-//        k.setVaiTro(params.get("ROLE_USER"));
-//        k.setTenKhachHang(params.get("tenKhachHang"));
-//        k.setSoDienThoai(params.get("soDienThoai"));
-//        k.setEmail(params.get("email"));
-//        if (!avatar.isEmpty()) {
-//            try {
-//                Map res = this.cloudinary.uploader().upload(avatar.getBytes(),
-//                        ObjectUtils.asMap("resource_type", "auto"));
-//                k.setAvatar(res.get("secure_url").toString());
-//            } catch (IOException ex) {
-//                Logger.getLogger(TaiKhoanServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-//        
-//        this.taiKhoanRepo.addCus(k);
-//        
-//        
-//        return k;
-//    }
+
 
 
 }

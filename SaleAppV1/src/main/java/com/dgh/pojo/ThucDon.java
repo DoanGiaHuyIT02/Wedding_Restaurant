@@ -17,6 +17,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -53,29 +55,38 @@ public class ThucDon implements Serializable {
     private Integer id;
     @Size(max = 50)
     @Column(name = "ma_thuc_don")
+    @NotBlank(message = "{thucDon.maThucDon.notBlankMsg}")
     private String maThucDon;
     @Size(max = 255)
     @Column(name = "mon_khai_vi")
+    @NotBlank(message = "{thucDon.monKhaiVi.notBlankMsg}")
     private String monKhaiVi;
     @Size(max = 255)
     @Column(name = "mon_chinh_1")
+    @NotBlank(message = "{thucDon.monChinh.notBlankMsg}")
     private String monChinh1;
     @Size(max = 255)
     @Column(name = "mon_chinh_2")
+    @NotBlank(message = "{thucDon.monChinh.notBlankMsg}")
     private String monChinh2;
     @Size(max = 255)
     @Column(name = "mon_chinh_3")
+    @NotBlank(message = "{thucDon.monChinh.notBlankMsg}")
     private String monChinh3;
     @Size(max = 255)
     @Column(name = "mon_chinh_4")
+    @NotBlank(message = "{thucDon.monChinh.notBlankMsg}")
     private String monChinh4;
     @Size(max = 255)
+    @NotBlank(message = "{thucDon.monTrangMieng.notBlankMsg}")
     @Column(name = "mon_trang_mieng")
     private String monTrangMieng;
     @Size(max = 100)
+    @NotBlank(message = "{thucDon.monPhu.notBlankMsg}")
     @Column(name = "bia")
     private String bia;
     @Size(max = 100)
+    @NotBlank(message = "{thucDon.monPhu.notBlankMsg}")
     @Column(name = "nuoc_ngot")
     private String nuocNgot;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation

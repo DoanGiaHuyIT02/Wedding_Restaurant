@@ -30,8 +30,7 @@ public class LoaiTiecController {
     private LoaiTiecService loaiTiecService;
 
     @GetMapping("/loaiTiec")
-    public String list(Model model, @RequestParam Map<String, String> params) {
-        model.addAttribute("loaiTiec", this.loaiTiecService.getLoaiTiec(params));
+    public String list() {
         return "loaiTiec";
     }
 

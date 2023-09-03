@@ -41,30 +41,39 @@ public class ApiTaiKhoanControllor {
     @PostMapping("/login/")
     @CrossOrigin
     public ResponseEntity<String> login(@RequestBody TaiKhoan user) {
-        if (this.taiKhoanService.authUser(user.getTenDangNhap(), user.getMatKhau()) == true) {
-            String token = this.jwtService.generateTokenLogin(user.getTenDangNhap());
+        try {
+            TaiKhoan u = this.taiKhoanService.getTaiKhoanByTenDangNhap(user.getTenDangNhap());
+            int id = u.getId();
             
-            return new ResponseEntity<>(token, HttpStatus.OK);
-        }
+            if (u.getId() != -1 && u.getVaiTro().equals("ROLE_USER")) {
+                if (this.taiKhoanService.authUser(user.getTenDangNhap(), user.getMatKhau()) == true) {
+                    String token = this.jwtService.generateTokenLogin(user.getTenDangNhap());
 
-        return new ResponseEntity<>("error", HttpStatus.BAD_REQUEST);
+                    return new ResponseEntity<>(token, HttpStatus.OK);
+                }
+            }
+            return new ResponseEntity<>("Sai tên đăng nhập hoặc mật khẩu", HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+             return new ResponseEntity<>("error", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        
     }
-    
+
     @GetMapping("/test/")
     @CrossOrigin(origins = {"127.0.0.1:5500"})
     public ResponseEntity<String> test(Principal pricipal) {
         return new ResponseEntity<>("SUCCESSFUL", HttpStatus.OK);
     }
-    
-    @PostMapping(path = "/users/", 
-            consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}, 
+
+    @PostMapping(path = "/users/",
+            consumes = {MediaType.MULTIPART_FORM_DATA_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     @CrossOrigin
     public ResponseEntity<KhachHangTaiKhoanDTO> addUser(@RequestParam Map<String, String> params, @RequestPart MultipartFile avatar) {
         KhachHangTaiKhoanDTO user = this.taiKhoanService.addUser(params, avatar);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
-    
+
 //    @PostMapping(path = "/usersCus/", 
 //            consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}, 
 //            produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -73,10 +82,12 @@ public class ApiTaiKhoanControllor {
 //        KhachHangTaiKhoanDTO cus = this.taiKhoanService.addCus(params, avatar);
 //        return new ResponseEntity<>(cus, HttpStatus.CREATED);
 //    }
-    
     @GetMapping(path = "/current-user/", produces = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin
     public ResponseEntity<TaiKhoan> details(Principal user) {
+        if (user == null) {
+            return null;
+        }
         TaiKhoan u = this.taiKhoanService.getTaiKhoanByTenDangNhap(user.getName());
         return new ResponseEntity<>(u, HttpStatus.OK);
     }

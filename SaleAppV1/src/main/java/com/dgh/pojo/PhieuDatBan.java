@@ -39,6 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "PhieuDatBan.findByTienCoc", query = "SELECT p FROM PhieuDatBan p WHERE p.tienCoc = :tienCoc"),
     @NamedQuery(name = "PhieuDatBan.findByTienConLai", query = "SELECT p FROM PhieuDatBan p WHERE p.tienConLai = :tienConLai"),
     @NamedQuery(name = "PhieuDatBan.findByNgayXuatPhieu", query = "SELECT p FROM PhieuDatBan p WHERE p.ngayXuatPhieu = :ngayXuatPhieu"),
+    @NamedQuery(name = "PhieuDatBan.findByNgayDatCoc", query = "SELECT p FROM PhieuDatBan p WHERE p.ngayDatCoc = :ngayDatCoc"),
     @NamedQuery(name = "PhieuDatBan.findByIsDelete", query = "SELECT p FROM PhieuDatBan p WHERE p.isDelete = :isDelete")})
 public class PhieuDatBan implements Serializable {
 
@@ -58,13 +59,13 @@ public class PhieuDatBan implements Serializable {
     @Column(name = "ngay_xuat_phieu")
     @Temporal(TemporalType.DATE)
     private Date ngayXuatPhieu;
+    @Column(name = "ngay_dat_coc")
+    @Temporal(TemporalType.DATE)
+    private Date ngayDatCoc;
     @Basic(optional = false)
     @NotNull
     @Column(name = "isDelete")
     private boolean isDelete;
-    @JoinColumn(name = "chi_nhanh_id", referencedColumnName = "id")
-    @ManyToOne
-    private ChiNhanh chiNhanhId;
     @JoinColumn(name = "chi_tiet_dat_tiec_id", referencedColumnName = "id")
     @ManyToOne
     private ThongTinChiTietDatTiec chiTietDatTiecId;
@@ -125,6 +126,14 @@ public class PhieuDatBan implements Serializable {
     public void setNgayXuatPhieu(Date ngayXuatPhieu) {
         this.ngayXuatPhieu = ngayXuatPhieu;
     }
+    
+     public Date getNgayDatCoc() {
+        return ngayDatCoc;
+    }
+
+    public void setNgayDatCoc(Date ngayDatCoc) {
+        this.ngayDatCoc = ngayDatCoc;
+    }
 
     public boolean getIsDelete() {
         return isDelete;
@@ -132,14 +141,6 @@ public class PhieuDatBan implements Serializable {
 
     public void setIsDelete(boolean isDelete) {
         this.isDelete = isDelete;
-    }
-
-    public ChiNhanh getChiNhanhId() {
-        return chiNhanhId;
-    }
-
-    public void setChiNhanhId(ChiNhanh chiNhanhId) {
-        this.chiNhanhId = chiNhanhId;
     }
 
 

@@ -53,6 +53,7 @@ public class IndexController {
         model.addAttribute("chiNhanh", this.chiNhanhService.getDanhSachChiNhanh(params));
         model.addAttribute("chucVu", this.chucVuService.getChucVu());
         model.addAttribute("thongTinSanh", this.thongTinSanhService.getThongTinSanh(params));
+        model.addAttribute("loaiTiec", this.loaiTiecService.getLoaiTiec(params));
         model.addAttribute("anhSanh", this.anhSanhService.getAnhSanh());
     }
 

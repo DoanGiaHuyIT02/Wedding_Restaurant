@@ -10,10 +10,12 @@ import com.dgh.service.ChucVuService;
 import com.dgh.service.NhanVienService;
 import com.dgh.service.TaiKhoanService;
 import java.util.Map;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,7 +40,7 @@ public class NhanVienController {
         model.addAttribute("nhanVien", this.nhanVienService.getNhanVien(params));
         int pageSize = Integer.parseInt(this.env.getProperty("PAGE_SIZE"));
         long count = this.nhanVienService.countNhanVien();
-        model.addAttribute("counterNV", Math.ceil(count*1.0/pageSize));
+        model.addAttribute("counterNV", Math.ceil(count * 1.0 / pageSize));
         return "nhanVien";
     }
 
@@ -47,17 +49,18 @@ public class NhanVienController {
         model.addAttribute("themNhanVien", new NhanVien());
         return "themNhanVien";
     }
-    
+
     @PostMapping("/themNhanVien")
-    public String themNhanVien(@ModelAttribute(value = "themNhanVien") NhanVien nv) {
-        
-        if(this.taiKhoanService.addTaiKhoan(nv.getTaiKhoanId()) == true) {
-            if(this.nhanVienService.addNhanVien(nv) == true) {
-                return "redirect:nhanVien";
+    public String themNhanVien(@ModelAttribute(value = "themNhanVien") @Valid NhanVien nv,
+            BindingResult rs) {
+        if (!rs.hasErrors()) {
+            if (this.taiKhoanService.addTaiKhoan(nv.getTaiKhoanId()) == true) {
+                if (this.nhanVienService.addNhanVien(nv) == true) {
+                    return "redirect:nhanVien";
+                }
             }
         }
         return "themNhanVien";
     }
-
 
 }

@@ -34,7 +34,7 @@ const Event = () => {
                     <div className="row">
                         <div className="col-md-6 img-cols">
                             <div className="img-col">
-                                <img alt="" class="img-fluid" src={menu1} />
+                                <img alt="" className="img-fluid" src={menu1} />
                             </div>
                         </div>
                         <div className="col-md-6 content-cols">
@@ -46,34 +46,34 @@ const Event = () => {
                     </div>
                     <hr />
 
-                    <div class="row">
-                        <div class="col-md-6 img-cols d-block d-md-none">
-                            <div class="img-col">
-                                <img alt="" class="img-fluid" src={menu2} />
+                    <div className="row">
+                        <div className="col-md-6 img-cols d-block d-md-none">
+                            <div className="img-col">
+                                <img alt="" className="img-fluid" src={menu2} />
                             </div>
                         </div>
-                        <div class="col-md-6 content-cols">
+                        <div className="col-md-6 content-cols">
                             <div className="content-col">
                                 <h3>Thôi nôi - sinh nhật</h3>
                                 <p>Một buổi tiệc kỷ niệm trong một không gian ấm cúng sang trọng, ngập tràn trong ánh sáng lung linh của những ngọn nến và hoa, sự thân mật khi đón nhận những lời chúc mừng, sự đa dạng về dịch vụ dành cho sinh nhật, sự tận tâm từ Gold Palace... sẽ mang đến cho bạn một buổi tiệc thật đáng nhớ.</p>
                             </div>
                         </div>
-                        <div class="col-md-6 img-cols d-none d-md-block">
-                            <div class="img-col">
-                                <img alt="" class="img-fluid" src={menu2} />
+                        <div className="col-md-6 img-cols d-none d-md-block">
+                            <div className="img-col">
+                                <img alt="" className="img-fluid" src={menu2} />
                             </div>
                         </div>
                     </div>
 
                     <hr />
 
-                    <div class="row">
-                        <div class="col-md-6 img-cols">
-                            <div class="img-col">
-                                <img alt="" class="img-fluid" src={menu3} />
+                    <div className="row">
+                        <div className="col-md-6 img-cols">
+                            <div className="img-col">
+                                <img alt="" className="img-fluid" src={menu3} />
                             </div>
                         </div>
-                        <div class="col-md-6 content-cols">
+                        <div className="col-md-6 content-cols">
                             <div className="content-col">
                                 <h3>Hội nghị - sự kiện</h3>
                               <p>Gold Palace cung cấp đa dạng dịch vụ hội nghị, hội thảo chuyên đề, những buổi toạ đàm, hay những cuộc họp nội bộ, huấn luyện đào tạo quy mô... với mức chi phí linh hoạt (nửa ngày, nguyên ngày, trọn gói...) cùng với hệ thống cơ sở vật chất tiện ích và trang thiết bị hiện đại...</p>
@@ -82,21 +82,21 @@ const Event = () => {
                     </div>
                     <hr />
 
-                    <div class="row">
-                        <div class="col-md-6 img-cols d-block d-md-none">
-                            <div class="img-col">
-                                <img alt="" class="img-fluid" src={menu2} />
+                    <div className="row">
+                        <div className="col-md-6 img-cols d-block d-md-none">
+                            <div className="img-col">
+                                <img alt="" className="img-fluid" src={menu2} />
                             </div>
                         </div>
-                        <div class="col-md-6 content-cols">
+                        <div className="col-md-6 content-cols">
                             <div className="content-col">
                                 <h3>Tiệc doanh nghiệp</h3>
                                 <p>Là một trong những sự kiện phổ biến nhất trong mỗi doanh nghiệp để nhìn lại một chặng đường đã trải qua, nhằm vinh danh những tập thể - cá nhân xuất sắc cống hiến, là cơ hội gặp gỡ những đối tác - nhà cung cấp, hay đó là một buổi ra mắt - giới thiệu sản phẩm, hoặc đơn thuần chỉ là một buổi tiệc chúc mừng mỗi thành tựu đạt được.</p>
                             </div>
                         </div>
-                        <div class="col-md-6 img-cols d-none d-md-block">
-                            <div class="img-col">
-                                <img alt="" class="img-fluid" src={menu4} />
+                        <div className="col-md-6 img-cols d-none d-md-block">
+                            <div className="img-col">
+                                <img alt="" className="img-fluid" src={menu4} />
                             </div>
                         </div>
                     </div>

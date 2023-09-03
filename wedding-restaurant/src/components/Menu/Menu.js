@@ -40,7 +40,7 @@ const Menu = () => {
                     <div className="row">
                         <div className="col-md-6 img-cols">
                             <div className="img-col">
-                                <img alt="" class="img-fluid" src={menu1} />
+                                <img alt="" className="img-fluid" src={menu1} />
                             </div>
                         </div>
                         <div className="col-md-6 content-cols">
@@ -64,13 +64,13 @@ const Menu = () => {
                     </div>
                     <hr />
 
-                    <div class="row">
-                        <div class="col-md-6 img-cols d-block d-md-none">
-                            <div class="img-col">
-                                <img alt="" class="img-fluid" src={menu2} />
+                    <div className="row">
+                        <div className="col-md-6 img-cols d-block d-md-none">
+                            <div className="img-col">
+                                <img alt="" className="img-fluid" src={menu2} />
                             </div>
                         </div>
-                        <div class="col-md-6 content-cols">
+                        <div className="col-md-6 content-cols">
                             <div className="content-col">
                                 <h3>Menu 2</h3>
                                 <ul className='menu-ul'>
@@ -88,22 +88,22 @@ const Menu = () => {
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-md-6 img-cols d-none d-md-block">
-                            <div class="img-col">
-                                <img alt="" class="img-fluid" src={menu2} />
+                        <div className="col-md-6 img-cols d-none d-md-block">
+                            <div className="img-col">
+                                <img alt="" className="img-fluid" src={menu2} />
                             </div>
                         </div>
                     </div>
 
                     <hr />
 
-                    <div class="row">
-                        <div class="col-md-6 img-cols">
-                            <div class="img-col">
-                                <img alt="" class="img-fluid" src={menu3} />
+                    <div className="row">
+                        <div className="col-md-6 img-cols">
+                            <div className="img-col">
+                                <img alt="" className="img-fluid" src={menu3} />
                             </div>
                         </div>
-                        <div class="col-md-6 content-cols">
+                        <div className="col-md-6 content-cols">
                             <div className="content-col">
                                 <h3>Menu 3</h3>
                                 <ul className='menu-ul'>

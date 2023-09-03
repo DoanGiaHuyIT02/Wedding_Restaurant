@@ -19,6 +19,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -49,11 +51,14 @@ public class ThongTinSanh implements Serializable {
     private Integer id;
     @Size(max = 50)
     @Column(name = "loai_sanh")
+    @NotBlank(message = "{thongTinSanh.loaiSanh.notBlankMsg}")
     private String loaiSanh;
     @Size(max = 255)
     @Column(name = "ten_sanh")
+    @NotBlank(message = "{thongTinSanh.tenSanh.notBlankMsg}")
     private String tenSanh;
     @Column(name = "so_luong_ban")
+    @NotNull(message = "{thongTinSanh.soLuongBan.notNullMsg}")
     private Integer soLuongBan;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "don_gia_toi_thieu")

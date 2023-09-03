@@ -13,14 +13,17 @@
     <div class="form-floating mb-3 mt-3">
         <form:input type="text" class="form-control" path="loaiSanh" id="name" placeholder="Loại sảnh" name="loaiSanh" />
         <label for="name">Loại sảnh</label>
+        <form:errors path="loaiSanh" element="div" cssClass="text-danger" />
     </div>
     <div class="form-floating mb-3 mt-3">
         <form:input type="text" class="form-control" path="tenSanh" id="tenSanh" placeholder="Tên sảnh" name="tenSanh" />
         <label for="tenSanh">Tên sảnh</label>
+        <form:errors path="tenSanh" element="div" cssClass="text-danger" />
     </div>
     <div class="form-floating mb-3 mt-3">
         <form:input type="number" class="form-control" path="soLuongBan" id="soLuongBan" placeholder="Số lượng bàn" name="soLuongBan" />
         <label for="soLuongBan">Số lượng bàn</label>
+        <form:errors path="soLuongBan" element="div" cssClass="text-danger" />
     </div>
     <div class="form-floating mb-3 mt-3">
         <form:input type="text" class="form-control" path="donGiaToiThieu" id="donGiaToiThieu" placeholder="Đơn giá sảnh" name="donGiaToiThieu" />
@@ -29,7 +32,7 @@
     <div class="form-floating mb-3 mt-3">
         <div class="form-floating">
             <form:select class="form-select" id="loaiTiec" name="loaiTiec" path="loaiTiecId">
-                <c:forEach items="${loaiTiecs}" var="l">
+                <c:forEach items="${loaiTiec}" var="l">
                     <c:choose>
                         <c:when test="${l.id == themSanh.loaiTiecId.id}"><option value="${l.id}" selected>${l.tenLoaiTiec}</option></c:when>
                         <c:otherwise><option value="${l.id}">${l.tenLoaiTiec}</option></c:otherwise>

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Button, Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MyUserContext } from "../App";
@@ -21,7 +21,7 @@ const Header = () => {
                     <Nav className="me-auto">
                         <Link className="nav-link" to="/about">Giới thiệu</Link>
                         <Link className="nav-link" to="/">Trang chủ</Link>
-                        <Link className="nav-link" to="/event">Sự kiện - tiệc</Link>
+
                         <NavDropdown title="Dịch vụ chung" id="navbarScrollingDropdown">
                             <NavDropdown.Item >
                                 <Link to="/lobby">Sảnh tiệc</Link>
@@ -32,10 +32,14 @@ const Header = () => {
                             <NavDropdown.Item >
                                 <Link to="/menu">Thực đơn</Link>
                             </NavDropdown.Item>
+                            <NavDropdown.Item >
+                                <Link to="/event">Sự kiện - tiệc</Link>
+                            </NavDropdown.Item>
                         </NavDropdown>
                         <Link className="nav-link" to="/search">Tra cứu</Link>
                         <Link className="nav-link" to="/booking">Đặt tiệc</Link>
                         <Link className="nav-link" to="/feedback">Phản hồi khách hàng</Link>
+                        {taiKhoan == null ? " " : <Link className="nav-link" to="/bill">Thanh toán</Link>}
                     </Nav>
                 </Navbar.Collapse>
                 <div className="">

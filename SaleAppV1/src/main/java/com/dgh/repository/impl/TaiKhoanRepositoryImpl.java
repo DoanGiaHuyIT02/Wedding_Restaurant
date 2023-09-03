@@ -8,6 +8,7 @@ import com.dgh.dto.KhachHangTaiKhoanDTO;
 import com.dgh.pojo.KhachHang;
 import com.dgh.pojo.TaiKhoan;
 import com.dgh.repository.TaiKhoanRepository;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -54,7 +55,13 @@ public class TaiKhoanRepositoryImpl implements TaiKhoanRepository {
         Query q = s.createQuery("From TaiKhoan Where tenDangNhap=:un");
         q.setParameter("un", tenDangNhap);
 
-        return (TaiKhoan) q.getSingleResult();
+        try {
+            return (TaiKhoan) q.getSingleResult();
+        } catch (NoResultException e) {
+            TaiKhoan emptyTaiKhoan = new TaiKhoan();
+            emptyTaiKhoan.setId(-1);
+            return emptyTaiKhoan;
+        }
     }
 
     @Override
@@ -79,9 +86,9 @@ public class TaiKhoanRepositoryImpl implements TaiKhoanRepository {
 
     @Override
     public TaiKhoan addUser(TaiKhoan tk) {
-       Session s = this.factory.getObject().getCurrentSession();
-       s.save(tk);
-       return tk;
+        Session s = this.factory.getObject().getCurrentSession();
+        s.save(tk);
+        return tk;
     }
 
 //    @Override
@@ -90,7 +97,6 @@ public class TaiKhoanRepositoryImpl implements TaiKhoanRepository {
 //        s.save(k);
 //        return k;
 //    }
-
     @Override
     public KhachHang addCus(KhachHang kh) {
         Session s = this.factory.getObject().getCurrentSession();

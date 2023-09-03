@@ -15,13 +15,14 @@ import Feedback from "./components/Feedback/Feedback";
 import Event from "./components/Event/Event";
 import Service from "./components/Service/Service";
 import Search from "./components/Search/Search";
+import Bill from "./components/Bill/Bill";
+import PayMomo from "./components/PayMomo/PayMomo";
 
 export const MyUserContext  = createContext();
 
 const App = () => {
   const cookies = new Cookies();
   const user = cookies.get('userData');
-  console.log(user || null);
   const [taiKhoan, dispatch] = useReducer(MyUserReducer, user || null);
 
 
@@ -38,8 +39,10 @@ const App = () => {
           <Route path="/event" element={<BaseLayout><Event /></BaseLayout>} />
           <Route path="/search" element={<BaseLayout><Search /></BaseLayout>} />
           <Route path="/feedback" element={<BaseLayout><Feedback /></BaseLayout>} />
+          <Route path="/bill" element={<BaseLayout><Bill /></BaseLayout>} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/payMomo" element={<PayMomo />} />
         </Routes>
       </BrowserRouter>
     </MyUserContext.Provider>

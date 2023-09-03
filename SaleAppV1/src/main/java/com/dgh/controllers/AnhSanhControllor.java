@@ -36,7 +36,7 @@ public class AnhSanhControllor {
         model.addAttribute("themAnhSanh", new AnhSanh());
         return "themAnhSanh";
     }
-    
+
     @GetMapping("/themAnhSanh/{id}")
     public String update(Model model, @PathVariable(value = "id") int id) {
         model.addAttribute("themAnhSanh", this.anhSanhService.getAnhSanhById(id));
@@ -44,13 +44,13 @@ public class AnhSanhControllor {
     }
 
     @PostMapping("/themAnhSanh")
-    public String add(@ModelAttribute(value = "themAnhSanh") AnhSanh as) {
-
-        if (this.anhSanhService.addOrUploadAnhSanh(as) == true) {
-            return "redirect:anhSanh";
-        }
+    public String add(@ModelAttribute(value = "themAnhSanh") @Valid AnhSanh as,
+            BindingResult rs) {
+            if (this.anhSanhService.addOrUploadAnhSanh(as) == true) {
+                return "redirect:anhSanh";
+            }
+        
         return "themAnhSanh";
     }
-    
-    
+
 }

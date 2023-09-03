@@ -1,13 +1,13 @@
 package com.dgh.pojo;
 
+import com.dgh.pojo.HoaDonThanhToan;
 import com.dgh.pojo.NhanVien;
-import com.dgh.pojo.PhieuDatBan;
 import javax.annotation.Generated;
 import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2023-08-28T22:40:26")
+@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2023-09-03T16:16:31")
 @StaticMetamodel(ChiNhanh.class)
 public class ChiNhanh_ { 
 
@@ -15,7 +15,7 @@ public class ChiNhanh_ {
     public static volatile SingularAttribute<ChiNhanh, Boolean> isDelete;
     public static volatile SingularAttribute<ChiNhanh, Integer> id;
     public static volatile SingularAttribute<ChiNhanh, String> tenChiNhanh;
+    public static volatile SetAttribute<ChiNhanh, HoaDonThanhToan> hoaDonThanhToanSet;
     public static volatile SetAttribute<ChiNhanh, NhanVien> nhanVienSet;
-    public static volatile SetAttribute<ChiNhanh, PhieuDatBan> phieuDatBanSet;
 
 }

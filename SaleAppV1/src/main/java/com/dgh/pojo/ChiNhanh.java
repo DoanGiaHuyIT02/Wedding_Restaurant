@@ -47,15 +47,12 @@ public class ChiNhanh implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @NotNull
-    @Size(max = 255, message = "{chiNhanh.tenChiNhanh.lenErr}")
-    @NotEmpty(message = "{chiNhanh.tenChiNhanh.notNullMsg}")
     @NotBlank(message = "{chiNhanh.tenChiNhanh.notBlankMsg}")
     @Column(name = "ten_chi_nhanh")
     private String tenChiNhanh;
     @Basic(optional = false)
     @NotNull
     @Size(max = 255)
-    @NotEmpty(message = "{chiNhanh.tenChiNhanh.notNullMsg}")
     @NotBlank(message = "{chiNhanh.tenChiNhanh.notBlankMsg}")
     @Column(name = "dia_chi")
     private String diaChi;
@@ -64,7 +61,7 @@ public class ChiNhanh implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "chiNhanhId")
     private Set<NhanVien> nhanVienSet;
     @OneToMany(mappedBy = "chiNhanhId")
-    private Set<PhieuDatBan> phieuDatBanSet;
+    private Set<HoaDonThanhToan> hoaDonThanhToanSet;
 
     public ChiNhanh() {
     }
@@ -121,12 +118,12 @@ public class ChiNhanh implements Serializable {
     }
 
     @XmlTransient
-    public Set<PhieuDatBan> getPhieuDatBanSet() {
-        return phieuDatBanSet;
+    public Set<HoaDonThanhToan> hoaDonThanhToanSet() {
+        return hoaDonThanhToanSet;
     }
 
-    public void setPhieuDatBanSet(Set<PhieuDatBan> phieuDatBanSet) {
-        this.phieuDatBanSet = phieuDatBanSet;
+    public void setHoaDonThanhToanSet(Set<HoaDonThanhToan> hoaDonThanhToanSet) {
+        this.hoaDonThanhToanSet = hoaDonThanhToanSet;
     }
 
     @Override

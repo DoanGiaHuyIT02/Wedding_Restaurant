@@ -13,6 +13,7 @@
     <div class="form-floating mb-3 mt-3">
         <form:input type="text" class="form-control" path="loaiDichVu" id="name" placeholder="Loại dịch vụ" name="name" />
         <label for="name">Loại dịch vụ</label>
+        <form:errors path="loaiDichVu" element="div" cssClass="text-danger" />
     </div>
     <div class="form-floating mb-3 mt-3">
         <form:input type="text" class="form-control" path="giaDichVu" id="price" placeholder="Giá dịch vu" name="price" />

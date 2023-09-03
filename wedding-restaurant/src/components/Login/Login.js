@@ -3,36 +3,57 @@ import './Login.css';
 import { useContext, useState } from 'react';
 import Apis, { authApi, endpoint } from '../../configs/Apis';
 import { MyUserContext } from '../../App';
+import { Alert } from 'react-bootstrap';
 
 const Login = () => {
     const [taiKhoan, dispatch] = useContext(MyUserContext);
     const [tenDangNhap, setTenDangNhap] = useState();
     const [matKhau, setMatKhau] = useState();
+    const [err, setErr] = useState(null);
 
 
     const login = (evt) => {
         evt.preventDefault();
 
         const process = async () => {
-            let res = await Apis.post(endpoint['login'], {
-                "tenDangNhap": tenDangNhap,
-                "matKhau": matKhau
-            });
-            const accessToken = await res.data;
-            document.cookie = `accessToken=${accessToken}; Path=/;`;
+            try {
+                let res = await Apis.post(endpoint['login'], {
+                    "tenDangNhap": tenDangNhap,
+                    "matKhau": matKhau
+                });
 
-            let user = await authApi().get(endpoint['currentUser']);
+                console.log("login", res);
+                const accessToken = await res.data;
+                document.cookie = `accessToken=${accessToken}; Path=/;`;
 
-            const userData = await user.data;
-            document.cookie = `userData=${userData}; Path=/;`;
+                let user = await authApi().get(endpoint['currentUser']);
 
-            console.log(userData);
-            dispatch({
-                "type": "login",
-                "payload": userData
-            });
 
-            console.info(user.data);
+                const userDataObj = await user.data;
+                const userDataString = JSON.stringify(userDataObj)
+
+                document.cookie = `userData=${userDataString}; Path=/;`;
+
+
+                dispatch({
+                    "type": "login",
+                    "payload": userDataObj
+                });
+
+                console.info(user.data);
+
+
+
+            } catch (err) {
+                if(err.response.status === 400) {
+                    setErr(err.response.data);
+                } else {
+                    setErr("Hệ thống đang bị lỗi!");
+                }
+
+                
+            }
+
         }
 
         process();
@@ -46,6 +67,7 @@ const Login = () => {
             <div className="form">
                 <form onSubmit={login}>
                     <h2>Đăng nhập</h2>
+                    {err === null ? "" : <Alert variant="danger">{err}</Alert>}
                     <div className="form_userName control">
                         <input id="tenDangNhap" value={tenDangNhap} onChange={e => setTenDangNhap(e.target.value)} type="text" placeholder="Tên đăng nhập" />
                         <small></small>

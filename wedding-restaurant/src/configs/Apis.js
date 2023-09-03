@@ -12,14 +12,20 @@ export const endpoint = {
     "currentUser": `/api/current-user/`,
     "anhSanh": `/api/anhSanh/`,
     "register": `/api/users/`,
-    "phanHoiKhachHang": `/api/phanHoiKhachHang/`
+    "phanHoiKhachHang": `/api/phanHoiKhachHang/`,
+    "datTiec": `/api/datTiec/`,
+    "thanhToan": `/api/thanhToan/`,
+    "thanhToanMomo": `/api/thanhToanMomo/`,
 
 }
 
-const cookies = new Cookies();
-const token = cookies.get('accessToken');
+
 
 export const authApi = () => {
+
+    const cookies = new Cookies();
+    const token = cookies.get('accessToken');
+
     return axios.create({
         baseURL: SERVER,
         headers: {
