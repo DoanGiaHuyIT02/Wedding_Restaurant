@@ -4,6 +4,7 @@
  */
 package com.dgh.service;
 
+import com.dgh.dto.ThongKeDoanhThuDTO;
 import com.dgh.dto.ThongKeMatDoSanhCuoiDTO;
 import com.dgh.dto.ThongKeMatDoTiecCuoiDTO;
 import java.util.List;
@@ -16,4 +17,5 @@ import java.util.Map;
 public interface ThongKeService {
     List<ThongKeMatDoSanhCuoiDTO> thongKeMatDoSanhCuoi(Map<String, String> params);
     List<ThongKeMatDoTiecCuoiDTO> thongKeMatDoTiecCuoi(Map<String, String> params);
+    List<ThongKeDoanhThuDTO> thongKeDoanhThu(Map<String, String> params);
 }

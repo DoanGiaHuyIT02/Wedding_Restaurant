@@ -33,5 +33,11 @@ public class ThongKeControllor {
         return "thongKeTiecCuoi";
     }
     
+    @GetMapping("/thongKeDoanhThu")
+    public String doanhThu(Model model, @RequestParam Map<String, String> params) {
+        model.addAttribute("thongKeDoanhThu", this.thongKeService.thongKeDoanhThu(params));
+        return "thongKeDoanhThu";
+    }
+    
     
 }

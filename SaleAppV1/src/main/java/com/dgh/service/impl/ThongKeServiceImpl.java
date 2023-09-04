@@ -4,6 +4,7 @@
  */
 package com.dgh.service.impl;
 
+import com.dgh.dto.ThongKeDoanhThuDTO;
 import com.dgh.dto.ThongKeMatDoSanhCuoiDTO;
 import com.dgh.dto.ThongKeMatDoTiecCuoiDTO;
 import com.dgh.repository.ThongKeRepository;
@@ -30,6 +31,11 @@ public class ThongKeServiceImpl implements ThongKeService{
     @Override
     public List<ThongKeMatDoTiecCuoiDTO> thongKeMatDoTiecCuoi(Map<String, String> params) {
         return this.thongKeRepo.thongKeMatDoTiecCuoi(params);
+    }
+
+    @Override
+    public List<ThongKeDoanhThuDTO> thongKeDoanhThu(Map<String, String> params) {
+        return this.thongKeRepo.thongKeDoanhThu(params);
     }
     
     

@@ -4,6 +4,7 @@
  */
 package com.dgh.repository;
 
+import com.dgh.dto.ThongKeDoanhThuDTO;
 import com.dgh.dto.ThongKeMatDoSanhCuoiDTO;
 import com.dgh.dto.ThongKeMatDoTiecCuoiDTO;
 import java.util.List;
@@ -14,6 +15,11 @@ import java.util.Map;
  * @author DELL
  */
 public interface ThongKeRepository {
+
     List<ThongKeMatDoSanhCuoiDTO> thongKeMatDoSanhCuoi(Map<String, String> params);
+
     List<ThongKeMatDoTiecCuoiDTO> thongKeMatDoTiecCuoi(Map<String, String> params);
+
+    List<ThongKeDoanhThuDTO> thongKeDoanhThu (Map<String, String> params);
+
 }

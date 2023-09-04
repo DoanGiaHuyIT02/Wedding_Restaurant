@@ -15,7 +15,7 @@
         <div class="list-group  list-group-flush">
             <a href="<c:url value="/thongKeSanh"/>" class="list-group-item ">Thống kê mật độ sảnh</a>
             <a href="<c:url value="/thongKeTiecCuoi"/>" class="list-group-item ">Thống kê mật độ tiệc cưới</a>
-            <a href="#" class="list-group-item ">Thống kê doanh thu</a>
+            <a href="<c:url value="/thongKeDoanhThu"/>" class="list-group-item ">Thống kê doanh thu</a>
         </div>
     </div>
     <div class="col-md-6">

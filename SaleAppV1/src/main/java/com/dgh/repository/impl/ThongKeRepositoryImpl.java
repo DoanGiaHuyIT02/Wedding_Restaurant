@@ -4,6 +4,7 @@
  */
 package com.dgh.repository.impl;
 
+import com.dgh.dto.ThongKeDoanhThuDTO;
 import com.dgh.dto.ThongKeMatDoSanhCuoiDTO;
 import com.dgh.dto.ThongKeMatDoTiecCuoiDTO;
 import org.springframework.stereotype.Repository;
@@ -248,6 +249,103 @@ public class ThongKeRepositoryImpl implements ThongKeRepository {
             thongKeMatDoTiecCuoiDTO.setName(columnName);
             thongKeMatDoTiecCuoiDTO.setData(columnValue);
             response.add(thongKeMatDoTiecCuoiDTO);
+        }
+
+        return response;
+    }
+
+    @Override
+    public List<ThongKeDoanhThuDTO> thongKeDoanhThu(Map<String, String> params) {
+        Session s = this.factory.getObject().getCurrentSession();
+        String sql = "";
+
+        Map<String, Object> parameters = new HashMap<>();
+        if (params.containsKey("year") && !params.get("year").isEmpty()) {
+            if (params.containsKey("month") && !params.get("month").isEmpty()) {
+                parameters.put("year", Integer.parseInt(params.get("year")));
+                parameters.put("month", Integer.parseInt(params.get("month")));
+                sql = "SELECT month(hd.ngay_thanh_toan), SUM(p.tong_tien) as \"tong_doanh_thu\" FROM phieu_dat_ban as p \n"
+                        + " JOIN hoa_don_thanh_toan as hd on p.id = hd.phieu_dat_ban_id \n"
+                        + " WHERE month(hd.ngay_thanh_toan) = :month and year(hd.ngay_thanh_toan) = :year and hd.isActive = 1 \n"
+                        + " GROUP BY month(hd.ngay_thanh_toan)";
+            } else if (params.containsKey("quarter") && !params.get("quarter").isEmpty()) {
+                parameters.put("year", Integer.parseInt(params.get("year")));
+                if (Integer.parseInt(params.get("quarter")) == 1) {
+                    parameters.put("startMonth", 1);
+                    parameters.put("endMonth", 3);
+                } else if (Integer.parseInt(params.get("quarter")) == 2) {
+                    parameters.put("startMonth", 4);
+                    parameters.put("endMonth", 6);
+                } else if (Integer.parseInt(params.get("quarter")) == 3) {
+                    parameters.put("startMonth", 7);
+                    parameters.put("endMonth", 9);
+                } else {
+                    parameters.put("startMonth", 10);
+                    parameters.put("endMonth", 12);
+                }
+
+                sql = "SELECT month(hd.ngay_thanh_toan), SUM(p.tong_tien) as \"tong_doanh_thu\" \n"
+                        + "FROM phieu_dat_ban as p\n"
+                        + "JOIN hoa_don_thanh_toan as hd on p.id = hd.phieu_dat_ban_id\n"
+                        + "WHERE month(hd.ngay_thanh_toan) = :month and year(hd.ngay_thanh_toan) = :year and hd.isActive = 1 \n"
+                        + " BETWEEN :startMonth AND :endMonth GROUP BY month(hd.ngay_thanh_toan)";
+            } else {
+                parameters.put("year", Integer.parseInt(params.get("year")));
+                sql = "SELECT month(hd.ngay_thanh_toan), SUM(p.tong_tien) as \"tong_doanh_thu\" \n"
+                        + "FROM phieu_dat_ban as p\n"
+                        + "JOIN hoa_don_thanh_toan as hd on p.id = hd.phieu_dat_ban_id\n"
+                        + "WHERE year(hd.ngay_thanh_toan) = :year and hd.isActive = 1\n"
+                        + "GROUP BY month(hd.ngay_thanh_toan)";
+            }
+        } else {
+            parameters.put("year", LocalDate.now().getYear());
+            if (params.containsKey("month") && !params.get("month").isEmpty()) {
+                parameters.put("month", Integer.parseInt(params.get("month")));
+                sql = "SELECT month(hd.ngay_thanh_toan), SUM(p.tong_tien) as \"tong_doanh_thu\" FROM phieu_dat_ban as p \n"
+                        + " JOIN hoa_don_thanh_toan as hd on p.id = hd.phieu_dat_ban_id \n"
+                        + " WHERE month(hd.ngay_thanh_toan) = :month and year(hd.ngay_thanh_toan) = :year and hd.isActive = 1 \n"
+                        + " GROUP BY month(hd.ngay_thanh_toan)";
+            } else if (params.containsKey("quarter") && !params.get("quarter").isEmpty()) {
+                if (Integer.parseInt(params.get("quarter")) == 1) {
+                    parameters.put("startMonth", 1);
+                    parameters.put("endMonth", 3);
+                } else if (Integer.parseInt(params.get("quarter")) == 2) {
+                    parameters.put("startMonth", 4);
+                    parameters.put("endMonth", 6);
+                } else if (Integer.parseInt(params.get("quarter")) == 3) {
+                    parameters.put("startMonth", 7);
+                    parameters.put("endMonth", 9);
+                } else {
+                    parameters.put("startMonth", 10);
+                    parameters.put("endMonth", 12);
+                }
+                sql = "SELECT month(hd.ngay_thanh_toan), SUM(p.tong_tien) as \"tong_doanh_thu\" FROM phieu_dat_ban as p \n"
+                        + " JOIN hoa_don_thanh_toan as hd on p.id = hd.phieu_dat_ban_id \n"
+                        + " WHERE month(hd.ngay_thanh_toan) = :month and year(hd.ngay_thanh_toan) = :year and hd.isActive = 1  "
+                        + " BETWEEN :startMonth AND :endMonth \n"
+                        + " GROUP BY month(hd.ngay_thanh_toan)";
+            } else {
+                sql = "SELECT month(hd.ngay_thanh_toan), SUM(p.tong_tien) as \"tong_doanh_thu\" \n"
+                        + "FROM phieu_dat_ban as p\n"
+                        + "JOIN hoa_don_thanh_toan as hd on p.id = hd.phieu_dat_ban_id\n"
+                        + "WHERE year(hd.ngay_thanh_toan) = :year and hd.isActive = 1\n"
+                        + "GROUP BY month(hd.ngay_thanh_toan)";
+            }
+        }
+        Query query = s.createNativeQuery(sql);
+        for (Map.Entry<String, Object> parameter : parameters.entrySet()) {
+            query.setParameter(parameter.getKey(), parameter.getValue());
+        }
+        List<ThongKeDoanhThuDTO> response = new ArrayList<>();
+        List<Object[]> results = query.getResultList();
+        for (Object[] result : results) {
+            String columnTime = result[0].toString();
+            double columnValue = (double) result[1];
+
+            ThongKeDoanhThuDTO thongKeDoanhThuDTO = new ThongKeDoanhThuDTO();
+            thongKeDoanhThuDTO.setTime(columnTime);
+            thongKeDoanhThuDTO.setData(columnValue);
+            response.add(thongKeDoanhThuDTO);
         }
 
         return response;

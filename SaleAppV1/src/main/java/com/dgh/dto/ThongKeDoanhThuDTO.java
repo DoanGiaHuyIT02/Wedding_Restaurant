@@ -16,6 +16,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ThongKeDoanhThuDTO {
-    private String label;
+    private String time;
     private double data;
 }
