@@ -5,6 +5,7 @@
 package com.dgh.controllers;
 
 import com.dgh.dto.HoaDonDTO;
+import com.dgh.dto.HoaDonDaThanhToanOnlineDTO;
 import com.dgh.dto.KhachHangTaiKhoanDTO;
 import com.dgh.dto.ThongTinKhachHangDatTiecDTO;
 import com.dgh.service.HoaDonService;
@@ -51,7 +52,14 @@ public class ApiDatTiecController {
         return new ResponseEntity<>(hoaDon, HttpStatus.OK);
     }
     
-     @PostMapping("/thanhToanMomo/")
+    @GetMapping("/daThanhToan/")
+    @CrossOrigin
+    public ResponseEntity<HoaDonDaThanhToanOnlineDTO> getBillIsSuccess(@RequestParam  int id) {
+        HoaDonDaThanhToanOnlineDTO hoaDon = this.hoaDonService.getHoaDonDaThanhToanByPhieuDatBanId(id);
+        return new ResponseEntity<>(hoaDon, HttpStatus.OK);
+    }
+    
+    @PostMapping("/thanhToanMomo/")
     @CrossOrigin
     public ResponseEntity<Boolean> pay(@RequestParam Map<String, String> params) {
         boolean isSuccess = this.hoaDonService.ThanhToanHoaHon(params) ;

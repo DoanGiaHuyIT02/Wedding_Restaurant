@@ -5,6 +5,7 @@
 package com.dgh.service.impl;
 
 import com.dgh.dto.HoaDonDTO;
+import com.dgh.dto.HoaDonDaThanhToanOnlineDTO;
 import com.dgh.pojo.HoaDonThanhToan;
 import com.dgh.pojo.PhieuDatBan;
 import com.dgh.repository.HoaDonRepository;
@@ -32,6 +33,11 @@ public class HoaDonServiceImpl implements HoaDonService {
     public HoaDonDTO getHoaDonDtoById(int id) {
         return this.hoaDonRepo.getHoaDonDtoByPhieuDatBanId(id);
     }
+    
+    @Override
+    public HoaDonDaThanhToanOnlineDTO getHoaDonDaThanhToanByPhieuDatBanId(int id) {
+        return this.hoaDonRepo.getHoaDonDaThanhToanByPhieuDatBanId(id);
+    }
 
     @Override
     public boolean ThanhToanHoaHon(Map<String, String> params) {
@@ -47,10 +53,10 @@ public class HoaDonServiceImpl implements HoaDonService {
 //            throw new NotFoundException("Phiếu đặt bàn không hợp lệ");
         }
 
-        float floatValue = (float) hoaDonDto.getTongTienHoaDon();
+        double floatValue = (double) hoaDonDto.getTongTienHoaDon();
         pdt.setTongTien(floatValue);
         pdt.setNgayDatCoc(new Date());
-        pdt.setTienCoc(0.0f);
+        pdt.setTienCoc(0.0);
 
         boolean isUpdateSuccess = this.phieuDatBanRepo.updatePayPhieuDatBan(pdt);
         if (isUpdateSuccess) {
@@ -65,5 +71,7 @@ public class HoaDonServiceImpl implements HoaDonService {
 
         return true;
     }
+
+    
 
 }

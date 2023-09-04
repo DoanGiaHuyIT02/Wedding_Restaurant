@@ -27,6 +27,8 @@ const Bill = () => {
         fetchThanhToanHoaDon(id);
     }, [id]);
 
+    console.log(thanhToan);
+
     if (!thanhToan) {
         return <h1>Test</h1>
     }

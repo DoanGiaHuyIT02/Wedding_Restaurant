@@ -5,6 +5,7 @@
 package com.dgh.service;
 
 import com.dgh.dto.HoaDonDTO;
+import com.dgh.dto.HoaDonDaThanhToanOnlineDTO;
 import java.util.Map;
 
 /**
@@ -13,5 +14,6 @@ import java.util.Map;
  */
 public interface HoaDonService {
     HoaDonDTO getHoaDonDtoById(int id);
+    HoaDonDaThanhToanOnlineDTO getHoaDonDaThanhToanByPhieuDatBanId(int id);
     boolean ThanhToanHoaHon (Map<String, String> params);
 }

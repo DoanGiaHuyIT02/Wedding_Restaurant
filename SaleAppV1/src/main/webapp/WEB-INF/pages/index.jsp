@@ -7,7 +7,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-
-
-<h1 class="text-center text-info mt-4">Welcome ... đến với trang admin</h1>
+<h1 class="text-center text-info mt-4">Chào mừng đến với trang ADMIN</h1>
   

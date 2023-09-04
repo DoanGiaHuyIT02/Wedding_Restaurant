@@ -8,11 +8,13 @@ import { Alert } from "react-bootstrap";
 const PayMomo = () => {
 
     const [thanhToan, setThanhToan] = useState(null);
+    const [daThanhToan, setDaThanhToan] = useState(null);
     const [err, setErr] = useState(null);
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState({});
     const [inputVisible, setInputVisible] = useState(false);
     const [isSuccess, setIsSuccess] = useState(null);
+    const [isPay, setIsPay] = useState(false);
     const [payCode, setPayCode] = useState({
         "maThanhToan": ""
     });
@@ -43,6 +45,17 @@ const PayMomo = () => {
             });
     };
 
+    const fetchDaThanhToanHoaDon = async (id) => {
+        Apis.get(`${endpoint.daThanhToan}?id=${id}`)
+            .then(res => {
+                setDaThanhToan(res.data);
+                console.log("DaThanhToan", res.data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    };
+
     const xacNhanThanhToan = (evt) => {
         evt.preventDefault();
 
@@ -63,13 +76,16 @@ const PayMomo = () => {
                     setData(res.data);
                     setLoading(false);
                     setIsSuccess(true);
+                    setIsPay(true);
                 } else {
                     setErr("Mã thanh toán không hợp lệ. Vui lòng kiểm tra lại");
                     setLoading(false);
+                    setIsPay(false);
                 }
             } catch (error) {
                 setErr("Hệ thống đang bị lỗi!");
                 setLoading(false);
+                setIsPay(false);
                 console.log(error);
             }
 
@@ -80,7 +96,13 @@ const PayMomo = () => {
 
     useEffect(() => {
         fetchThanhToanHoaDon(id);
-    }, [id]);
+        console.log("isPay",isPay);
+       
+            fetchDaThanhToanHoaDon(id);
+        
+    }, [id, isPay]);
+
+   
 
     if (!thanhToan) {
         return <MySpinner />;
@@ -95,14 +117,15 @@ const PayMomo = () => {
 
                         <img alt="Mã momo" src={momoImg} />
                         <div className="mt-3 mb-3 mx-auto text-center" style={{ width: '250px' }}>
-                            {thanhToan.isDaThanhToan === true ? <span>Phiếu đã thanh toán</span>:
+                            {(isPay || (daThanhToan && daThanhToan.isThanhToan) ) ? <span>Phiếu đã thanh toán</span>:
                                 <button type="submit" className="btn btn-primary w-100 py-3 text-white"
                                     onClick={handleConfirmPayment}
                                     disabled={inputVisible}
                                 >Xác nhận thanh toán</button>
-                            }
+                             }
                             
                         </div>
+                       
                         {inputVisible && (
                             <form onSubmit={xacNhanThanhToan}>
                                 <div>

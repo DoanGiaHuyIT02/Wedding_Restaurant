@@ -1,12 +1,15 @@
 com\dgh\pojo\NhanVien.class
 com\dgh\service\ChucVuService.class
+com\dgh\service\StatsService.class
 com\dgh\service\DichVuService.class
 com\dgh\pojo\ThongTinChiTietKhachHangDatTiec_.class
 com\dgh\service\LoaiTiecService.class
 com\dgh\controllers\IndexController.class
+com\dgh\dto\HoaDonDaThanhToanOnlineDTO.class
 com\dgh\repository\PhieuDatBanRepository.class
 com\dgh\repository\impl\TaiKhoanRepositoryImpl.class
 com\dgh\configs\SecurityWebApplicationInitializer.class
+com\dgh\controllers\ApiSanhControllor.class
 com\dgh\repository\TaiKhoanRepository.class
 com\dgh\service\ThucDonService.class
 com\dgh\service\PhieuDatBanService.class
@@ -57,6 +60,7 @@ com\dgh\repository\PhanHoiKhachHangRepository.class
 com\dgh\service\ThongKeService.class
 com\dgh\dto\ThongKeMatDoSanhCuoiDTO.class
 com\dgh\service\impl\ThongTinSanhServiceImpl.class
+com\dgh\repository\StatsRepository.class
 com\dgh\configs\HibernateConfig.class
 com\dgh\formatters\ChiNhanhFormatter.class
 com\dgh\pojo\ChucVu_.class
@@ -102,6 +106,7 @@ com\dgh\dto\ThongKeDoanhThuDTO.class
 com\dgh\service\impl\PhanHoiKhachHangServiceImpl.class
 com\dgh\controllers\TaiKhoanControllor.class
 com\dgh\service\AnhSanhService.class
+com\dgh\service\impl\StatsServiceImpl.class
 com\dgh\controllers\ApiThongTinSanhControllor.class
 com\dgh\pojo\ChiNhanh_.class
 com\dgh\pojo\TaiKhoan_.class
@@ -121,6 +126,7 @@ com\dgh\service\impl\TaiKhoanServiceImpl.class
 com\dgh\controllers\ApiTaiKhoanControllor.class
 com\dgh\pojo\PhanHoiKhachHang_.class
 com\dgh\filters\CustomAccessDeniedHandler.class
+com\dgh\repository\impl\StatsRepositoryImpl.class
 com\dgh\controllers\ChiNhanhController.class
 com\dgh\controllers\AnhSanhControllor.class
 com\dgh\controllers\ApiThucDonControllor.class

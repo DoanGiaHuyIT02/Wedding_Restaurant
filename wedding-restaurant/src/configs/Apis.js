@@ -15,6 +15,7 @@ export const endpoint = {
     "phanHoiKhachHang": `/api/phanHoiKhachHang/`,
     "datTiec": `/api/datTiec/`,
     "thanhToan": `/api/thanhToan/`,
+    "daThanhToan": `/api/daThanhToan/`,
     "thanhToanMomo": `/api/thanhToanMomo/`,
 
 }

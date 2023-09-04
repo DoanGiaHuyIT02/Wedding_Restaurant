@@ -102,6 +102,7 @@ H:\Wedding_Restaurant\SaleAppV1\src\main\java\com\dgh\service\impl\ThongKeServic
 H:\Wedding_Restaurant\SaleAppV1\src\main\java\com\dgh\configs\SpringSecurityConfig.java
 H:\Wedding_Restaurant\SaleAppV1\src\main\java\com\dgh\dto\KhachHangTaiKhoanDTO.java
 H:\Wedding_Restaurant\SaleAppV1\src\main\java\com\dgh\repository\impl\HoaDonRepositoryImpl.java
+H:\Wedding_Restaurant\SaleAppV1\src\main\java\com\dgh\dto\HoaDonDaThanhToanOnlineDTO.java
 H:\Wedding_Restaurant\SaleAppV1\src\main\java\com\dgh\controllers\ApiDichVuControllor.java
 H:\Wedding_Restaurant\SaleAppV1\src\main\java\com\dgh\service\ThongTinDatTiecService.java
 H:\Wedding_Restaurant\SaleAppV1\src\main\java\com\dgh\configs\HibernateConfig.java

@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:url value="/thongKeDoanhThu" var="action" />
 <h1 class="text-center text-info mt-4 mb-3">Thống kê doanh thu</h1>
 <div class="row">
@@ -93,7 +94,7 @@
                 <c:forEach items="${thongKeDoanhThu}" var="dataPoint">
                     <tr>
                         <td>${dataPoint.time}</td>
-                        <td>${dataPoint.data}</td> 
+                         <td><fmt:formatNumber value="${dataPoint.data}" type="number" pattern="#,###.##" /> VNĐ</td> 
                     </tr>
                 </c:forEach>
 
@@ -127,13 +128,13 @@
                     legendText: "{x}",
                     yValueFormatString: "#,###",
                     indexLabelFontSize: 16,
-                    indexLabel: "{x}",
+                    indexLabel: "Tháng {x}",
                     dataPoints: dps3[0]
                 }]
         });
     <c:forEach items="${thongKeDoanhThu}" var="dataPoint">
         xValue = "${dataPoint.time}";
-        yValue = ${dataPoint.data};
+        yValue = "${dataPoint.data}";
         dps3[0].push({
             x: xValue,
             y: yValue

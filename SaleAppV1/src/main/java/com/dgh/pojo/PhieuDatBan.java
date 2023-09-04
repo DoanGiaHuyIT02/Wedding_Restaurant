@@ -51,11 +51,11 @@ public class PhieuDatBan implements Serializable {
     private Integer id;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "tong_tien")
-    private Float tongTien;
+    private Double tongTien;
     @Column(name = "tien_coc")
-    private Float tienCoc;
+    private Double tienCoc;
     @Column(name = "tien_con_lai")
-    private Float tienConLai;
+    private Double tienConLai;
     @Column(name = "ngay_xuat_phieu")
     @Temporal(TemporalType.DATE)
     private Date ngayXuatPhieu;
@@ -95,27 +95,27 @@ public class PhieuDatBan implements Serializable {
         this.id = id;
     }
 
-    public Float getTongTien() {
+    public Double getTongTien() {
         return tongTien;
     }
 
-    public void setTongTien(Float tongTien) {
+    public void setTongTien(Double tongTien) {
         this.tongTien = tongTien;
     }
 
-    public Float getTienCoc() {
+    public Double getTienCoc() {
         return tienCoc;
     }
 
-    public void setTienCoc(Float tienCoc) {
+    public void setTienCoc(Double tienCoc) {
         this.tienCoc = tienCoc;
     }
 
-    public Float getTienConLai() {
+    public Double getTienConLai() {
         return tienConLai;
     }
 
-    public void setTienConLai(Float tienConLai) {
+    public void setTienConLai(Double tienConLai) {
         this.tienConLai = tienConLai;
     }
 

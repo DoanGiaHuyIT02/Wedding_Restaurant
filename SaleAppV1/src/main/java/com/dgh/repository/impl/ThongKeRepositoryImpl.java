@@ -340,7 +340,7 @@ public class ThongKeRepositoryImpl implements ThongKeRepository {
         List<Object[]> results = query.getResultList();
         for (Object[] result : results) {
             String columnTime = result[0].toString();
-            double columnValue = (double) result[1];
+            String columnValue = result[1].toString();
 
             ThongKeDoanhThuDTO thongKeDoanhThuDTO = new ThongKeDoanhThuDTO();
             thongKeDoanhThuDTO.setTime(columnTime);

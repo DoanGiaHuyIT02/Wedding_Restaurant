@@ -17,5 +17,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ThongKeDoanhThuDTO {
     private String time;
-    private double data;
+    private String data;
 }

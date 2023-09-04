@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:url value="/thongTinSanh" var="action" />
 <section class="container">
     
@@ -40,7 +41,7 @@
                         <td>${s.loaiSanh}</td>
                         <td>${s.tenSanh}</td>
                         <td>${s.soLuongBan}</td>
-                        <td>${s.donGiaToiThieu} VNĐ</td>
+                        <td><fmt:formatNumber value="${s.donGiaToiThieu}" type="number" pattern="#,###.##" /> VNĐ</td>
                         <td>${s.loaiTiecId.tenLoaiTiec}</td>
                         <td>
                             <c:url value="/api/thongTinSanh/${s.id}" var="apiDel" />
