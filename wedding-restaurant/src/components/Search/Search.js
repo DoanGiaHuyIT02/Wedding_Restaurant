@@ -12,6 +12,7 @@ const Search = () => {
     const [isSearchSanhVisible, setIsSearchSanhVisible] = useState(false);
     const [isSearchThucDonVisible, setIsSearchThucDonVisible] = useState(false);
     const [maxPrice, setMaxPrice] = useState('');
+    const [date, setDate] = useState('');
 
 
     const loadThongTinSanh = async () => {
@@ -42,6 +43,26 @@ const Search = () => {
         setThucDon(filteredData);
     }
 
+    const fetchSanhChuaDat = async (date) => {
+        Apis.get(`${endpoint.thongTinSanhChuaDat}?date=${date}`)
+            .then(res => {
+                setThongTinSanh(res.data);
+                console.log(res.data);
+
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    };
+
+    useEffect(() => {
+        const currentDate = new Date();
+        const year = currentDate.getFullYear();
+        const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+        const day = String(currentDate.getDate()).padStart(2, '0');
+        const formattedDate = `${year}-${month}-${day}`;
+        setDate(formattedDate);
+    }, []);
 
 
     useEffect(() => {
@@ -51,6 +72,11 @@ const Search = () => {
     useEffect(() => {
         loadThucDon();
     }, [maxPrice])
+
+    useEffect(() => {
+        console.log("date useEff",date);
+        fetchSanhChuaDat(date);
+    }, [date])
 
     const handleToggleSearchSanh = () => {
         setIsSearchSanhVisible(!isSearchSanhVisible);
@@ -125,13 +151,19 @@ const Search = () => {
                                 />
                             </div>
 
+                            <div className="col-3" style={{ paddingLeft: '20px' }}>
+                                <input
+                                    type="date"
+                                    placeholder="Ngày đặt tiệc"
+                                    style={{ padding: '15px' }}
+                                    value={date}
+                                    onChange={(e) => setDate(e.target.value)} />
+                            </div>
+
                         </div>
                     )}
                     {isSearchThucDonVisible && (
                         <div style={{ display: 'flex' }}>
-
-
-
                             <div className="col-3" style={{ paddingLeft: '20px' }}>
                                 <input
                                     type="number"
@@ -176,12 +208,47 @@ const Search = () => {
                                         </>
                                         )}
 
+
+
                                     </tbody>
                                 </Table>
                             </div>
                         </div>
                     </div>
                 )}
+                {/* {isSearchSanhVisible && sanhChuaDat && (
+                    <div id="amenities" className="container-bg" style={{ padding: '0' }}>
+                        <div className="container">
+                            <h3>Danh sách các sảnh chưa đặt</h3>
+                            {sanhChuaDat.length > 0 ? (
+                                <div className="table-responsive mt-5">
+                                    <Table responsive="sm">
+                                        <thead>
+                                            <tr>
+                                                <th>Loại sảnh</th>
+                                                <th>Tên sảnh</th>
+                                                <th>Số lượng bàn tối đa</th>
+                                                <th>Đơn giá</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {sanhChuaDat.map((t) => (
+                                                <tr key={t[0]}>
+                                                    <td>{t[1]}</td>
+                                                    <td>{t[2]}</td>
+                                                    <td>{t[3]}</td>
+                                                    <td>{t[4].toLocaleString('vi-VN')} VND</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </Table>
+                                </div>
+                            ) : (
+                                <p>Không có sảnh nào chưa được đặt cho ngày {date}.</p>
+                            )}
+                        </div>
+                    </div>
+                )} */}
 
                 {isSearchThucDonVisible && (
                     <div id="amenities" className="container-bg" style={{ padding: '0' }}>

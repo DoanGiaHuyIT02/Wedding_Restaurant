@@ -211,7 +211,7 @@ const Booking = () => {
                                             <select className="form-select" id="select3" value={book.sanhId} onChange={e => change(e, "sanhId")}>
                                                 <option value="">Chọn sảnh</option>
                                                 {thongTinSanh.map(s =>
-                                                    <option value={s.id} key={s.id} >{s.loaiSanh}</option>
+                                                    <option value={s.id} key={s.id} >{s.tenSanh}</option>
                                                 )}
                                             </select>
                                             <label htmlFor="select3">Loại sảnh</label>

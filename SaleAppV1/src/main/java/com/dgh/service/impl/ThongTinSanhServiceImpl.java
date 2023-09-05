@@ -7,6 +7,7 @@ package com.dgh.service.impl;
 import com.dgh.pojo.ThongTinSanh;
 import com.dgh.repository.ThongTinSanhRepository;
 import com.dgh.service.ThongTinSanhService;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,11 @@ public class ThongTinSanhServiceImpl implements ThongTinSanhService{
     @Override
     public Long countThongTinSanh() {
         return this.thongTinSanhRepo.countThongTinSanh();
+    }
+
+    @Override
+    public List<ThongTinSanh> getSanhChuaDuocDat(String date) {
+        return this.thongTinSanhRepo.getSanhChuaDuocDat(date);
     }
     
 }

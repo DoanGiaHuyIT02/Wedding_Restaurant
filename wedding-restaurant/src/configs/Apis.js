@@ -17,6 +17,7 @@ export const endpoint = {
     "thanhToan": `/api/thanhToan/`,
     "daThanhToan": `/api/daThanhToan/`,
     "thanhToanMomo": `/api/thanhToanMomo/`,
+    "thongTinSanhChuaDat": `/api/thongTinSanhChuaDat/`,
 
 }
 

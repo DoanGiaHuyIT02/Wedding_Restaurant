@@ -5,6 +5,7 @@
 package com.dgh.service;
 
 import com.dgh.pojo.ThongTinSanh;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -18,4 +19,5 @@ public interface ThongTinSanhService {
     ThongTinSanh getSanhById(int id);
     boolean deleteSanh(int id);
     Long countThongTinSanh();
+    List<ThongTinSanh> getSanhChuaDuocDat(String date);
 }

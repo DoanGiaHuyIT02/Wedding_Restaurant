@@ -6,6 +6,7 @@ package com.dgh.controllers;
 
 import com.dgh.pojo.ThongTinSanh;
 import com.dgh.service.ThongTinSanhService;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,11 @@ public class ApiThongTinSanhControllor {
     @CrossOrigin
     public ResponseEntity<List<ThongTinSanh>> list(@RequestParam Map<String, String> params) {
         return new ResponseEntity<>(this.thongTinSanhService.getThongTinSanh(params), HttpStatus.OK);
+    }
+    
+    @GetMapping("/thongTinSanhChuaDat/")
+    @CrossOrigin
+    public ResponseEntity<List<ThongTinSanh>> listSanhChuaDat(@RequestParam String date) {
+        return new ResponseEntity<>(this.thongTinSanhService.getSanhChuaDuocDat(date), HttpStatus.OK);
     }
 }

@@ -57,6 +57,7 @@ public class HoaDonServiceImpl implements HoaDonService {
         pdt.setTongTien(floatValue);
         pdt.setNgayDatCoc(new Date());
         pdt.setTienCoc(0.0);
+        pdt.setTienConLai(0.0);
 
         boolean isUpdateSuccess = this.phieuDatBanRepo.updatePayPhieuDatBan(pdt);
         if (isUpdateSuccess) {

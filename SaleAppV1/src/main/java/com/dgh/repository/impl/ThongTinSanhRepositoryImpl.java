@@ -7,6 +7,7 @@ package com.dgh.repository.impl;
 import com.dgh.pojo.ThongTinSanh;
 import com.dgh.repository.ThongTinSanhRepository;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.Query;
@@ -125,6 +126,36 @@ public class ThongTinSanhRepositoryImpl implements ThongTinSanhRepository {
         Query q = s.createQuery("SELECT Count(*) FROM ThongTinSanh");
 
         return Long.parseLong(q.getSingleResult().toString());
+    }
+
+    @Override
+    public List<ThongTinSanh> getSanhChuaDuocDat(String date) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createNativeQuery("SELECT DISTINCT s.*\n"
+                + " FROM thong_tin_sanh AS s\n"
+                + " WHERE s.isDelete = 0 AND s.ten_sanh NOT IN (\n"
+                + "     SELECT DISTINCT s.ten_sanh\n"
+                + "     FROM thong_tin_sanh AS s\n"
+                + "     JOIN thong_tin_chi_tiet_dat_tiec AS ctdt ON ctdt.loai_tiec_id = s.id\n"
+                + "     JOIN phieu_dat_ban AS p ON p.chi_tiet_dat_tiec_id = ctdt.id\n"
+                + "     JOIN thong_tin_chi_tiet_khach_hang_dat_tiec as ctkh on ctkh.id = p.chi_tiet_khach_hang_id\n"
+                + "     WHERE ctkh.ngay_to_chuc = :date \n"
+                + ");");
+        q.setParameter("date", date);
+        List<Object[]> rows = q.getResultList();
+        List<ThongTinSanh> thongTinSanhList = new ArrayList<>();
+
+        for (Object[] row : rows) {
+            ThongTinSanh thongTinSanh = new ThongTinSanh();
+            thongTinSanh.setId((Integer) row[0]);
+            thongTinSanh.setLoaiSanh((String) row[1]);
+            thongTinSanh.setTenSanh((String) row[2]);
+            thongTinSanh.setSoLuongBan((Integer) row[3]);
+            thongTinSanh.setDonGiaToiThieu((Float) row[4]);
+            thongTinSanhList.add(thongTinSanh);
+        }
+
+        return thongTinSanhList;
     }
 
 }
