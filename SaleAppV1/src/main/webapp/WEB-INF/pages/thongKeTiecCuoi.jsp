@@ -126,7 +126,7 @@
                     type: "pie",
                     showInLegend: "true",
                     legendText: "{x}",
-                    yValueFormatString: "#,###\"%\"",
+                    yValueFormatString: "#",
                     indexLabelFontSize: 16,
                     indexLabel: "{x} - {y}",
                     dataPoints: dps[0]

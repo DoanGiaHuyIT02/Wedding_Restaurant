@@ -12,6 +12,7 @@ import com.dgh.repository.HoaDonRepository;
 import com.dgh.repository.PhieuDatBanRepository;
 import com.dgh.service.HoaDonService;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class HoaDonServiceImpl implements HoaDonService {
     public HoaDonDTO getHoaDonDtoById(int id) {
         return this.hoaDonRepo.getHoaDonDtoByPhieuDatBanId(id);
     }
-    
+
     @Override
     public HoaDonDaThanhToanOnlineDTO getHoaDonDaThanhToanByPhieuDatBanId(int id) {
         return this.hoaDonRepo.getHoaDonDaThanhToanByPhieuDatBanId(id);
@@ -54,10 +55,13 @@ public class HoaDonServiceImpl implements HoaDonService {
         }
 
         double floatValue = (double) hoaDonDto.getTongTienHoaDon();
+        double floatValue1 = (double) hoaDonDto.getTienCoc();
+        double floatValue2 = (double) hoaDonDto.getTienConLai();
+
         pdt.setTongTien(floatValue);
         pdt.setNgayDatCoc(new Date());
-        pdt.setTienCoc(0.0);
-        pdt.setTienConLai(0.0);
+        pdt.setTienCoc(floatValue1);
+        pdt.setTienConLai(floatValue2);
 
         boolean isUpdateSuccess = this.phieuDatBanRepo.updatePayPhieuDatBan(pdt);
         if (isUpdateSuccess) {
@@ -65,14 +69,23 @@ public class HoaDonServiceImpl implements HoaDonService {
             hdtt.setMaThanhToan(params.get("maThanhToan"));
             hdtt.setNgayThanhToan(new Date());
             hdtt.setPhieuDatBanId(pdt);
-            hdtt.setIsActive(Boolean.TRUE);
-            
+            hdtt.setIsActive(Boolean.FALSE);
+
             HoaDonThanhToan hd = this.hoaDonRepo.addThanhToanHoaDon(hdtt);
         }
 
         return true;
     }
 
-    
+    @Override
+    public List<HoaDonDTO> getHoaDonDtoBySoDienThoai(String soDienThoai) {
+        return this.hoaDonRepo.getHoaDonDtoBySoDienThoai(soDienThoai);
+    }
+
+    @Override
+    public boolean ThanhToanHoaDonNhanVien(Map<String, String> params) {
+        HoaDonThanhToan hd = new HoaDonThanhToan();
+        return true;
+    }
 
 }

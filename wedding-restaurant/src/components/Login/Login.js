@@ -59,8 +59,12 @@ const Login = () => {
         process();
     }
 
-    if (taiKhoan !== null)
+    if (taiKhoan !== null && taiKhoan.vaiTro === "ROLE_USER") {
         return <Navigate to="/" />
+    } 
+    if (taiKhoan !== null && taiKhoan.vaiTro === "ROLE_STAFF") {
+        return <Navigate to="/employee" />
+    }
 
     return (
         <div className='bodyLogin'>

@@ -12,35 +12,68 @@ const Header = () => {
         })
     }
 
+    console.log("taiKhoan", taiKhoan);
+
+
+
     return (<>
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container>
                 <Navbar.Brand href="#home">GH Wedding Restaurant</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
-                        <Link className="nav-link" to="/about">Giới thiệu</Link>
-                        <Link className="nav-link" to="/">Trang chủ</Link>
-
-                        <NavDropdown title="Dịch vụ chung" id="navbarScrollingDropdown">
-                            <NavDropdown.Item >
-                                <Link to="/lobby">Sảnh tiệc</Link>
-                            </NavDropdown.Item>
-                            <NavDropdown.Item >
-                                <Link to="/service">Dịch vụ</Link>
-                            </NavDropdown.Item>
-                            <NavDropdown.Item >
-                                <Link to="/menu">Thực đơn</Link>
-                            </NavDropdown.Item>
-                            <NavDropdown.Item >
-                                <Link to="/event">Sự kiện - tiệc</Link>
-                            </NavDropdown.Item>
-                        </NavDropdown>
-                        <Link className="nav-link" to="/search">Tra cứu</Link>
-                        <Link className="nav-link" to="/booking">Đặt tiệc</Link>
-                        <Link className="nav-link" to="/feedback">Phản hồi khách hàng</Link>
-                        {taiKhoan == null ? " " : <Link className="nav-link" to="/bill">Thanh toán</Link>}
+                    {taiKhoan === null ? <>
+                        <Nav className="me-auto">
+                            <Link className="nav-link" to="/about">Giới thiệu</Link>
+                            <Link className="nav-link" to="/">Trang chủ</Link>
+                            <NavDropdown title="Dịch vụ chung" id="navbarScrollingDropdown">
+                                <NavDropdown.Item >
+                                    <Link to="/lobby">Sảnh tiệc</Link>
+                                </NavDropdown.Item>
+                                <NavDropdown.Item >
+                                    <Link to="/service">Dịch vụ</Link>
+                                </NavDropdown.Item>
+                                <NavDropdown.Item >
+                                    <Link to="/menu">Thực đơn</Link>
+                                </NavDropdown.Item>
+                                <NavDropdown.Item >
+                                    <Link to="/event">Sự kiện - tiệc</Link>
+                                </NavDropdown.Item>
+                            </NavDropdown>
+                            <Link className="nav-link" to="/search">Tra cứu</Link>
+                            <Link className="nav-link" to="/booking">Đặt tiệc</Link>
+                            <Link className="nav-link" to="/feedback">Phản hồi khách hàng</Link>
+                            {/* {taiKhoan == null ? " " : <Link className="nav-link" to="/bill">Thanh toán</Link>} */}
+                        </Nav>
+                    </> : taiKhoan.vaiTro === "ROLE_USER" ? <>
+                        <Nav className="me-auto">
+                            <Link className="nav-link" to="/about">Giới thiệu</Link>
+                            <Link className="nav-link" to="/">Trang chủ</Link>
+                            <NavDropdown title="Dịch vụ chung" id="navbarScrollingDropdown">
+                                <NavDropdown.Item >
+                                    <Link to="/lobby">Sảnh tiệc</Link>
+                                </NavDropdown.Item>
+                                <NavDropdown.Item >
+                                    <Link to="/service">Dịch vụ</Link>
+                                </NavDropdown.Item>
+                                <NavDropdown.Item >
+                                    <Link to="/menu">Thực đơn</Link>
+                                </NavDropdown.Item>
+                                <NavDropdown.Item >
+                                    <Link to="/event">Sự kiện - tiệc</Link>
+                                </NavDropdown.Item>
+                            </NavDropdown>
+                            <Link className="nav-link" to="/search">Tra cứu</Link>
+                            <Link className="nav-link" to="/booking">Đặt tiệc</Link>
+                            <Link className="nav-link" to="/feedback">Phản hồi khách hàng</Link>
+                            <Link className="nav-link" to="/bill">Thanh toán</Link>
+                        </Nav>
+                    </> : <Nav className="me-auto">
+                        
+                        <Link className="nav-link" to="/employee">Trang chủ</Link>
+                        
                     </Nav>
+                    }
                 </Navbar.Collapse>
                 <div className="">
                     {taiKhoan === null ? <Link to="/login" style={{ marginRight: '10px' }}>

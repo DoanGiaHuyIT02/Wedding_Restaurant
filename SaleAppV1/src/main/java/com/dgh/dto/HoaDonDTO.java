@@ -16,6 +16,7 @@ import java.util.Date;
  * @author DELL
  */
 public class HoaDonDTO {
+    private int id;
     private String tenKhachHang;
     private Date ngayToChuc;
     private String diaChi;
@@ -33,6 +34,50 @@ public class HoaDonDTO {
     private int chiNhanhId;
     private String maThanhToan;
     private boolean isDaThanhToan;
+    private double tienCoc;
+    private double tienConLai;
+    private Date ngayDatCoc;
+    private int phieuDatBanId;
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getPhieuDatBanId() {
+        return phieuDatBanId;
+    }
+
+    public void setPhieuDatBanId(int phieuDatBanId) {
+        this.phieuDatBanId = phieuDatBanId;
+    }
+
+    public Date getNgayDatCoc() {
+        return ngayDatCoc;
+    }
+
+    public void setNgayDatCoc(Date ngayDatCoc) {
+        this.ngayDatCoc = ngayDatCoc;
+    }
+
+    public double getTienCoc() {
+        return tienCoc;
+    }
+
+    public void setTienCoc(double tienCoc) {
+        this.tienCoc = tienCoc;
+    }
+
+    public double getTienConLai() {
+        return tienConLai;
+    }
+
+    public void setTienConLai(double tienConLai) {
+        this.tienConLai = tienConLai;
+    }
 
     public boolean isIsDaThanhToan() {
         return isDaThanhToan;

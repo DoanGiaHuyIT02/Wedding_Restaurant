@@ -4,6 +4,7 @@ import momoImg from "../../image/momo.jpg";
 import MySpinner from "../../layout/MySpinner";
 import { format } from "date-fns";
 import { Alert } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const PayMomo = () => {
 
@@ -140,7 +141,7 @@ const PayMomo = () => {
                                     </div>
                                     <div className="mt-3 mb-3" style={{ width: '150px' }}>
                                         {loading === true ? <MySpinner /> : isSuccess === true ? null : <button type="submit" className="btn btn-primary w-100 py-3 text-white">Xác nhận</button>}
-                                        {isSuccess === null ? "" : <Alert variant="success">Bạn đã thanh toán thành công.</Alert>}
+                                        {isSuccess === null ? "" : <Alert variant="success">Bạn đã thanh toán thành công. Quay lại <Link to="/">trang chủ</Link> </Alert>}
                                     </div>
                                 </div>
                             </form>
@@ -181,10 +182,6 @@ const PayMomo = () => {
                         <hr />
                         <div>
                             <h2 className="text-center mt-5 mb-3">Thanh toán online</h2>
-                            <select>
-                                <option selected>Thanh toán hoàn tất</option>
-                                <option>Đặt cọc</option>
-                            </select>
                             <div className="bill_price">
                                 <p>{thanhToan.tenSanh.tenSanh}:</p>
                                 <p>{thanhToan.tongTienSanh.toLocaleString('vi-VN')} VND</p>
@@ -201,6 +198,10 @@ const PayMomo = () => {
                             <div className="bill_price">
                                 <p>{thanhToan.loaiDichVu.loaiDichVu}:</p>
                                 <p>{thanhToan.loaiDichVu.giaDichVu.toLocaleString('vi-VN')} VND</p>
+                            </div>
+                            <div className="bill_price">
+                                <h4><strong>Tiền cọc:</strong></h4>
+                                <h4><strong>{thanhToan.tienCoc.toLocaleString('vi-VN')} VND</strong></h4>
                             </div>
                             <div className="bill_price">
                                 <h3><strong>Tổng tiền:</strong></h3>

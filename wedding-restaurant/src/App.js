@@ -17,8 +17,11 @@ import Service from "./components/Service/Service";
 import Search from "./components/Search/Search";
 import Bill from "./components/Bill/Bill";
 import PayMomo from "./components/PayMomo/PayMomo";
+import Employee from "./components/Employee/Employee";
+import SearchEmp from "./components/Employee/SearchEmp/SearchEmp";
+import PayEmp from "./components/Employee/PayEmp/PayEmp";
 
-export const MyUserContext  = createContext();
+export const MyUserContext = createContext();
 
 const App = () => {
   const cookies = new Cookies();
@@ -27,22 +30,27 @@ const App = () => {
 
 
   return (
-    <MyUserContext.Provider value={[ taiKhoan,  dispatch ]}>
+    <MyUserContext.Provider value={[taiKhoan, dispatch]}>
+
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<BaseLayout><Home /></BaseLayout>} />
-          <Route path="/menu" element={<BaseLayout><Menu /></BaseLayout>} />
-          <Route path="/booking" element={<BaseLayout><Booking /></BaseLayout>} />
-          <Route path="/about" element={<BaseLayout><About /></BaseLayout>} />
-          <Route path="/lobby" element={<BaseLayout><Lobby /></BaseLayout>} />
-          <Route path="/service" element={<BaseLayout><Service /></BaseLayout>} />
-          <Route path="/event" element={<BaseLayout><Event /></BaseLayout>} />
-          <Route path="/search" element={<BaseLayout><Search /></BaseLayout>} />
-          <Route path="/feedback" element={<BaseLayout><Feedback /></BaseLayout>} />
-          <Route path="/bill" element={<BaseLayout><Bill /></BaseLayout>} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/payMomo" element={<PayMomo />} />
+            <Route path="/" element={<BaseLayout><Home /></BaseLayout>} />
+            <Route path="/menu" element={<BaseLayout><Menu /></BaseLayout>} />
+            <Route path="/booking" element={<BaseLayout><Booking /></BaseLayout>} />
+            <Route path="/about" element={<BaseLayout><About /></BaseLayout>} />
+            <Route path="/lobby" element={<BaseLayout><Lobby /></BaseLayout>} />
+            <Route path="/service" element={<BaseLayout><Service /></BaseLayout>} />
+            <Route path="/event" element={<BaseLayout><Event /></BaseLayout>} />
+            <Route path="/search" element={<BaseLayout><Search /></BaseLayout>} />
+            <Route path="/feedback" element={<BaseLayout><Feedback /></BaseLayout>} />
+            <Route path="/bill" element={<BaseLayout><Bill /></BaseLayout>} />
+            <Route path="/employee" element={<BaseLayout><Employee /></BaseLayout>} />
+            <Route path="/searchEmp" element={<BaseLayout><SearchEmp /></BaseLayout>} />
+            <Route path="/payEmp" element={<BaseLayout><PayEmp /></BaseLayout>} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/payMomo" element={<PayMomo />} />
+           
         </Routes>
       </BrowserRouter>
     </MyUserContext.Provider>

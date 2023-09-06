@@ -7,13 +7,21 @@ package com.dgh.repository;
 import com.dgh.dto.HoaDonDTO;
 import com.dgh.dto.HoaDonDaThanhToanOnlineDTO;
 import com.dgh.pojo.HoaDonThanhToan;
+import java.util.List;
 
 /**
  *
  * @author DELL
  */
 public interface HoaDonRepository {
+
     HoaDonDTO getHoaDonDtoByPhieuDatBanId(int id);
+
+    List<HoaDonDTO> getHoaDonDtoBySoDienThoai(String soDienThoai);
+
     HoaDonDaThanhToanOnlineDTO getHoaDonDaThanhToanByPhieuDatBanId(int id);
+
     HoaDonThanhToan addThanhToanHoaDon(HoaDonThanhToan hd);
+    
+    HoaDonThanhToan updateHoaDon(HoaDonThanhToan hd);
 }

@@ -10,6 +10,7 @@ import com.dgh.dto.KhachHangTaiKhoanDTO;
 import com.dgh.dto.ThongTinKhachHangDatTiecDTO;
 import com.dgh.service.HoaDonService;
 import com.dgh.service.ThongTinDatTiecService;
+import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,6 +50,13 @@ public class ApiDatTiecController {
     @CrossOrigin
     public ResponseEntity<HoaDonDTO> getBill(@RequestParam  int id) {
         HoaDonDTO hoaDon = this.hoaDonService.getHoaDonDtoById(id);
+        return new ResponseEntity<>(hoaDon, HttpStatus.OK);
+    }
+    
+    @GetMapping("/hoaDon/")
+    @CrossOrigin
+    public ResponseEntity<List<HoaDonDTO>> getHoaDonChuaThanhToan(@RequestParam  String soDienThoai) {
+        List<HoaDonDTO> hoaDon = this.hoaDonService.getHoaDonDtoBySoDienThoai(soDienThoai);
         return new ResponseEntity<>(hoaDon, HttpStatus.OK);
     }
     
