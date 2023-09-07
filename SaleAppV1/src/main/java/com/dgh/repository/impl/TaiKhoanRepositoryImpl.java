@@ -104,4 +104,19 @@ public class TaiKhoanRepositoryImpl implements TaiKhoanRepository {
         return kh;
     }
 
+    @Override
+    public boolean kiemTratenDangNhapTonTai(String tenDangNhap) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createQuery("select u from TaiKhoan u where u.tenDangNhap =:tenDangNhap");
+        q.setParameter("tenDangNhap", tenDangNhap);
+        q.setMaxResults(1);
+        TaiKhoan user = null;
+        try {
+            user = (TaiKhoan) q.getSingleResult();
+            return true;
+        } catch (NoResultException e) {
+            return false;
+        }
+    }
+
 }

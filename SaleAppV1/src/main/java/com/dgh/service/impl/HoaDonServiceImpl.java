@@ -7,8 +7,10 @@ package com.dgh.service.impl;
 import com.dgh.dto.HoaDonDTO;
 import com.dgh.dto.HoaDonDaThanhToanOnlineDTO;
 import com.dgh.pojo.HoaDonThanhToan;
+import com.dgh.pojo.NhanVien;
 import com.dgh.pojo.PhieuDatBan;
 import com.dgh.repository.HoaDonRepository;
+import com.dgh.repository.NhanVienRepository;
 import com.dgh.repository.PhieuDatBanRepository;
 import com.dgh.service.HoaDonService;
 import java.util.Date;
@@ -29,6 +31,8 @@ public class HoaDonServiceImpl implements HoaDonService {
     private HoaDonRepository hoaDonRepo;
     @Autowired
     private PhieuDatBanRepository phieuDatBanRepo;
+    @Autowired
+    private NhanVienRepository nhanVienRepo;
 
     @Override
     public HoaDonDTO getHoaDonDtoById(int id) {
@@ -84,8 +88,21 @@ public class HoaDonServiceImpl implements HoaDonService {
 
     @Override
     public boolean ThanhToanHoaDonNhanVien(Map<String, String> params) {
-        HoaDonThanhToan hd = new HoaDonThanhToan();
-        return true;
+        int id = Integer.parseInt(params.get("id"));
+        int idTaiKhoanNV = Integer.parseInt(params.get("idTaiKhoanNV"));
+        
+        NhanVien nv = this.nhanVienRepo.getNhanVienByTaiKhoanId(idTaiKhoanNV);
+        
+        HoaDonThanhToan hd = this.hoaDonRepo.getHoaDonById(id);
+        hd.setIsActive(true);
+        hd.setNhanVienId(nv);
+       return this.hoaDonRepo.updateHoaDon(hd);
+
+    }
+
+    @Override
+    public HoaDonDTO getHoaDonChoNhanVienByPhieuDatBanId(int id) {
+        return this.hoaDonRepo.getHoaDonChoNhanVienByPhieuDatBanId(id);
     }
 
 }

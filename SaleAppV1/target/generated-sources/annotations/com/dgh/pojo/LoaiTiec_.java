@@ -7,7 +7,7 @@ import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2023-09-06T23:52:25")
+@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2023-09-08T00:32:17")
 @StaticMetamodel(LoaiTiec.class)
 public class LoaiTiec_ { 
 

@@ -22,4 +22,5 @@ public interface TaiKhoanService extends UserDetailsService{
     boolean deleteTaiKhoanById(int id);
     TaiKhoan getTaiKhoanByTenDangNhap(String tenDangNhap);
     boolean authUser(String tenDangNhap, String matKhau);
+    boolean kiemTratenDangNhapTonTai(String tenDangNhap);
 }

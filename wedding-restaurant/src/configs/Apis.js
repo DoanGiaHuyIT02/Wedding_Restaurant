@@ -12,13 +12,18 @@ export const endpoint = {
     "currentUser": `/api/current-user/`,
     "anhSanh": `/api/anhSanh/`,
     "register": `/api/users/`,
+    "username-exist": `/api/username-exist/`,
     "phanHoiKhachHang": `/api/phanHoiKhachHang/`,
     "datTiec": `/api/datTiec/`,
     "thanhToan": `/api/thanhToan/`,
+    "hoaDonKhachHang":  `/api/hoaDonKhachHang/`,
     "daThanhToan": `/api/daThanhToan/`,
     "thanhToanMomo": `/api/thanhToanMomo/`,
     "thongTinSanhChuaDat": `/api/thongTinSanhChuaDat/`,
     "hoaDon": `/api/hoaDon/`,
+    "hoaDon": `/api/hoaDon/`,
+    "thanhToanHoaDon": `/api/thanhToanHoaDon/`,
+
 
 }
 

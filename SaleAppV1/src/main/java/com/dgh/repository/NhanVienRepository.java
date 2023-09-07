@@ -14,10 +14,17 @@ import java.util.Map;
  * @author DELL
  */
 public interface NhanVienRepository {
+
     List<NhanVienDTO> getNhanVien(Map<String, String> params);
+
     boolean addNhanVien(NhanVien nv);
+
     NhanVien getNhanVienById(int id);
+
+    NhanVien getNhanVienByTaiKhoanId(int id);
+
     boolean deleteNhanVienById(int id);
+
     Long countNhanVien();
-  
+
 }

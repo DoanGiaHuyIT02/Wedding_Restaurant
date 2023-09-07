@@ -86,4 +86,14 @@ public class ApiTaiKhoanControllor {
         TaiKhoan u = this.taiKhoanService.getTaiKhoanByTenDangNhap(user.getName());
         return new ResponseEntity<>(u, HttpStatus.OK);
     }
+    
+    @PostMapping("/username-exist/")
+    @CrossOrigin
+    public ResponseEntity<?> isExistUsername(@RequestParam String tenDangNhap) {
+        if (this.taiKhoanService.kiemTratenDangNhapTonTai(tenDangNhap)) {
+            return ResponseEntity.badRequest().body("Tên đăng nhập đã tồn tại");
+        } else {
+            return ResponseEntity.ok().build();
+        }
+    }
 }

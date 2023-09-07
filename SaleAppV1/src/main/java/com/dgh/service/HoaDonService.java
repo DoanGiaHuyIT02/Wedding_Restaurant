@@ -16,6 +16,7 @@ import java.util.Map;
  */
 public interface HoaDonService {
     HoaDonDTO getHoaDonDtoById(int id);
+    HoaDonDTO getHoaDonChoNhanVienByPhieuDatBanId(int id);
     List<HoaDonDTO> getHoaDonDtoBySoDienThoai(String soDienThoai);
     HoaDonDaThanhToanOnlineDTO getHoaDonDaThanhToanByPhieuDatBanId(int id);
     boolean ThanhToanHoaHon (Map<String, String> params);

@@ -272,14 +272,79 @@ public class HoaDonRepositoryImpl implements HoaDonRepository {
     }
 
     @Override
-    public HoaDonThanhToan updateHoaDon(HoaDonThanhToan hd) {
+    public boolean updateHoaDon(HoaDonThanhToan hd) {
         Session s = this.factory.getObject().getCurrentSession();
         try {
             s.update(hd);
-            return hd;
+            return true;
         } catch (HibernateException ex) {
             ex.printStackTrace();
-            return null;
+            return false;
         }
     }
+
+    @Override
+    public HoaDonDTO getHoaDonChoNhanVienByPhieuDatBanId(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createNativeQuery("SELECT p.tong_tien, p.tien_coc, p.tien_con_lai, p.ngay_dat_coc, ctkh.ten_khach_hang, ctkh.so_dien_thoai,\n"
+                + "		ctkh.dia_chi, ctdt.so_luong_ban, ctdt.ca,\n"
+                + "		lt.ten_loai_tiec,s.ten_sanh, s.don_gia_toi_thieu,\n"
+                + "        td.ma_thuc_don, td.gia_goi, dv.loai_dich_vu, dv.gia_dich_vu,\n"
+                + "        p.id as \"phieu_dat_ban_id\", hd.id as \"hoa_don_id\", ctkh.ngay_to_chuc\n"
+                + "FROM hoa_don_thanh_toan as hd\n"
+                + "JOIN phieu_dat_ban as p on p.id = hd.phieu_dat_ban_id\n"
+                + "JOIN thong_tin_chi_tiet_dat_tiec as ctdt on ctdt.id = p.chi_tiet_dat_tiec_id\n"
+                + "JOIN thong_tin_chi_tiet_khach_hang_dat_tiec as ctkh on ctkh.id = p.chi_tiet_khach_hang_id\n"
+                + "JOIN thong_tin_sanh as s on s.id = ctdt.sanh_id\n"
+                + "JOIN thuc_don as td on td.id = ctdt.thuc_don_id\n"
+                + "JOIN loai_tiec as lt on lt.id = ctdt.loai_tiec_id\n"
+                + "JOIN dich_vu as dv on dv.id = ctdt.dich_vu_id\n"
+                + "WHERE hd.isActive = 0 AND p.id = :id\n"
+                + "GROUP BY p.id;");
+        q.setParameter("id", id);
+
+        Object[] row = (Object[]) q.getSingleResult();
+        HoaDonDTO hoaDonDTO = new HoaDonDTO();
+        hoaDonDTO.setTongTienHoaDon((double) row[0]);
+        hoaDonDTO.setTienCoc((double) row[1]);
+        hoaDonDTO.setTienConLai((double) row[2]);
+        hoaDonDTO.setNgayDatCoc((Date) row[3]);
+        hoaDonDTO.setTenKhachHang((String) row[4]);
+        hoaDonDTO.setSoDienThoai((String) row[5]);
+        hoaDonDTO.setDiaChi((String) row[6]);
+        hoaDonDTO.setSoLuongBan((String) row[7]);
+        hoaDonDTO.setCa((String) row[8]);
+
+        LoaiTiec lt = new LoaiTiec();
+        lt.setTenLoaiTiec((String) row[9]);
+        hoaDonDTO.setLoaiTiec(lt);
+
+        ThongTinSanh st = new ThongTinSanh();
+        st.setTenSanh((String) row[10]);
+        st.setDonGiaToiThieu((Float) row[11]);
+        hoaDonDTO.setTenSanh(st);
+
+        ThucDon td = new ThucDon();
+        td.setMaThucDon((String) row[12]);
+        td.setGiaGoi((Float) row[13]);
+        hoaDonDTO.setMaThucDon(td);
+
+        DichVu dv = new DichVu();
+        dv.setLoaiDichVu((String) row[14]);
+        dv.setGiaDichVu((Float) row[15]);
+        hoaDonDTO.setLoaiDichVu(dv);
+
+        hoaDonDTO.setPhieuDatBanId((Integer) row[16]);
+        hoaDonDTO.setId((Integer) row[17]);
+        hoaDonDTO.setNgayToChuc((Date) row[18]);
+
+        return hoaDonDTO;
+    }
+
+    @Override
+    public HoaDonThanhToan getHoaDonById(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        return s.get(HoaDonThanhToan.class, id);
+    }
+
 }

@@ -16,6 +16,8 @@ import java.util.List;
 public interface HoaDonRepository {
 
     HoaDonDTO getHoaDonDtoByPhieuDatBanId(int id);
+    
+    HoaDonDTO getHoaDonChoNhanVienByPhieuDatBanId(int id);
 
     List<HoaDonDTO> getHoaDonDtoBySoDienThoai(String soDienThoai);
 
@@ -23,5 +25,7 @@ public interface HoaDonRepository {
 
     HoaDonThanhToan addThanhToanHoaDon(HoaDonThanhToan hd);
     
-    HoaDonThanhToan updateHoaDon(HoaDonThanhToan hd);
+    boolean updateHoaDon(HoaDonThanhToan hd);
+    
+    HoaDonThanhToan getHoaDonById(int id);
 }

@@ -46,16 +46,16 @@ const PayMomo = () => {
             });
     };
 
-    const fetchDaThanhToanHoaDon = async (id) => {
-        Apis.get(`${endpoint.daThanhToan}?id=${id}`)
-            .then(res => {
-                setDaThanhToan(res.data);
-                console.log("DaThanhToan", res.data);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    };
+    // const fetchDaThanhToanHoaDon = async (id) => {
+    //     Apis.get(`${endpoint.daThanhToan}?id=${id}`)
+    //         .then(res => {
+    //             setDaThanhToan(res.data);
+    //             console.log("DaThanhToan", res.data);
+    //         })
+    //         .catch(error => {
+    //             console.error(error);
+    //         });
+    // };
 
     const xacNhanThanhToan = (evt) => {
         evt.preventDefault();
@@ -97,13 +97,13 @@ const PayMomo = () => {
 
     useEffect(() => {
         fetchThanhToanHoaDon(id);
-        console.log("isPay",isPay);
-       
-            fetchDaThanhToanHoaDon(id);
-        
+        console.log("isPay", isPay);
+
+
+
     }, [id, isPay]);
 
-   
+
 
     if (!thanhToan) {
         return <MySpinner />;
@@ -118,98 +118,100 @@ const PayMomo = () => {
 
                         <img alt="Mã momo" src={momoImg} />
                         <div className="mt-3 mb-3 mx-auto text-center" style={{ width: '250px' }}>
-                            {(isPay || (daThanhToan && daThanhToan.isThanhToan) ) ? <span>Phiếu đã thanh toán</span>:
+                            {(isPay || (thanhToan.tienCoc > 0)) ? <div> <span>Phiếu đã thanh toán</span>
+                                <Alert variant="success">Bạn đã thanh toán thành công. Quay lại <Link to="/">trang chủ</Link> </Alert>
+                                </div>:
                                 <button type="submit" className="btn btn-primary w-100 py-3 text-white"
                                     onClick={handleConfirmPayment}
                                     disabled={inputVisible}
                                 >Xác nhận thanh toán</button>
                              }
-                            
-                        </div>
-                       
-                        {inputVisible && (
-                            <form onSubmit={xacNhanThanhToan}>
-                                <div>
-                                    <div className="col-md-6">
-                                        <div className="form-floating">
-                                            <input type="text" className="form-control" id="maGiaoDich" placeholder="Mã giao dịch"
-                                                value={payCode.maThanhToan}
-                                                onChange={e => change(e, "maThanhToan")} />
-                                            <label htmlFor="name">Mã giao dịch</label>
+
+                            </div>
+
+                            {inputVisible && (
+                                <form onSubmit={xacNhanThanhToan}>
+                                    <div>
+                                        <div className="col-md-6">
+                                            <div className="form-floating">
+                                                <input type="text" className="form-control" id="maGiaoDich" placeholder="Mã giao dịch"
+                                                    value={payCode.maThanhToan}
+                                                    onChange={e => change(e, "maThanhToan")} />
+                                                <label htmlFor="name">Mã giao dịch</label>
+                                            </div>
+                                            {err === null ? "" : <Alert variant="danger">{err}</Alert>}
                                         </div>
-                                        {err === null ? "" : <Alert variant="danger">{err}</Alert>}
+                                        <div className="mt-3 mb-3" style={{ width: '150px' }}>
+                                            {loading === true ? <MySpinner /> : isSuccess === true ? null : <button type="submit" className="btn btn-primary w-100 py-3 text-white">Xác nhận</button>}
+                                            {isSuccess === null ? "" : <Alert variant="success">Bạn đã thanh toán thành công. Quay lại <Link to="/">trang chủ</Link> </Alert>}
+                                        </div>
                                     </div>
-                                    <div className="mt-3 mb-3" style={{ width: '150px' }}>
-                                        {loading === true ? <MySpinner /> : isSuccess === true ? null : <button type="submit" className="btn btn-primary w-100 py-3 text-white">Xác nhận</button>}
-                                        {isSuccess === null ? "" : <Alert variant="success">Bạn đã thanh toán thành công. Quay lại <Link to="/">trang chủ</Link> </Alert>}
-                                    </div>
+                                </form>
+                            )}
+
+
+                        </div>
+                        <div className="col-md-6 mt-5">
+                            <div>
+                                <h3>Thông tin đặt tiệc</h3>
+                                <ul>
+                                    <li className="bill_info" >
+                                        Loại tiệc:
+                                        <p> {thanhToan.loaiTiec.tenLoaiTiec}</p>
+                                    </li>
+                                    <li className="bill_info" >
+                                        Loại sảnh: <p>{thanhToan.tenSanh.tenSanh}</p>
+                                    </li>
+                                    <li className="bill_info" >
+                                        Dịch vụ:
+                                        <p>{thanhToan.loaiDichVu.loaiDichVu}</p>
+                                    </li>
+                                    <li className="bill_info">
+                                        Thực đơn:
+                                        <p>{thanhToan.maThucDon.maThucDon}</p>
+                                    </li>
+                                    <li className="bill_info" >
+                                        Số lượng bàn: <p>{thanhToan.soLuongBan}</p>
+                                    </li>
+                                    <li className="bill_info">
+                                        Ngày tổ chức: <p> {format(thanhToan.ngayToChuc, 'dd/MM/yyyy')}</p>
+                                    </li>
+                                    <li className="bill_info" >
+                                        Buổi tổ chức: <p> {thanhToan.ca === "SA" ? "Buổi sáng" : thanhToan.ca === "CH" ? "Buổi chiều" : "Buổi tối"}</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <hr />
+                            <div>
+                                <h2 className="text-center mt-5 mb-3">Thanh toán online</h2>
+                                <div className="bill_price">
+                                    <p>{thanhToan.tenSanh.tenSanh}:</p>
+                                    <p>{thanhToan.tongTienSanh.toLocaleString('vi-VN')} VND</p>
                                 </div>
-                            </form>
-                        )}
-
-
-                    </div>
-                    <div className="col-md-6 mt-5">
-                        <div>
-                            <h3>Thông tin đặt tiệc</h3>
-                            <ul>
-                                <li className="bill_info" >
-                                    Loại tiệc:
-                                    <p> {thanhToan.loaiTiec.tenLoaiTiec}</p>
-                                </li>
-                                <li className="bill_info" >
-                                    Loại sảnh: <p>{thanhToan.tenSanh.tenSanh}</p>
-                                </li>
-                                <li className="bill_info" >
-                                    Dịch vụ:
-                                    <p>{thanhToan.loaiDichVu.loaiDichVu}</p>
-                                </li>
-                                <li className="bill_info">
-                                    Thực đơn:
-                                    <p>{thanhToan.maThucDon.maThucDon}</p>
-                                </li>
-                                <li className="bill_info" >
-                                    Số lượng bàn: <p>{thanhToan.soLuongBan}</p>
-                                </li>
-                                <li className="bill_info">
-                                    Ngày tổ chức: <p> {format(thanhToan.ngayToChuc, 'dd/MM/yyyy')}</p>
-                                </li>
-                                <li className="bill_info" >
-                                    Buổi tổ chức: <p> {thanhToan.ca === "SA" ? "Buổi sáng" : thanhToan.ca === "CH" ? "Buổi chiều" : "Buổi tối"}</p>
-                                </li>
-                            </ul>
-                        </div>
-                        <hr />
-                        <div>
-                            <h2 className="text-center mt-5 mb-3">Thanh toán online</h2>
-                            <div className="bill_price">
-                                <p>{thanhToan.tenSanh.tenSanh}:</p>
-                                <p>{thanhToan.tongTienSanh.toLocaleString('vi-VN')} VND</p>
-                            </div>
-                            <div className="bill_price">
-                                <p>{thanhToan.maThucDon.maThucDon}:</p>
-                                <p>{thanhToan.maThucDon.giaGoi.toLocaleString('vi-VN')} VND</p>
-                            </div>
-                            <div className="bill_price">
-                                <p>{thanhToan.maThucDon.maThucDon} = </p>
-                                <p>{thanhToan.soLuongBan} * {thanhToan.maThucDon.giaGoi.toLocaleString('vi-VN')} VND</p>
-                                <p>{thanhToan.tongTienThucDon.toLocaleString('vi-VN')} VND</p>
-                            </div>
-                            <div className="bill_price">
-                                <p>{thanhToan.loaiDichVu.loaiDichVu}:</p>
-                                <p>{thanhToan.loaiDichVu.giaDichVu.toLocaleString('vi-VN')} VND</p>
-                            </div>
-                            <div className="bill_price">
-                                <h4><strong>Tiền cọc:</strong></h4>
-                                <h4><strong>{thanhToan.tienCoc.toLocaleString('vi-VN')} VND</strong></h4>
-                            </div>
-                            <div className="bill_price">
-                                <h3><strong>Tổng tiền:</strong></h3>
-                                <h3><strong>{thanhToan.tongTienHoaDon.toLocaleString('vi-VN')} VND</strong></h3>
+                                <div className="bill_price">
+                                    <p>{thanhToan.maThucDon.maThucDon}:</p>
+                                    <p>{thanhToan.maThucDon.giaGoi.toLocaleString('vi-VN')} VND</p>
+                                </div>
+                                <div className="bill_price">
+                                    <p>{thanhToan.maThucDon.maThucDon} = </p>
+                                    <p>{thanhToan.soLuongBan} * {thanhToan.maThucDon.giaGoi.toLocaleString('vi-VN')} VND</p>
+                                    <p>{thanhToan.tongTienThucDon.toLocaleString('vi-VN')} VND</p>
+                                </div>
+                                <div className="bill_price">
+                                    <p>{thanhToan.loaiDichVu.loaiDichVu}:</p>
+                                    <p>{thanhToan.loaiDichVu.giaDichVu.toLocaleString('vi-VN')} VND</p>
+                                </div>
+                                <div className="bill_price">
+                                    <h4><strong>Tiền cọc:</strong></h4>
+                                    <h4><strong>{thanhToan.tienCoc.toLocaleString('vi-VN')} VND</strong></h4>
+                                </div>
+                                <div className="bill_price">
+                                    <h3><strong>Tổng tiền:</strong></h3>
+                                    <h3><strong>{thanhToan.tongTienHoaDon.toLocaleString('vi-VN')} VND</strong></h3>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
             </section>
 
         </>

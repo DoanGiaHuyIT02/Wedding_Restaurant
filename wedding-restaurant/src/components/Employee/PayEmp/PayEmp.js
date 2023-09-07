@@ -1,18 +1,31 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Apis, { authApi, endpoint } from "../../../configs/Apis";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { format } from "date-fns";
+import MySpinner from "../../../layout/MySpinner";
+import { MyUserContext } from "../../../App";
+import { Alert, Button, Modal } from "react-bootstrap";
 
 const PayEmp = () => {
-
+    const [taiKhoan, dispatch] = useContext(MyUserContext);
     const [thanhToan, setThanhToan] = useState(null);
+    const [data, setData] = useState({});
+    const [err, setErr] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(null);
+
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
 
 
     const fetchThanhToanHoaDon = async (id) => {
-        authApi().get(`${endpoint.thanhToan}?id=${id}`)
+        authApi().get(`${endpoint.hoaDonKhachHang}?id=${id}`)
             .then(res => {
                 setThanhToan(res.data);
                 console.log("--- fetchThanhToanHoaDon", res.data);
@@ -23,20 +36,80 @@ const PayEmp = () => {
             });
     };
 
+    const xacNhanThanhToan = (evt) => {
+        evt.preventDefault();
+
+        const process = async () => {
+            let formData = new FormData();
+            formData.append("id", id);
+            formData.append("idTaiKhoanNV", taiKhoan.id);
+
+            setLoading(true);
+            try {
+                let res = await authApi().post(endpoint['thanhToanHoaDon'], formData);
+                console.log("thanhToan", res);
+                if (res.status === 200) {
+                    setData(res.data);
+                    setLoading(false);
+                    setIsSuccess(true);
+                    handleClose();
+
+                } else {
+                    setErr("Thanh toán không thành công");
+                    setLoading(false);
+
+                }
+            } catch (error) {
+                setErr("Hệ thống đang bị lỗi!");
+                setLoading(false);
+
+                console.log(error);
+            }
+
+        }
+        process();
+    };
+
     useEffect(() => {
         fetchThanhToanHoaDon(id);
     }, [id]);
 
-    console.log(thanhToan);
+
+
+
+    console.log("Thanh toan payEmp", thanhToan);
+    console.log("Tài khoản", taiKhoan);
+
+
+
+    if (taiKhoan === null || taiKhoan.vaiTro === "ROLE_USER" || !id) {
+        return <Navigate to="/" />;
+    }
 
     if (!thanhToan) {
-        return <h1>Test</h1>
+        return <MySpinner />
     }
 
 
     return (
         <>
-            <section className="container-bg" style={{padding:'10px 100px'}}>
+            <form onSubmit={xacNhanThanhToan}>
+                <Modal show={show} onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Xác nhận thanh toán</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Bạn có chắc muốn thanh toán không!</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Hủy
+                        </Button>
+                        {loading === true ? <MySpinner /> : isSuccess === true ? <alert variant="success">Bạn đã thanh toán thành công. <Link to="/employee">  Quay lại</Link> </alert> : <Button onClick={xacNhanThanhToan} variant="primary" > Xác nhận</Button>}
+
+                    </Modal.Footer>
+                </Modal>
+            </form>
+            <section className="container-bg" style={{ padding: '10px 100px' }}>
+
                 <div className="row">
                     <h1 className="text-center mt-3">Thanh toán đặt tiệc</h1>
                     <div className="col-md-6 container" style={{}}>
@@ -55,7 +128,7 @@ const PayEmp = () => {
                                 <p>{thanhToan.diaChi}</p>
                             </li>
                         </ul>
-                        <hr/>
+                        <hr />
                         <h3>Thông tin đặt tiệc</h3>
                         <ul>
                             <li className="bill_info" >
@@ -117,15 +190,14 @@ const PayEmp = () => {
                             </div>
                         </div>
                         <div className="mt-3 mb-3" style={{ width: '250px' }}>
-                            <Link type="button" className="btn btn-primary w-100 py-3 text-white">
-                                Thanh toán
-                            </Link>
+                            <button onClick={handleShow} className="btn btn-primary w-100 py-3 text-white"> Thanh toán</button>
                         </div>
                     </div>
 
                 </div>
 
             </section>
+
         </>
     )
 }

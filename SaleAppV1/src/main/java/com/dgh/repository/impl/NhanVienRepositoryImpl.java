@@ -152,4 +152,18 @@ public class NhanVienRepositoryImpl implements NhanVienRepository {
         return Long.parseLong(q.getSingleResult().toString());
     }
 
+    @Override
+    public NhanVien getNhanVienByTaiKhoanId(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Query q = s.createNativeQuery("SELECT * FROM nhan_vien WHERE nhan_vien.tai_khoan_id = :id");
+
+        q.setParameter("id", id);
+
+         Object[] row = (Object[]) q.getSingleResult();
+        NhanVien nhanVien = new NhanVien(); 
+        nhanVien.setId((Integer) row[0]);
+    
+        return nhanVien;
+    }
+
 }

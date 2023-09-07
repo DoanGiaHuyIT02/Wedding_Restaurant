@@ -110,6 +110,13 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
         return kh;
     }
 
+    @Override
+    public boolean kiemTratenDangNhapTonTai(String tenDangNhap) {
+        return this.taiKhoanRepo.kiemTratenDangNhapTonTai(tenDangNhap);
+    }
+
+   
+
 
 
 

@@ -21,4 +21,5 @@ public interface TaiKhoanRepository {
     TaiKhoan timKiemTaiKhoanById(int id);
     boolean deleteTaiKhoanById(int id);
     boolean authUser(String tenDangNhap, String matKhau);
+    boolean kiemTratenDangNhapTonTai(String tenDangNhap);
 }

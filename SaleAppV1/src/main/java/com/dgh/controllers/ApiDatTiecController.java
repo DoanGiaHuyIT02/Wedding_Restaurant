@@ -53,6 +53,13 @@ public class ApiDatTiecController {
         return new ResponseEntity<>(hoaDon, HttpStatus.OK);
     }
     
+    @GetMapping("/hoaDonKhachHang/")
+    @CrossOrigin
+    public ResponseEntity<HoaDonDTO> getHoaDonByNhanVien(@RequestParam  int id) {
+        HoaDonDTO hoaDon = this.hoaDonService.getHoaDonChoNhanVienByPhieuDatBanId(id);
+        return new ResponseEntity<>(hoaDon, HttpStatus.OK);
+    }
+    
     @GetMapping("/hoaDon/")
     @CrossOrigin
     public ResponseEntity<List<HoaDonDTO>> getHoaDonChuaThanhToan(@RequestParam  String soDienThoai) {
@@ -71,6 +78,19 @@ public class ApiDatTiecController {
     @CrossOrigin
     public ResponseEntity<Boolean> pay(@RequestParam Map<String, String> params) {
         boolean isSuccess = this.hoaDonService.ThanhToanHoaHon(params) ;
+        if(isSuccess) {
+            return new ResponseEntity<>(true, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+        }
+        
+    }
+    
+//    Nhân viên thanh toán cho khách hàng tại quầy
+    @PostMapping("/thanhToanHoaDon/")
+    @CrossOrigin
+    public ResponseEntity<Boolean> payBillByNhanVien(@RequestParam Map<String, String> params) {
+        boolean isSuccess = this.hoaDonService.ThanhToanHoaDonNhanVien(params) ;
         if(isSuccess) {
             return new ResponseEntity<>(true, HttpStatus.OK);
         } else {

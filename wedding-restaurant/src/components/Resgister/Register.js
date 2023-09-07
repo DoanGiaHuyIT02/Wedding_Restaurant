@@ -19,11 +19,28 @@ const Register = () => {
     const [err, setErr] = useState(null);
     const avatar = useRef();
     const nav = useNavigate();
+    const [usernameExists, setUsernameExists] = useState(false);
+
+    const checkUsernameExistence = async (username) => {
+        try {
+            const formData = new FormData(); // Tạo đối tượng FormData
+            formData.append('tenDangNhap', username); // Thêm dữ liệu vào FormData
+            const response = await Apis.post(endpoint['username-exist'], formData);
+        } catch (error) {
+            //setUsernameExists = true
+            setUsernameExists(error.response.status === 400);
+        }
+
+    };
 
     const change = (evt, field) => {
+        setUsernameExists(false);
         setUser(current => {
             return { ...current, [field]: evt.target.value };
         });
+        if (field === 'tenDangNhap') {
+            checkUsernameExistence(evt.target.value);
+        }
     }
 
     const register = (evt) => {
@@ -38,13 +55,29 @@ const Register = () => {
                 formData.append("avatar", avatar.current.files[0]);
 
             setLoading(true);
-            let res = await Apis.post(endpoint['register'], formData);
-            if (res.status === 201) {
-                nav("/login");
-            } else {
-                setErr("Hệ thống đang bị lỗi!");
-                setLoading(false);
+            if (usernameExists === false) {
+                let res = await Apis.post(endpoint['register'], formData);
+                if (res.status === 201) {
+                    nav("/login");
+                } else {
+                    setErr("Hệ thống đang bị lỗi!");
+                    setLoading(false);
+                }
             }
+            else {
+                setErr("Tên đăng nhập đã tồn tại");
+                setLoading(false)
+                setUser({
+                    "tenDangNhap": "",
+                    "matKhau": "",
+                    "tenKhachHang": "",
+                    "soDienThoai": "",
+                    "email": "",
+                    "nhapLaiMatKhau": ""
+                });
+                setUsernameExists(false)
+            }
+
         }
 
         if (user.matKhau !== user.nhapLaiMatKhau) {
@@ -83,7 +116,7 @@ const Register = () => {
                     <div className="form_userName control">
                         <input id="tenDangNhap" type="text" placeholder="Tên đăng nhập" value={user.tenDangNhap}
                             onChange={e => change(e, "tenDangNhap")} />
-                        <small></small>
+                        <small >{usernameExists && <Alert variant="danger">Tên đăng nhập đã tồn tại.</Alert>}</small>
                         <span></span>
                     </div>
                     <div className="form_Password control">
