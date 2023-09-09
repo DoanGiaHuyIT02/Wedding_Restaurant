@@ -41,7 +41,7 @@ const PayEmp = () => {
 
         const process = async () => {
             let formData = new FormData();
-            formData.append("id", id);
+            formData.append("id", thanhToan.id);
             formData.append("idTaiKhoanNV", taiKhoan.id);
 
             setLoading(true);
@@ -59,11 +59,10 @@ const PayEmp = () => {
                     setLoading(false);
 
                 }
-            } catch (error) {
+            } catch (err) {
                 setErr("Hệ thống đang bị lỗi!");
                 setLoading(false);
-
-                console.log(error);
+                handleClose();
             }
 
         }
@@ -73,6 +72,8 @@ const PayEmp = () => {
     useEffect(() => {
         fetchThanhToanHoaDon(id);
     }, [id]);
+
+    
 
 
 
@@ -190,7 +191,8 @@ const PayEmp = () => {
                             </div>
                         </div>
                         <div className="mt-3 mb-3" style={{ width: '250px' }}>
-                            <button onClick={handleShow} className="btn btn-primary w-100 py-3 text-white"> Thanh toán</button>
+                            {isSuccess === true ? <alert variant="success">Bạn đã thanh toán thành công. <Link to="/employee">  Quay lại</Link> </alert> : <button onClick={handleShow} className="btn btn-primary w-100 py-3 text-white"> Thanh toán</button>}
+                            {isSuccess === true? "" : err === null ? "" : <Alert variant="danger">{err}</Alert>}
                         </div>
                     </div>
 

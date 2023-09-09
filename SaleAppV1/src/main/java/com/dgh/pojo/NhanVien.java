@@ -57,9 +57,8 @@ public class NhanVien implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
-    @Size(max = 255)
     @Column(name = "ten_nhan_vien")
+    @NotBlank(message = "{nhanVien.tenNhanVien.notNullMsg}")
     private String tenNhanVien;
     @Basic(optional = false)
     @NotNull
@@ -72,20 +71,17 @@ public class NhanVien implements Serializable {
     @Column(name = "gioi_tinh")
     private int gioiTinh;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 12)
     @Column(name = "so_dien_thoai")
+    @NotBlank(message = "{nhanVien.soDienThoai.notNullMsg}")
     private String soDienThoai;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
     @Column(name = "email")
+    @NotBlank(message = "{nhanVien.email.notNullMsg}")
     private String email;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
     @Column(name = "dia_chi")
+    @NotBlank(message = "{nhanVien.diaChi.notNullMsg}")
     private String diaChi;
     @Basic(optional = false)
     @NotNull

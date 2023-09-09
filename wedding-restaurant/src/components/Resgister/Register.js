@@ -94,39 +94,40 @@ const Register = () => {
             <div className="form">
                 <form onSubmit={register}>
                     <h2>Đăng ký</h2>
+                    <p className='close'><Link to="/">x</Link></p>
                     {err === null ? "" : <Alert variant="danger">{err}</Alert>}
                     <div className="form_userName control">
-                        <input id="name" type="text" placeholder="Họ và tên" value={user.tenKhachHang}
+                        <input id="name" type="text" placeholder="Họ và tên" required value={user.tenKhachHang}
                             onChange={e => change(e, "tenKhachHang")} />
                         <small></small>
                         <span></span>
                     </div>
                     <div className="form_userName control">
-                        <input id="soDienThoai" type="text" placeholder="Số điện thoại" value={user.soDienThoai}
+                        <input id="soDienThoai" type="text" placeholder="Số điện thoại" required value={user.soDienThoai}
                             onChange={e => change(e, "soDienThoai")} />
                         <small></small>
                         <span></span>
                     </div>
                     <div className="form_userName control">
-                        <input id="email" type="email" placeholder="Email" value={user.email}
+                        <input id="email" type="email" placeholder="Email" required value={user.email}
                             onChange={e => change(e, "email")} />
                         <small></small>
                         <span></span>
                     </div>
                     <div className="form_userName control">
-                        <input id="tenDangNhap" type="text" placeholder="Tên đăng nhập" value={user.tenDangNhap}
+                        <input id="tenDangNhap" type="text" required placeholder="Tên đăng nhập" value={user.tenDangNhap}
                             onChange={e => change(e, "tenDangNhap")} />
                         <small >{usernameExists && <Alert variant="danger">Tên đăng nhập đã tồn tại.</Alert>}</small>
                         <span></span>
                     </div>
                     <div className="form_Password control">
-                        <input type="password" name="matKhau" id="password" placeholder="Mật khẩu" value={user.matKhau}
+                        <input type="password" name="matKhau" required id="password" placeholder="Mật khẩu" value={user.matKhau}
                             onChange={e => change(e, "matKhau")} />
                         <small></small>
                         <span></span>
                     </div>
                     <div className="form_Password control">
-                        <input type="password" name="matKhau" id="confirmPassword" placeholder="Nhập lại mật khẩu" value={user.nhapLaiMatKhau}
+                        <input type="password" name="matKhau" required id="confirmPassword" placeholder="Nhập lại mật khẩu" value={user.nhapLaiMatKhau}
                             onChange={e => change(e, "nhapLaiMatKhau")} />
                         <small></small>
                         <span></span>

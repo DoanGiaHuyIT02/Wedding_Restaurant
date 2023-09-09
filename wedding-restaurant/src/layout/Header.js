@@ -71,6 +71,8 @@ const Header = () => {
                     </> : <Nav className="me-auto">
                         
                         <Link className="nav-link" to="/employee">Trang chủ</Link>
+                        <Link className="nav-link" to="/booking">Đặt tiệc</Link>
+                        <Link className="nav-link" to="/search">Tra cứu</Link>
                         
                     </Nav>
                     }

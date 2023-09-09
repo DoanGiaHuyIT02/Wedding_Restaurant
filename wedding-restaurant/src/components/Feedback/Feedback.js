@@ -4,11 +4,14 @@ import anh1 from "../../image/line-hoang-long-restaurant.png";
 import { authApi, endpoint } from "../../configs/Apis";
 import { MyUserContext } from "../../App";
 import { Link } from "react-router-dom";
+import { Alert } from "react-bootstrap";
 
 const Feedback = () => {
     const [taiKhoan,] = useContext(MyUserContext);
     const [phanHoiKhachHang, setPhanHoiKhachHang] = useState(null);
     const [content, setContent] = useState();
+    const [isSuccess, setIsSuccess] = useState(null);
+    const [err, setErr] = useState(null);
     const guiPhanHoi = (evt) => {
         evt.preventDefault();
         if (content.trim() === '') {
@@ -16,18 +19,27 @@ const Feedback = () => {
             return;
         }
         const process = async () => {
-            let { data } = await authApi().post(endpoint['phanHoiKhachHang'], {
-                "phanHoi": content
-            });
-
-            setPhanHoiKhachHang(data);
-            setContent("");
+            try {
+                let res = await authApi().post(endpoint['phanHoiKhachHang'], {
+                    "phanHoi": content
+                });
+                if (res.status === 201) {
+                    setPhanHoiKhachHang(res.data);
+                    setContent("");
+                    setIsSuccess(true);
+                } else {
+                    setErr("Hệ thống đang bị lỗi. Vui lòng thử lại sau.");
+                }
+                
+            } catch (err) {
+                setErr("Hệ thống đang bị lỗi!");
+            }
+           
         }
 
         process();
     }
     
-    console.log(phanHoiKhachHang)
 
     let url = `/login?next=/feedback`;
     return (
@@ -71,6 +83,9 @@ const Feedback = () => {
                                     <button className="btn btn-primary w-100 py-3" onClick={guiPhanHoi}>Gửi</button>
                                 </div>
                             </>}
+                            {err === null ? "" : <Alert variant="danger">{err}</Alert>}
+                            {isSuccess === null ? "" : <Alert variant="success">Bạn đã gửi phản hồi thành công. Cảm ơn sự đóng góp ý kiến của bạn.</Alert>}
+
                         </div>
                     </form>
                 </div>

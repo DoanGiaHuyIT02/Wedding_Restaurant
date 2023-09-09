@@ -9,6 +9,7 @@ import com.dgh.dto.HoaDonDaThanhToanOnlineDTO;
 import com.dgh.dto.KhachHangTaiKhoanDTO;
 import com.dgh.dto.ThongTinKhachHangDatTiecDTO;
 import com.dgh.service.HoaDonService;
+import com.dgh.service.PhieuDatBanService;
 import com.dgh.service.ThongTinDatTiecService;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +37,8 @@ public class ApiDatTiecController {
     private ThongTinDatTiecService thongTinDatTiecService;
     @Autowired
     private HoaDonService hoaDonService;
+    @Autowired
+    private PhieuDatBanService phieuDatBanService;
     
     @PostMapping(path = "/datTiec/", 
             consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}, 
@@ -65,6 +68,13 @@ public class ApiDatTiecController {
     public ResponseEntity<List<HoaDonDTO>> getHoaDonChuaThanhToan(@RequestParam  String soDienThoai) {
         List<HoaDonDTO> hoaDon = this.hoaDonService.getHoaDonDtoBySoDienThoai(soDienThoai);
         return new ResponseEntity<>(hoaDon, HttpStatus.OK);
+    }
+    
+    @GetMapping("/phieuDatBan/")
+    @CrossOrigin
+    public ResponseEntity<List<HoaDonDTO>> getPhieuDatBan(@RequestParam  String soDienThoai) {
+        List<HoaDonDTO> phieuDatBan = this.phieuDatBanService.getPhieuDatBanBySoDienThoai(soDienThoai);
+        return new ResponseEntity<>(phieuDatBan, HttpStatus.OK);
     }
     
     @GetMapping("/daThanhToan/")

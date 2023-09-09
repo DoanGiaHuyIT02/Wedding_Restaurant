@@ -4,10 +4,13 @@
  */
 package com.dgh.service;
 
+import com.dgh.dto.HoaDonDTO;
+import java.util.List;
+
 /**
  *
  * @author DELL
  */
 public interface PhieuDatBanService {
-    
+    List<HoaDonDTO> getPhieuDatBanBySoDienThoai(String soDienThoai);
 }

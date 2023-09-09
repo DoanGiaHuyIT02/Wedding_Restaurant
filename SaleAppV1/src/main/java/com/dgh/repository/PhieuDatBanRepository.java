@@ -4,7 +4,9 @@
  */
 package com.dgh.repository;
 
+import com.dgh.dto.HoaDonDTO;
 import com.dgh.pojo.PhieuDatBan;
+import java.util.List;
 
 /**
  *
@@ -14,4 +16,5 @@ public interface PhieuDatBanRepository {
     PhieuDatBan themPhieu(PhieuDatBan p);
     PhieuDatBan getPhieuDatBanById(int id);
     boolean updatePayPhieuDatBan(PhieuDatBan p);
+    List<HoaDonDTO> getPhieuDatBanBySoDienThoai(String soDienThoai);
 }

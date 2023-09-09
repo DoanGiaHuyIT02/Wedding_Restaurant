@@ -69,14 +69,6 @@ public class ApiTaiKhoanControllor {
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
-//    @PostMapping(path = "/usersCus/", 
-//            consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}, 
-//            produces = {MediaType.APPLICATION_JSON_VALUE})
-//    @CrossOrigin
-//    public ResponseEntity<KhachHangTaiKhoanDTO> addCus(@RequestParam Map<String, String> params, @RequestPart MultipartFile avatar) {
-//        KhachHangTaiKhoanDTO cus = this.taiKhoanService.addCus(params, avatar);
-//        return new ResponseEntity<>(cus, HttpStatus.CREATED);
-//    }
     @GetMapping(path = "/current-user/", produces = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin
     public ResponseEntity<TaiKhoan> details(Principal user) {

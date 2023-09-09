@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 const PayMomo = () => {
 
     const [thanhToan, setThanhToan] = useState(null);
-    const [daThanhToan, setDaThanhToan] = useState(null);
     const [err, setErr] = useState(null);
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState({});
@@ -46,16 +45,6 @@ const PayMomo = () => {
             });
     };
 
-    // const fetchDaThanhToanHoaDon = async (id) => {
-    //     Apis.get(`${endpoint.daThanhToan}?id=${id}`)
-    //         .then(res => {
-    //             setDaThanhToan(res.data);
-    //             console.log("DaThanhToan", res.data);
-    //         })
-    //         .catch(error => {
-    //             console.error(error);
-    //         });
-    // };
 
     const xacNhanThanhToan = (evt) => {
         evt.preventDefault();
@@ -97,19 +86,15 @@ const PayMomo = () => {
 
     useEffect(() => {
         fetchThanhToanHoaDon(id);
-        console.log("isPay", isPay);
-
-
-
     }, [id, isPay]);
 
-
+    
 
     if (!thanhToan) {
         return <MySpinner />;
     }
 
-
+    console.log(thanhToan.ngayDatCoc);
     return (
         <>
             <section className="container">
@@ -118,7 +103,7 @@ const PayMomo = () => {
 
                         <img alt="Mã momo" src={momoImg} />
                         <div className="mt-3 mb-3 mx-auto text-center" style={{ width: '250px' }}>
-                            {(isPay || (thanhToan.tienCoc > 0)) ? <div> <span>Phiếu đã thanh toán</span>
+                            { (isPay && thanhToan.tienCoc > 0) ? <div> <span>Phiếu đã thanh toán</span>
                                 <Alert variant="success">Bạn đã thanh toán thành công. Quay lại <Link to="/">trang chủ</Link> </Alert>
                                 </div>:
                                 <button type="submit" className="btn btn-primary w-100 py-3 text-white"

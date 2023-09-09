@@ -19,7 +19,6 @@
         <form:input type="text" class="form-control" path="giaDichVu" id="price" placeholder="Giá dịch vu" name="price" />
         <label for="name">Giá dịch vụ</label>
     </div>
-        <span>${themDichVu.id}</span>
     <div class="form-floating mb-3 mt-3">
         <button type="submit" class="btn btn-info">
              <c:choose>

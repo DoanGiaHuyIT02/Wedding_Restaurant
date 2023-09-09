@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:url value="/dichVu" var="action" />
 <section class="container">
     <h1 class="text-center text-info mt-4">Quản lý dich vụ</h1>
@@ -35,7 +36,7 @@
                 <tr>
                     <td>${p.id}</td>
                     <td>${p.loaiDichVu}</td>
-                    <td>${p.giaDichVu}</td>
+                    <td><fmt:formatNumber value="${p.giaDichVu}" type="number" pattern="#,###.##" /> VNĐ</td>
                     <td>
                         <c:url value="/api/dichVu/${p.id}" var="apiDel" />
                         <a href="<c:url value="/themDichVu/${p.id}"/>" class="btn btn-info">Cập nhật</a>

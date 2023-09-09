@@ -41,30 +41,32 @@
             </tr>
         </thead>
         <tbody>
-            <c:forEach items="${nhanVien}" var="p">
-                <tr>
-                    <td>${p.id}</td>
-                    <td>${p.tenNhanVien}</td>
-                    <td>${p.ngaySinh}</td>
-                    <c:if test="${p.gioiTinh == 1}">
-                        <td>Nam</td>
-                    </c:if>
-                    <c:if test="${p.gioiTinh == 0}">
-                        <td>Nữ</td>
-                    </c:if>
-                    <td>${p.soDienThoai}</td>
-                    <td>${p.email}</td>
-                    <td>${p.ngayVaoLam}</td>
-                    <td>${p.diaChi}</td>
-                    <td>${p.chucVu}</td>
-                    <td>${p.chiNhanh}</td>
-                    <td>${p.taiKhoan}</td>
-                    <td>
+            <c:forEach items="${nhanVien}" var="p" varStatus="loop">
+                <c:if test="${loop.index < 4}">
+                    <tr>
+                        <td>${p.id}</td>
+                        <td>${p.tenNhanVien}</td>
+                        <td>${p.ngaySinh}</td>
+                        <c:if test="${p.gioiTinh == 1}">
+                            <td>Nam</td>
+                        </c:if>
+                        <c:if test="${p.gioiTinh == 0}">
+                            <td>Nữ</td>
+                        </c:if>
+                        <td>${p.soDienThoai}</td>
+                        <td>${p.email}</td>
+                        <td>${p.ngayVaoLam}</td>
+                        <td>${p.diaChi}</td>
+                        <td>${p.chucVu}</td>
+                        <td>${p.chiNhanh}</td>
+                        <td>${p.taiKhoan}</td>
+                        <td>
 
-                        <c:url value="/api/nhanVien/${p.id}" var="apiDel" />
-                        <button class="btn btn-danger" onclick="delNhanVien('${apiDel}')">Xóa</button>
-                    </td>
-                </tr>
+                            <c:url value="/api/nhanVien/${p.id}" var="apiDel" />
+                            <button class="btn btn-danger" onclick="delNhanVien('${apiDel}')">Xóa</button>
+                        </td>
+                    </tr>
+                </c:if>
             </c:forEach>
         </tbody>
     </table>

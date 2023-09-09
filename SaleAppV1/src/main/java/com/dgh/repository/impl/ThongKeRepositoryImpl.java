@@ -69,8 +69,8 @@ public class ThongKeRepositoryImpl implements ThongKeRepository {
                         + " JOIN thong_tin_chi_tiet_dat_tiec ON thong_tin_sanh.id = thong_tin_chi_tiet_dat_tiec.sanh_id \n"
                         + " JOIN phieu_dat_ban ON thong_tin_chi_tiet_dat_tiec.id = phieu_dat_ban.chi_tiet_dat_tiec_id \n"
                         + " JOIN hoa_don_thanh_toan ON phieu_dat_ban.id = hoa_don_thanh_toan.phieu_dat_ban_id \n"
-                        + "WHERE YEAR(hoa_don_thanh_toan.ngay_thanh_toan) = :year AND MONTH(hoa_don_thanh_toan.ngay_thanh_toan) \n"
-                        + "AND hoa_don_thanh_toan.isActive = 1\n"
+                        + "WHERE YEAR(hoa_don_thanh_toan.ngay_thanh_toan) = :year  \n"
+                        + "AND hoa_don_thanh_toan.isActive = 1 AND MONTH(hoa_don_thanh_toan.ngay_thanh_toan)\n"
                         + "BETWEEN :startMonth AND :endMonth GROUP BY thong_tin_sanh.ten_sanh";
             } else {
                 parameters.put("year", Integer.parseInt(params.get("year")));
@@ -110,8 +110,8 @@ public class ThongKeRepositoryImpl implements ThongKeRepository {
                         + " JOIN thong_tin_chi_tiet_dat_tiec ON thong_tin_sanh.id = thong_tin_chi_tiet_dat_tiec.sanh_id \n"
                         + " JOIN phieu_dat_ban ON thong_tin_chi_tiet_dat_tiec.id = phieu_dat_ban.chi_tiet_dat_tiec_id \n"
                         + " JOIN hoa_don_thanh_toan ON phieu_dat_ban.id = hoa_don_thanh_toan.phieu_dat_ban_id \n"
-                        + " WHERE YEAR(hoa_don_thanh_toan.ngay_thanh_toan) = :year AND MONTH(hoa_don_thanh_toan.ngay_thanh_toan) \n"
-                        + " AND hoa_don_thanh_toan.isActive = 1 \n"
+                        + " WHERE YEAR(hoa_don_thanh_toan.ngay_thanh_toan) = :year  \n"
+                        + " AND hoa_don_thanh_toan.isActive = 1 AND MONTH(hoa_don_thanh_toan.ngay_thanh_toan)\n"
                         + " BETWEEN :startMonth AND :endMonth GROUP BY thong_tin_sanh.ten_sanh";
             } else {
                 sql = "SELECT thong_tin_sanh.ten_sanh, COUNT(*) AS so_luong FROM thong_tin_sanh \n"
@@ -178,8 +178,8 @@ public class ThongKeRepositoryImpl implements ThongKeRepository {
                         + " JOIN thong_tin_chi_tiet_dat_tiec ON loai_tiec.id = thong_tin_chi_tiet_dat_tiec.loai_tiec_id\n"
                         + " JOIN phieu_dat_ban ON thong_tin_chi_tiet_dat_tiec.id = phieu_dat_ban.chi_tiet_dat_tiec_id\n"
                         + " JOIN hoa_don_thanh_toan ON phieu_dat_ban.id = hoa_don_thanh_toan.phieu_dat_ban_id\n"
-                        + " WHERE YEAR(hoa_don_thanh_toan.ngay_thanh_toan) = :year AND MONTH(hoa_don_thanh_toan.ngay_thanh_toan) \n"
-                        + " AND hoa_don_thanh_toan.isActive = 1 \n"
+                        + " WHERE YEAR(hoa_don_thanh_toan.ngay_thanh_toan) = :year \n"
+                        + " AND hoa_don_thanh_toan.isActive = 1 AND MONTH(hoa_don_thanh_toan.ngay_thanh_toan)\n"
                         + " BETWEEN :startMonth AND :endMonth GROUP BY loai_tiec.ten_loai_tiec";
             } else {
                 parameters.put("year", Integer.parseInt(params.get("year")));
@@ -287,7 +287,7 @@ public class ThongKeRepositoryImpl implements ThongKeRepository {
                 sql = "SELECT month(hd.ngay_thanh_toan), SUM(p.tong_tien) as \"tong_doanh_thu\" \n"
                         + "FROM phieu_dat_ban as p\n"
                         + "JOIN hoa_don_thanh_toan as hd on p.id = hd.phieu_dat_ban_id\n"
-                        + "WHERE month(hd.ngay_thanh_toan) = :month and year(hd.ngay_thanh_toan) = :year and hd.isActive = 1 \n"
+                        + "WHERE year(hd.ngay_thanh_toan) = :year and hd.isActive = 1 AND month(hd.ngay_thanh_toan)\n"
                         + " BETWEEN :startMonth AND :endMonth GROUP BY month(hd.ngay_thanh_toan)";
             } else {
                 parameters.put("year", Integer.parseInt(params.get("year")));
@@ -321,7 +321,7 @@ public class ThongKeRepositoryImpl implements ThongKeRepository {
                 }
                 sql = "SELECT month(hd.ngay_thanh_toan), SUM(p.tong_tien) as \"tong_doanh_thu\" FROM phieu_dat_ban as p \n"
                         + " JOIN hoa_don_thanh_toan as hd on p.id = hd.phieu_dat_ban_id \n"
-                        + " WHERE month(hd.ngay_thanh_toan) = :month and year(hd.ngay_thanh_toan) = :year and hd.isActive = 1  "
+                        + " WHERE year(hd.ngay_thanh_toan) = :year and hd.isActive = 1 AND  month(hd.ngay_thanh_toan) "
                         + " BETWEEN :startMonth AND :endMonth \n"
                         + " GROUP BY month(hd.ngay_thanh_toan)";
             } else {

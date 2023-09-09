@@ -44,6 +44,7 @@ const Booking = () => {
     const loadLoaiTiec = async () => {
         let res = await Apis.get(endpoint['loaiTiec']);
         setLoaiTiec(res.data);
+       
     }
 
     const loadDichVu = async () => {
@@ -62,6 +63,11 @@ const Booking = () => {
     const datTiec = (evt) => {
         evt.preventDefault();
 
+        if (book.tenKhachHang.trim() === '') {
+            alert('Vui lòng nhập nội.');
+            return;
+        }
+
         const process = async () => {
             let formData = new FormData();
             for (let field in book)
@@ -76,7 +82,7 @@ const Booking = () => {
                     setIsSuccess(true);
                     setLoading(false);
                 }  else {
-                    setErr("Hệ thống đang bị lỗi!");
+                    setErr("Hệ thống đang bận, vui lòng đặt bàn sau!");
                     setLoading(false);
                 }
             } catch (error) {
@@ -91,8 +97,6 @@ const Booking = () => {
         process();
     };
 
-    console.log(book);
-    
 
 
     useEffect(() => {
@@ -132,7 +136,7 @@ const Booking = () => {
                             <div className="mt-3">
                                 <img src={b} />
                             </div>
-                            <h1 className="text-center mt-5">Đặt tiệc</h1>
+                            <h1 className="text-center mt-5 title-about">Đặt tiệc</h1>
                             <form onSubmit={datTiec}>
                                 <div className="row g-3" style={{ textAlign: 'center' }}>
                                     <h4>Thông tin liên hệ</h4>
